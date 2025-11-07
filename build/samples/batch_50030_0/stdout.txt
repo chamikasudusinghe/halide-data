@@ -1,0 +1,46 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Upsampling dimension 0 by 0x
+Approx size: 32000, 2000, 3
+Relu
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Binary op
+Resampling from 2000, 2000, 3 to 32000, 2000, 3
+Upsampling dimension 0 by 16x
+Resulting size: 32000, 2000, 3
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Binary op
+Approx size: 32000, 2000, 3
+Padding
+Approx size: 32000, 2000, 3
+Downsampling dimension 0 by 0x
+Approx size: 4000, 2000, 3
+Downsampling dimension 1 by 0x
+Approx size: 32000, 250, 3
+All to all on dimension 2 using += 
+Approx size: 32000, 2000, 1
+Relu
+Approx size: 32000, 2000, 3
+Convolving dimension 0 with kernel [-8, 2] using +=
+Approx size: 32000, 2000, 1
+Padding
+Approx size: 32000, 2000, 3
+All to all on dimension 2
+Approx size: 32000, 2000, 1
+Binary op
+Resampling from 32000, 2000, 1 to 32000, 2000, 3
+All to all on dimension 2 using += 
+Resulting size: 32000, 2000, 3
+Resampling from 32000, 2000, 3 to 2000, 2000, 3
+Downsampling dimension 0 by 16x
+Resulting size: 2000, 2000, 3

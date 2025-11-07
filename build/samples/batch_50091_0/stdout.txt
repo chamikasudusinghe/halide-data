@@ -1,0 +1,57 @@
+Using mirror_interior
+Approx size: 2000, 2000, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 1] using sum() helper
+Approx size: 2000, 2000, 19
+Upsampling dimension 1 by 0x
+Approx size: 2000, 4000, 19
+All to all on dimension 2 using += 
+Approx size: 2000, 4000, 3
+Binary op
+Resampling from 2000, 2000, 19 to 2000, 4000, 19
+Upsampling dimension 1 by 2x
+Resulting size: 2000, 4000, 19
+Approx size: 2000, 4000, 19
+Binary op
+Resampling from 2000, 2000, 3 to 2000, 4000, 19
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 2x
+Resulting size: 2000, 4000, 19
+Approx size: 2000, 4000, 19
+Binary op
+Resampling from 2000, 2000, 3 to 2000, 4000, 19
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 2x
+Resulting size: 2000, 4000, 19
+Approx size: 2000, 4000, 19
+Binary op
+Approx size: 2000, 4000, 19
+Convolving dimension 1 with kernel [0, 10] using sum() helper
+Approx size: 2000, 4000, 19
+Padding
+Approx size: 2000, 4000, 19
+All to all on dimension 2 using += 
+Approx size: 2000, 4000, 9
+Downsampling dimension 1 by 0x
+Approx size: 2000, 500, 19
+Pooling using sum() with stride: 1 and kernel [ -3, 1]
+Approx size: 2000, 500, 19
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-3, 1] using +=
+Approx size: 2000, 4000, 9
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 2000, 500, 57
+Padding
+Approx size: 2000, 4000, 9
+Slice
+Resampling from 2000, 4000, 19 to 2000, 2000, 1
+Downsampling dimension 1 by 2x
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+All to all on dimension 2 using += 
+Approx size: 2000, 4000, 3
+Upsampling dimension 1 by 0x
+Resampling from 2000, 16000, 1 to 2000, 2000, 3
+Downsampling dimension 1 by 8x
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 3

@@ -1,0 +1,45 @@
+Using repeat_edge
+Approx size: 2000, 2000, 3
+Padding
+Approx size: 2000, 2000, 3
+Upsampling dimension 0 by 0x
+Approx size: 4000, 2000, 3
+All to all on dimension 2 using += 
+Approx size: 4000, 2000, 10
+Convolving dimension 0 with kernel [0, 2] using sum() helper
+Approx size: 4000, 2000, 10
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [0, 1]
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [0, 1] using +=
+Approx size: 4000, 2000, 8
+Upsampling dimension 1 by 0x
+Approx size: 4000, 4000, 10
+Convolving dimension 1 with kernel [-8, 10] using +=
+Approx size: 4000, 2000, 8
+Slice
+Resampling from 4000, 2000, 10 to 4000, 2000, 1
+All to all on dimension 2 using += 
+Resulting size: 4000, 2000, 1
+Approx size: 4000, 2000, 1
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 5] using sum() helper
+Approx size: 2000, 1000, 11
+Pooling using sum() with stride: 1 and kernel [ -1, 2]
+Approx size: 4000, 2000, 1
+Upsampling dimension 0 by 0x
+Approx size: 8000, 2000, 8
+All to all on dimension 2 using += 
+Approx size: 4000, 2000, 5
+Relu
+Approx size: 4000, 2000, 10
+Convolving dimension 0 with kernel [-2, 1] using +=
+Approx size: 4000, 2000, 1
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 23
+Upsampling dimension 0 by 0x
+Approx size: 16000, 2000, 3
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 3
+Relu
+Resampling from 16000, 2000, 3 to 2000, 2000, 3
+Downsampling dimension 0 by 8x
+Resulting size: 2000, 2000, 3

@@ -1,0 +1,52 @@
+Using repeat_edge
+Approx size: 2000, 2000, 3
+Downsampling dimension 0 by 0x
+Approx size: 250, 2000, 3
+All to all on dimension 2
+Approx size: 250, 2000, 192
+Padding
+Approx size: 250, 2000, 192
+Binary op
+Approx size: 250, 2000, 192
+Binary op
+Approx size: 250, 2000, 192
+Convolving dimension 1 with kernel [-3, 2]
+Approx size: 250, 2000, 192
+Downsampling dimension 0 by 0x
+Approx size: 32, 2000, 192
+All to all on dimension 2 using += 
+Approx size: 32, 2000, 166
+Binary op
+Resampling from 2000, 2000, 3 to 32, 2000, 192
+Downsampling dimension 0 by 63x
+All to all on dimension 2 using += 
+Resulting size: 32, 2000, 192
+Approx size: 32, 2000, 192
+Slice
+Resampling from 32, 2000, 192 to 250, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Resulting size: 256, 2000, 1
+Approx size: 256, 2000, 1
+Upsampling dimension 1 by 0x
+Approx size: 32, 4000, 192
+Convolving dimension 0 with kernel [-3, 3] using +=
+Approx size: 32, 2000, 192
+Padding
+Approx size: 32, 2000, 192
+All to all on dimension 2 using += 
+Approx size: 32, 4000, 120
+Slice
+Resampling from 32, 2000, 192 to 32, 2000, 1
+All to all on dimension 2 using += 
+Resulting size: 32, 2000, 1
+Approx size: 32, 2000, 1
+All to all on dimension 2 using += 
+Approx size: 32, 4000, 382
+Upsampling dimension 0 by 0x
+Approx size: 512, 2000, 192
+Padding
+Resampling from 32, 2000, 192 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 63x
+Resulting size: 2016, 2000, 3

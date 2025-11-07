@@ -1,0 +1,63 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Convolving dimension 0 with kernel [-3, 2]
+Approx size: 2000, 2000, 3
+All to all on dimension 2
+Approx size: 2000, 2000, 23
+Upsampling dimension 0 by 0x
+Approx size: 4000, 2000, 23
+Convolving dimension 1 with kernel [-2, 0]
+Approx size: 4000, 2000, 23
+Downsampling dimension 0 by 0x
+Approx size: 500, 2000, 23
+Padding
+Approx size: 500, 2000, 23
+Binary op
+Resampling from 500, 2000, 23 to 4000, 2000, 23
+Upsampling dimension 0 by 8x
+Resulting size: 4000, 2000, 23
+Approx size: 4000, 2000, 23
+Binary op
+Resampling from 500, 2000, 23 to 4000, 2000, 23
+Upsampling dimension 0 by 8x
+Resulting size: 4000, 2000, 23
+Approx size: 4000, 2000, 23
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 5] using +=
+Approx size: 500, 2000, 78
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 500, 2000, 41
+Convolving dimension 0 with kernel [-6, 10] using +=
+Approx size: 500, 2000, 41
+Convolving dimension 0 with kernel [0, 2]
+Approx size: 500, 2000, 41
+Binary op
+Resampling from 500, 2000, 78 to 2000, 2000, 23
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 4x
+Resulting size: 2000, 2000, 23
+Approx size: 2000, 2000, 23
+Binary op
+Approx size: 4000, 2000, 23
+Binary op
+Resampling from 500, 2000, 41 to 4000, 2000, 23
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Resulting size: 4000, 2000, 23
+Approx size: 4000, 2000, 23
+Binary op
+Resampling from 500, 2000, 41 to 4000, 2000, 23
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Resulting size: 4000, 2000, 23
+Approx size: 4000, 2000, 23
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 4000, 2000, 2
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-2, 5]
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-2, 5] using +=
+Resampling from 500, 250, 11 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 4x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3

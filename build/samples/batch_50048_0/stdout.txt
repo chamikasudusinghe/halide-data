@@ -1,0 +1,52 @@
+Using repeat_image
+Approx size: 2000, 2000, 3
+Pooling unrolled with stride: 1 and kernel [ -2, 1]
+Pooling using += with stride: 1 and kernel [ -2, 1]
+Approx size: 2000, 2000, 3
+Convolving dimension 1 with kernel [-7, 2] using sum() helper
+Approx size: 2000, 2000, 3
+All to all on dimension 2
+Approx size: 2000, 2000, 20
+Convolving dimension 1 with kernel [-6, 0] using sum() helper
+Approx size: 2000, 2000, 3
+Relu
+Approx size: 2000, 2000, 3
+Binary op
+Approx size: 2000, 2000, 3
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 3
+Pooling using sum() with stride: 1 and kernel [ 0, 4]
+Approx size: 2000, 250, 3
+All to all on dimension 2
+Approx size: 2000, 2000, 16
+Pooling unrolled with stride: 1 and kernel [ 0, 2]
+Approx size: 2000, 2000, 16
+Convolving dimension 0 with kernel [-6, 9] using sum() helper
+Approx size: 2000, 2000, 3
+Relu
+Approx size: 2000, 2000, 20
+Binary op
+Resampling from 2000, 250, 3 to 2000, 2000, 16
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 16
+Approx size: 2000, 2000, 16
+All to all on dimension 2
+Approx size: 2000, 2000, 7
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 4]
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 4] using +=
+Approx size: 250, 250, 12
+Binary op
+Resampling from 2000, 250, 3 to 2000, 2000, 20
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 20
+Approx size: 2000, 2000, 20
+All to all on dimension 2 using += 
+Resampling from 250, 250, 440 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3

@@ -1,0 +1,58 @@
+Using mirror_interior
+Approx size: 2000, 2000, 3
+Convolving dimension 1 with kernel [0, 0]
+Approx size: 2000, 2000, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-2, 5] using sum() helper
+Approx size: 250, 250, 4
+Downsampling dimension 0 by 0x
+Approx size: 63, 250, 4
+Slice
+Resampling from 2000, 2000, 3 to 63, 250, 1
+Downsampling dimension 0 by 32x
+Downsampling dimension 1 by 8x
+All to all on dimension 2 using += 
+Resulting size: 63, 250, 1
+Approx size: 63, 250, 1
+All to all on dimension 2
+Approx size: 63, 250, 139
+All to all on dimension 2
+Approx size: 2000, 2000, 7
+All to all on dimension 2
+Approx size: 63, 250, 363
+Binary op
+Resampling from 2000, 2000, 3 to 2000, 2000, 7
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 7
+Approx size: 2000, 2000, 7
+All to all on dimension 2 using += 
+Approx size: 63, 250, 376
+All to all on dimension 2 using += 
+Approx size: 63, 250, 323
+Padding
+Approx size: 63, 250, 323
+All to all on dimension 2 using += 
+Approx size: 63, 250, 68
+Binary op
+Resampling from 63, 250, 323 to 63, 250, 376
+All to all on dimension 2 using += 
+Resulting size: 63, 250, 376
+Approx size: 63, 250, 376
+Convolving dimension 1 with kernel [-9, 9] using +=
+Approx size: 63, 250, 68
+Binary op
+Resampling from 63, 250, 376 to 2000, 2000, 7
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 32x
+Upsampling dimension 1 by 8x
+Resulting size: 2016, 2000, 7
+Approx size: 2016, 2000, 7
+Pooling using sum() with stride: 1 and kernel [ -1, 5]
+Approx size: 63, 250, 139
+Relu
+Approx size: 63, 250, 376
+All to all on dimension 2 using += 
+Resampling from 63, 250, 201 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 32x
+Upsampling dimension 1 by 8x
+Resulting size: 2016, 2000, 3

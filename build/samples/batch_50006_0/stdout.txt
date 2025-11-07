@@ -1,0 +1,53 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Convolving dimension 1 with kernel [-9, 3] using sum() helper
+Approx size: 2000, 2000, 3
+Convolving dimension 1 with kernel [-6, 5] using sum() helper
+Approx size: 2000, 2000, 3
+Slice
+Resampling from 2000, 2000, 3 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 7
+Upsampling dimension 1 by 0x
+Approx size: 2000, 32000, 3
+Binary op
+Resampling from 2000, 2000, 1 to 2000, 32000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 16x
+Resulting size: 2000, 32000, 3
+Approx size: 2000, 32000, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-3, 1]
+Approx size: 2000, 32000, 1
+Pooling unrolled with stride: 1 and kernel [ -5, 1]
+Pooling using += with stride: 1 and kernel [ -5, 1]
+Approx size: 2000, 32000, 3
+Convolving dimension 0 with kernel [-7, 1] using sum() helper
+Approx size: 2000, 32000, 3
+Downsampling dimension 0 by 0x
+Approx size: 250, 32000, 3
+Convolving dimension 1 with kernel [0, 2] using +=
+Approx size: 2000, 32000, 3
+Slice
+Resampling from 2000, 32000, 3 to 2000, 2000, 1
+Downsampling dimension 1 by 16x
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Convolving dimension 1 with kernel [-6, 8] using +=
+Approx size: 250, 32000, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 1] using sum() helper
+Approx size: 250, 32000, 12
+Convolving dimension 1 with kernel [0, 0]
+Approx size: 250, 32000, 12
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-3, 4] using sum() helper
+Approx size: 32, 4000, 11
+All to all on dimension 2
+Approx size: 2000, 2000, 25
+Downsampling dimension 0 by 0x
+Resampling from 250, 2000, 25 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Resulting size: 2000, 2000, 3

@@ -1,0 +1,58 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Pooling unrolled with stride: 1 and kernel [ -5, 0]
+Pooling using += with stride: 1 and kernel [ -5, 0]
+Approx size: 2000, 2000, 3
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-3, 3] using sum() helper
+Approx size: 2000, 2000, 11
+Convolving dimension 0 with kernel [-1, 2] using sum() helper
+Approx size: 2000, 2000, 11
+Convolving dimension 1 with kernel [-8, 5] using +=
+Approx size: 2000, 2000, 11
+Slice
+Resampling from 2000, 250, 3 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Pooling unrolled with stride: 8 and kernel [ -5, 4]
+Pooling using += with stride: 8 and kernel [ -5, 4]
+Approx size: 250, 250, 11
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 6
+All to all on dimension 2
+Approx size: 2000, 2000, 15
+Binary op
+Resampling from 2000, 2000, 11 to 2000, 2000, 15
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 15
+Approx size: 2000, 2000, 15
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 1]
+Approx size: 2000, 2000, 20
+Slice
+Resampling from 250, 250, 11 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Convolving dimension 0 with kernel [-4, 6] using +=
+Approx size: 2000, 2000, 1
+Relu
+Approx size: 2000, 2000, 1
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 2] using +=
+Approx size: 2000, 2000, 15
+Binary op
+Resampling from 2000, 2000, 6 to 2000, 2000, 15
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 15
+Approx size: 2000, 2000, 15
+Padding
+Approx size: 2000, 2000, 15
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 1]
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 1] using +=
+Resampling from 2000, 2000, 6 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 3

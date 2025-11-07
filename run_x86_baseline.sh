@@ -24,7 +24,7 @@ RUNTIME=${BIN}/runtime.a
 START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
 
 BATCH_SIZE=1
-NUM_BATCHES=56000 # limited NUM_BATCHES for testing
+NUM_BATCHES=100 # limited NUM_BATCHES for testing
 MAX_STAGES=20
 
 # Read the generator-arg sets into an array. Each set is delimited

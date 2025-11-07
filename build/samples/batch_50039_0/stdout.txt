@@ -1,0 +1,68 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Relu
+Approx size: 2000, 2000, 3
+Binary op
+Approx size: 2000, 2000, 3
+Pooling unrolled with stride: 8 and kernel [ -3, 5]
+Pooling using += with stride: 8 and kernel [ -3, 5]
+Approx size: 250, 250, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-1, 0] using +=
+Approx size: 250, 250, 482
+Binary op
+Resampling from 2000, 2000, 3 to 250, 250, 482
+Downsampling dimension 0 by 8x
+Downsampling dimension 1 by 8x
+All to all on dimension 2 using += 
+Resulting size: 250, 250, 482
+Approx size: 250, 250, 482
+Binary op
+Approx size: 2000, 2000, 3
+Slice
+Resampling from 250, 250, 3 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Pooling unrolled with stride: 1 and kernel [ -2, 2]
+Pooling using += with stride: 4 and kernel [ -2, 2]
+Approx size: 63, 63, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 1]
+Approx size: 2000, 2000, 21
+Convolving dimension 0 with kernel [-3, 1] using sum() helper
+Approx size: 2000, 2000, 1
+Slice
+Resampling from 250, 250, 3 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Pooling using += with stride: 2 and kernel [ 0, 5]
+Approx size: 125, 125, 482
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-5, 4]
+Approx size: 2000, 2000, 22
+Convolving dimension 1 with kernel [-2, 4] using +=
+Approx size: 2000, 2000, 22
+Binary op
+Resampling from 125, 125, 482 to 2000, 2000, 22
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 16x
+Upsampling dimension 1 by 16x
+Resulting size: 2000, 2000, 22
+Approx size: 2000, 2000, 22
+Upsampling dimension 1 by 0x
+Approx size: 2000, 32000, 1
+Slice
+Resampling from 2000, 2000, 3 to 250, 250, 1
+Downsampling dimension 0 by 8x
+Downsampling dimension 1 by 8x
+All to all on dimension 2 using += 
+Resulting size: 250, 250, 1
+Approx size: 250, 250, 1
+Downsampling dimension 1 by 0x
+Resampling from 2000, 250, 1 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3

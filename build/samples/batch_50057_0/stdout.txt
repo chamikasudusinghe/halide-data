@@ -1,0 +1,53 @@
+Using mirror_interior
+Approx size: 2000, 2000, 3
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 18
+Binary op
+Resampling from 2000, 2000, 3 to 2000, 2000, 18
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 18
+Approx size: 2000, 2000, 18
+Slice
+Resampling from 2000, 2000, 18 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Binary op
+Resampling from 2000, 2000, 3 to 2000, 2000, 18
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 18
+Approx size: 2000, 2000, 18
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 15
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 15
+Relu
+Approx size: 2000, 250, 15
+Padding
+Approx size: 2000, 250, 15
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 12
+Binary op
+Approx size: 2000, 2000, 18
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 51
+Convolving dimension 0 with kernel [-1, 0]
+Approx size: 2000, 250, 51
+Convolving dimension 0 with kernel [-9, 2] using +=
+Approx size: 2000, 250, 51
+Padding
+Approx size: 2000, 250, 51
+Relu
+Approx size: 2000, 250, 51
+Relu
+Approx size: 2000, 250, 51
+Padding
+Approx size: 2000, 250, 51
+Slice
+Resampling from 2000, 250, 15 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Resampling from 2000, 2000, 1 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 3

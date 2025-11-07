@@ -1,0 +1,929 @@
+Generator random_pipeline has base_path /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline
+compile_multitarget: single target is x86-64-linux-avx-avx2-avx512-avx512_cannonlake-avx512_sapphirerapids-avx512_skylake-f16c-fma-no_runtime-sse41
+In random expression: (let t7 = all_r(_0, _1, _2) in t7)
+The following expressions were unused:
+all_w(_0, _1, _2)
+In random expression: (let t8 = all_w(_0, _1, _2) in t8)
+The following expressions were unused:
+all_r(_0, _1, _2)
+In random expression: (let t9 = all_r(_0, _1, _2) in t9)
+The following expressions were unused:
+all_w(_0, _1, _2)
+(all_r(_0, _1, _2) + all_w(_0, _1, _2))
+(let t14 = all_r$2(_0, _1, _2) in (let t15 = binary_op(_0, _1, _2) in max(max(t14, t15), t14*t15)))
+In random expression: 0
+The following expressions were unused:
+all_w(_0, _1, _2)
+binary_op(_0, _1, _2)
+(let t23 = binary_op(_0, _1, _2) in max(all_w(_0, _1, _2), t23))
+In random expression: (let t26 = all_r$4(_0, _1, _2) in (t26*2))
+The following expressions were unused:
+all_r$4(_0 + -1, _1, _2)
+In random expression: 0
+The following expressions were unused:
+all_r$4(_0, _1, _2)
+all_r$4(_0 + -1, _1, _2)
+In random expression: (let t28 = all_r$4(_0, _1, _2) in uint32((t28*2)))
+The following expressions were unused:
+all_r$4(_0 + -1, _1, _2)
+In random expression: (let t29 = all_r$4(_0, _1, _2) in select(t29 == 0, 0, 1))
+The following expressions were unused:
+all_r$4(_0 + -1, _1, _2)
+max(all_r$4(_0, _1, _2), all_r$4(_0 + -1, _1, _2))
+Applying autoscheduler (NONE) to Generator random_pipeline ...
+Creating initial loop nests...
+Injecting realization of { casted }
+Injecting realization of { all_r$6 }
+Injecting realization of { sliced$1 }
+Inlining upsampled_linear__1
+Injecting realization of { all_r$5 }
+Injecting realization of { relu }
+Injecting realization of { downsampled_nn__1 }
+Injecting realization of { all_r$3 }
+Injecting realization of { binary_op$1 }
+Injecting realization of { binary_op }
+Injecting realization of { all_w }
+Injecting realization of { sum }
+Injecting realization of { all_r }
+Injecting realization of { all_r$2 }
+Inlining mirror_interior
+Inlining lambda_0
+Inlining input_im
+Skipping injecting memoization...
+Injecting tracing...
+Adding checks for parameters
+Computing bounds of each function's value
+Clamping unsafe data-dependent accesses
+Performing computation bounds inference...
+Removing extern loops...
+Performing sliding window optimization...
+Uniquifying variable names...
+Simplifying...
+Simplifying correlated differences...
+Performing allocation bounds inference...
+Adding checks for images
+Removing code that depends on undef values...
+Performing storage folding optimization...
+Injecting debug_to_file calls...
+Injecting prefetches...
+Discarding safe promises...
+Dynamically skipping stages...
+Forking asynchronous producers...
+Destructuring tuple-valued realizations...
+Bounding small realizations...
+Performing storage flattening...
+Adding atomic mutex allocation...
+Unpacking buffer arguments...
+Skipping rewriting memoized allocations...
+Simplifying...
+Reduce prefetch dimension...
+Simplifying correlated differences...
+Unrolling...
+Vectorizing...
+Detecting vector interleavings...
+Partitioning loops to simplify boundary conditions...
+Staging strided loads...
+Trimming loops to the region over which they do something...
+Rebasing loops to zero...
+Hoisting loop invariant if statements...
+Injecting early frees...
+Simplifying correlated differences...
+Bounding small allocations...
+Simplifying...
+Lowering unsafe promises...
+Extracting tile operations...
+Flattening nested ramps...
+Removing dead allocations and moving loop invariant code...
+Finding intrinsics...
+Hoisting prefetches...
+Lowering after final simplification:
+assert(reinterpret<uint64>((struct halide_buffer_t *)input.buffer) != (uint64)0, halide_error_buffer_argument_is_null("input"))
+assert(reinterpret<uint64>((struct halide_buffer_t *)casted.buffer) != (uint64)0, halide_error_buffer_argument_is_null("casted"))
+let casted = (void *)_halide_buffer_get_host((struct halide_buffer_t *)casted.buffer)
+let casted.type = (uint32)_halide_buffer_get_type((struct halide_buffer_t *)casted.buffer)
+let casted.device_dirty = (uint1)_halide_buffer_get_device_dirty((struct halide_buffer_t *)casted.buffer)
+let casted.dimensions = _halide_buffer_get_dimensions((struct halide_buffer_t *)casted.buffer)
+let casted.min.0 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 0)
+let casted.extent.0 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 0)
+let casted.stride.0 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 0)
+let casted.min.1 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 1)
+let casted.extent.1 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 1)
+let casted.stride.1 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 1)
+let casted.min.2 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 2)
+let casted.extent.2 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 2)
+let casted.stride.2 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 2)
+let input = (void *)_halide_buffer_get_host((struct halide_buffer_t *)input.buffer)
+let input.type = (uint32)_halide_buffer_get_type((struct halide_buffer_t *)input.buffer)
+let input.device_dirty = (uint1)_halide_buffer_get_device_dirty((struct halide_buffer_t *)input.buffer)
+let input.dimensions = _halide_buffer_get_dimensions((struct halide_buffer_t *)input.buffer)
+let input.min.0 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 0)
+let input.extent.0 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 0)
+let input.stride.0 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 0)
+let input.min.1 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 1)
+let input.extent.1 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 1)
+let input.stride.1 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 1)
+let input.min.2 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 2)
+let input.extent.2 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 2)
+let input.stride.2 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 2)
+let input.extent.0.required.s = let t1100 = (input.extent.0 + input.min.0) in (let t1101 = (casted.extent.0 + casted.min.0) in (let t1102 = ((t1100 <= casted.min.0) || (t1101 < (input.min.0 + 1))) in (let t1103 = max(min(t1101, t1100) + -1, input.min.0) in (let t1104 = (((t1100 + 1) <= t1101) || (casted.min.0 < input.min.0)) in (let t1105 = (input.min.0 + (input.extent.0 - int32(max(uint32((input.extent.0 + -1)), uint32(((max(1 - (input.extent.0*2), max(input.extent.0*2, 3) + -3) - input.extent.0) + 1)))))) in (let t1106 = max(min(t1100 + -1, casted.min.0), input.min.0) in (max(select(t1102, t1100 + -1, t1103), select(t1104, t1100 + -1, t1103)) - min(select(t1102, t1105 + -1, t1106), select(t1104, t1105 + -1, t1106)))))))))
+let input.min.0.required = let t1107 = (input.extent.0 + input.min.0) in (let t1108 = (casted.extent.0 + casted.min.0) in (let t1109 = (input.min.0 + (input.extent.0 - int32(max(uint32((input.extent.0 + -1)), uint32(((max(1 - (input.extent.0*2), max(input.extent.0*2, 3) + -3) - input.extent.0) + 1)))))) in (let t1110 = max(min(t1107 + -1, casted.min.0), input.min.0) in min(select((t1107 <= casted.min.0) || (t1108 < (input.min.0 + 1)), t1109 + -1, t1110), select(((t1107 + 1) <= t1108) || (casted.min.0 < input.min.0), t1109 + -1, t1110)))))
+let input.extent.1.required.s = let t1111 = (input.extent.1 + input.min.1) in (let t1112 = (casted.extent.1 + casted.min.1) in (let t1113 = ((t1111 <= ((casted.min.1/8)*8)) || ((((t1112 + 7)/8)*8) < input.min.1)) in (let t1114 = max(min(((t1112 + 7)/8)*8, t1111 + -1), input.min.1) in (let t1115 = ((t1111 <= (((t1112 + 7)/8)*8)) || (((casted.min.1/8)*8) < input.min.1)) in (let t1116 = (input.min.1 + (input.extent.1 - int32(max(uint32((input.extent.1 + -1)), uint32(((max(1 - (input.extent.1*2), max(input.extent.1*2, 3) + -3) - input.extent.1) + 1)))))) in (let t1117 = max(min((casted.min.1/8)*8, t1111 + -1), input.min.1) in (max(select(t1113, t1111 + -1, t1114), select(t1115, t1111 + -1, t1114)) - min(select(t1113, t1116 + -1, t1117), select(t1115, t1116 + -1, t1117)))))))))
+let input.min.1.required = let t1118 = (input.extent.1 + input.min.1) in (let t1119 = (casted.extent.1 + casted.min.1) in (let t1120 = (input.min.1 + (input.extent.1 - int32(max(uint32((input.extent.1 + -1)), uint32(((max(1 - (input.extent.1*2), max(input.extent.1*2, 3) + -3) - input.extent.1) + 1)))))) in (let t1121 = max(min((casted.min.1/8)*8, t1118 + -1), input.min.1) in min(select((t1118 <= ((casted.min.1/8)*8)) || ((((t1119 + 7)/8)*8) < input.min.1), t1120 + -1, t1121), select((t1118 <= (((t1119 + 7)/8)*8)) || (((casted.min.1/8)*8) < input.min.1), t1120 + -1, t1121)))))
+let input.extent.2.required.s = let t1122 = (input.extent.2 + input.min.2) in (let t1123 = ((t1122 <= 0) || (2 < input.min.2)) in (let t1124 = max(min(t1122, 3) + -1, input.min.2) in (let t1125 = ((t1122 <= 2) || (0 < input.min.2)) in (let t1126 = (input.min.2 + (input.extent.2 - int32(max(uint32((input.extent.2 + -1)), uint32(((max(1 - (input.extent.2*2), max(input.extent.2*2, 3) + -3) - input.extent.2) + 1)))))) in (let t1127 = max(min(t1122, 1) + -1, input.min.2) in (max(select(t1123, t1122 + -1, t1124), select(t1125, t1122 + -1, t1124)) - min(select(t1123, t1126 + -1, t1127), select(t1125, t1126 + -1, t1127))))))))
+let input.min.2.required = let t1128 = (input.extent.2 + input.min.2) in (let t1129 = (input.min.2 + (input.extent.2 - int32(max(uint32((input.extent.2 + -1)), uint32(((max(1 - (input.extent.2*2), max(input.extent.2*2, 3) + -3) - input.extent.2) + 1)))))) in (let t1130 = max(min(t1128, 1) + -1, input.min.2) in min(select((t1128 <= 0) || (2 < input.min.2), t1129 + -1, t1130), select((t1128 <= 2) || (0 < input.min.2), t1129 + -1, t1130))))
+let input.stride.2.required = (input.extent.0.required.s + 1)*(input.extent.1.required.s + 1)
+if ((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)casted.buffer)) {
+ (struct halide_buffer_t *)_halide_buffer_init((struct halide_buffer_t *)casted.buffer, (struct halide_dimension_t *)_halide_buffer_get_shape((struct halide_buffer_t *)casted.buffer), reinterpret<(void *)>((uint64)0), (uint64)0, reinterpret<(struct halide_device_interface_t *)>((uint64)0), 0, 32, 3, (struct halide_dimension_t *)make_struct(casted.min.0, casted.extent.0, 1, 0, casted.min.1, casted.extent.1, casted.extent.0, 0, casted.min.2, casted.extent.2, casted.extent.0*casted.extent.1, 0), (uint64)0)
+}
+if ((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)input.buffer)) {
+ (struct halide_buffer_t *)_halide_buffer_init((struct halide_buffer_t *)input.buffer, (struct halide_dimension_t *)_halide_buffer_get_shape((struct halide_buffer_t *)input.buffer), reinterpret<(void *)>((uint64)0), (uint64)0, reinterpret<(struct halide_device_interface_t *)>((uint64)0), 0, 32, 3, (struct halide_dimension_t *)make_struct(input.min.0.required, input.extent.0.required.s + 1, 1, 0, input.min.1.required, input.extent.1.required.s + 1, input.extent.0.required.s + 1, 0, input.min.2.required, input.extent.2.required.s + 1, input.stride.2.required, 0), (uint64)0)
+}
+if (!((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)casted.buffer) || (uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)input.buffer))) {
+ assert(casted.type == (uint32)73728, halide_error_bad_type("Output buffer casted", casted.type, (uint32)73728))
+ assert(casted.dimensions == 3, halide_error_bad_dimensions("Output buffer casted", casted.dimensions, 3))
+ assert(input.type == (uint32)73728, halide_error_bad_type("Input buffer input", input.type, (uint32)73728))
+ assert(input.dimensions == 3, halide_error_bad_dimensions("Input buffer input", input.dimensions, 3))
+ assert(0 <= casted.extent.0, halide_error_buffer_extents_negative("Output buffer casted", 0, casted.extent.0))
+ assert(0 <= casted.extent.1, halide_error_buffer_extents_negative("Output buffer casted", 1, casted.extent.1))
+ assert(0 <= casted.extent.2, halide_error_buffer_extents_negative("Output buffer casted", 2, casted.extent.2))
+ assert((input.min.0 <= input.min.0.required) && (((input.extent.0.required.s + input.min.0.required) + 1) <= (input.extent.0 + input.min.0)), halide_error_access_out_of_bounds("Input buffer input", 0, input.min.0.required, input.extent.0.required.s + input.min.0.required, input.min.0, (input.extent.0 + input.min.0) + -1))
+ assert(0 <= input.extent.0, halide_error_buffer_extents_negative("Input buffer input", 0, input.extent.0))
+ assert((input.min.1 <= input.min.1.required) && (((input.extent.1.required.s + input.min.1.required) + 1) <= (input.extent.1 + input.min.1)), halide_error_access_out_of_bounds("Input buffer input", 1, input.min.1.required, input.extent.1.required.s + input.min.1.required, input.min.1, (input.extent.1 + input.min.1) + -1))
+ assert(0 <= input.extent.1, halide_error_buffer_extents_negative("Input buffer input", 1, input.extent.1))
+ assert((input.min.2 <= input.min.2.required) && (((input.extent.2.required.s + input.min.2.required) + 1) <= (input.extent.2 + input.min.2)), halide_error_access_out_of_bounds("Input buffer input", 2, input.min.2.required, input.extent.2.required.s + input.min.2.required, input.min.2, (input.extent.2 + input.min.2) + -1))
+ assert(0 <= input.extent.2, halide_error_buffer_extents_negative("Input buffer input", 2, input.extent.2))
+ assert(casted.stride.0 == 1, halide_error_constraint_violated("casted.stride.0", casted.stride.0, "1", 1))
+ assert(input.stride.0 == 1, halide_error_constraint_violated("input.stride.0", input.stride.0, "1", 1))
+ let casted.total_extent.1 = int64(casted.extent.1)*int64(casted.extent.0)
+ let casted.total_extent.2 = casted.total_extent.1*int64(casted.extent.2)
+ let input.total_extent.1 = int64(input.extent.1)*int64(input.extent.0)
+ let input.total_extent.2 = input.total_extent.1*int64(input.extent.2)
+ assert(uint64(casted.extent.0) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", uint64(casted.extent.0), (uint64)2147483647))
+ assert((uint64)abs(int64(casted.extent.1)*int64(casted.stride.1)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", (uint64)abs(int64(casted.extent.1)*int64(casted.stride.1)), (uint64)2147483647))
+ assert(casted.total_extent.1 <= (int64)2147483647, halide_error_buffer_extents_too_large("casted", casted.total_extent.1, (int64)2147483647))
+ assert((uint64)abs(int64(casted.extent.2)*int64(casted.stride.2)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", (uint64)abs(int64(casted.extent.2)*int64(casted.stride.2)), (uint64)2147483647))
+ assert(casted.total_extent.2 <= (int64)2147483647, halide_error_buffer_extents_too_large("casted", casted.total_extent.2, (int64)2147483647))
+ assert(uint64(input.extent.0) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", uint64(input.extent.0), (uint64)2147483647))
+ assert((uint64)abs(int64(input.extent.1)*int64(input.stride.1)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", (uint64)abs(int64(input.extent.1)*int64(input.stride.1)), (uint64)2147483647))
+ assert(input.total_extent.1 <= (int64)2147483647, halide_error_buffer_extents_too_large("input", input.total_extent.1, (int64)2147483647))
+ assert((uint64)abs(int64(input.extent.2)*int64(input.stride.2)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", (uint64)abs(int64(input.extent.2)*int64(input.stride.2)), (uint64)2147483647))
+ assert(input.total_extent.2 <= (int64)2147483647, halide_error_buffer_extents_too_large("input", input.total_extent.2, (int64)2147483647))
+ assert(!casted.device_dirty, halide_error_device_dirty_with_no_device_support("Output buffer casted"))
+ assert(!input.device_dirty, halide_error_device_dirty_with_no_device_support("Input buffer input"))
+ assert(casted != reinterpret<(void *)>((uint64)0), halide_error_host_is_null("Output buffer casted"))
+ assert(input != reinterpret<(void *)>((uint64)0), halide_error_host_is_null("Input buffer input"))
+ let all_w._1.extent_realized.s = (((casted.extent.1 + casted.min.1) + 7)/8) - (casted.min.1/8)
+ allocate all_w[int32 * casted.extent.0 * ((all_w._1.extent_realized.s*8) + 1) * 18]
+ produce all_w {
+  let t745 = casted.extent.0 + casted.min.0
+  let t746 = input.extent.0 + input.min.0
+  let t747 = input.extent.1 + input.min.1
+  let t748 = input.extent.2 + input.min.2
+  let t749 = input.min.2*input.stride.2
+  let t750 = input.min.1*input.stride.1
+  let t751 = max(min(t748, 3), 0)
+  let t752 = casted.min.1/8
+  let t753 = t752*8
+  let t754 = max(min(input.min.2, 3), 0)
+  let t755 = (all_w._1.extent_realized.s + t752)*8
+  let t756 = max(casted.min.0, input.min.0)
+  let t757 = max(input.min.1, t753)
+  let t758 = t755 + 1
+  let t724 = min(max(t747, t757), t758)
+  let t737 = min(max(t746, t756), t745)
+  let t723 = min(t757, t758)
+  let t736 = min(t745, t756)
+  let t735 = ((all_w._1.extent_realized.s*8) + 1)*casted.extent.0
+  let t741 = t751 - t754
+  let t742 = 3 - t751
+  let t731 = (t749 + t750) + input.min.0
+  for (all_w.s0._2, 0, 18) {
+   let t765 = all_w.s0._2*t735
+   let t759 = t723 - t753
+   for (all_w.s0._1.rebased, 0, t759) {
+    let t767 = t747 - int32((uint32)abs(((((t753 - input.min.1) + all_w.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+    let t771 = (all_w.s0._1.rebased*casted.extent.0) + t765
+    let t766 = all_w.s0._1.rebased + t753
+    for (all_w.s0._0.rebased, 0, casted.extent.0) {
+     allocate sum[int32 * 1]
+     produce sum {
+      sum[0] = 0
+      let t773 = (select((t747 <= t766) || (t766 < input.min.1), t767 + -1, max(min(t747 + -1, t766), input.min.1))*input.stride.1) - t731
+      let t774 = t746 - int32((uint32)abs(((((casted.min.0 - input.min.0) + all_w.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+      let t772 = all_w.s0._0.rebased + casted.min.0
+      for (sum.s1.r85$x, 0, 3) {
+       sum[0] = sum[0] + (input[(select((t748 <= sum.s1.r85$x) || (sum.s1.r85$x < input.min.2), (t748 - int32((uint32)abs((((sum.s1.r85$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t748 + -1, sum.s1.r85$x), input.min.2))*input.stride.2) + (select((t746 <= t772) || (t772 < input.min.0), t774 + -1, max(min(t746 + -1, t772), input.min.0)) + t773)]*(((sum.s1.r85$x*3) + all_w.s0._2) + 4))
+      }
+     }
+     consume sum {
+      all_w[all_w.s0._0.rebased + t771] = sum[0]
+     }
+     free sum
+    }
+   }
+   let t790 = all_w.s0._2*t735
+   let t791 = t736 - casted.min.0
+   let t785 = max(min(t748, 3), 0)
+   let t784 = ((t736 - t749) - t750) - input.min.0
+   let t787 = t745 - t737
+   let t783 = t737 - t736
+   let t776 = t724 - t723
+   let t782 = t723 - t753
+   let t789 = (t737 - casted.min.0) + t790
+   for (all_w.s0._1.rebased, 0, t776) {
+    let t792 = ((all_w.s0._1.rebased + t723)*input.stride.1) - t731
+    let t796 = ((all_w.s0._1.rebased + t782)*casted.extent.0) + t790
+    for (all_w.s0._0.rebased, 0, t791) {
+     allocate sum[int32 * 1]
+     produce sum {
+      sum[0] = 0
+      let t798 = t746 - int32((uint32)abs(((((casted.min.0 - input.min.0) + all_w.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+      let t797 = all_w.s0._0.rebased + casted.min.0
+      for (sum.s1.r85$x, 0, 3) {
+       sum[0] = sum[0] + (input[(select((t748 <= sum.s1.r85$x) || (sum.s1.r85$x < input.min.2), (t748 - int32((uint32)abs((((sum.s1.r85$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t748 + -1, sum.s1.r85$x), input.min.2))*input.stride.2) + (select((t746 <= t797) || (t797 < input.min.0), t798 + -1, max(min(t746 + -1, t797), input.min.0)) + t792)]*(((sum.s1.r85$x*3) + all_w.s0._2) + 4))
+      }
+     }
+     consume sum {
+      all_w[all_w.s0._0.rebased + t796] = sum[0]
+     }
+     free sum
+    }
+    let t803 = ((all_w.s0._1.rebased + t782)*casted.extent.0) + (t790 + t791)
+    let t800 = ((all_w.s0._1.rebased + t723)*input.stride.1) + t784
+    for (all_w.s0._0.rebased, 0, t783) {
+     allocate sum[int32 * 1]
+     produce sum {
+      sum[0] = 0
+      let t804 = all_w.s0._0.rebased + t800
+      for (sum.s1.r85$x, 0, t754) {
+       sum[0] = sum[0] + (input[(select((t748 <= sum.s1.r85$x) || (sum.s1.r85$x < input.min.2), (t748 - int32((uint32)abs((((sum.s1.r85$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t748 + -1, sum.s1.r85$x), input.min.2))*input.stride.2) + t804]*(((sum.s1.r85$x*3) + all_w.s0._2) + 4))
+      }
+      let t806 = all_w.s0._0.rebased + t800
+      for (sum.s1.r85$x.rebased, 0, t741) {
+       let t667 = sum.s1.r85$x.rebased + t754
+       sum[0] = sum[0] + (input[(input.stride.2*t667) + t806]*(((t667*3) + all_w.s0._2) + 4))
+      }
+      let t807 = all_w.s0._0.rebased + t800
+      for (sum.s1.r85$x.rebased, 0, t742) {
+       let t670 = sum.s1.r85$x.rebased + t785
+       sum[0] = sum[0] + (input[(select(t670 < t748, max(min(t748 + -1, t670), input.min.2), (t748 - int32((uint32)abs(((((t785 - input.min.2) + sum.s1.r85$x.rebased) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1)*input.stride.2) + t807]*(((t670*3) + all_w.s0._2) + 4))
+      }
+     }
+     consume sum {
+      all_w[all_w.s0._0.rebased + t803] = sum[0]
+     }
+     free sum
+    }
+    let t810 = ((all_w.s0._1.rebased + t723)*input.stride.1) - t731
+    let t814 = ((all_w.s0._1.rebased + t782)*casted.extent.0) + t789
+    for (all_w.s0._0.rebased, 0, t787) {
+     allocate sum[int32 * 1]
+     produce sum {
+      sum[0] = 0
+      let t816 = t746 - int32((uint32)abs(((((t737 - input.min.0) + all_w.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+      let t815 = all_w.s0._0.rebased + t737
+      for (sum.s1.r85$x, 0, 3) {
+       sum[0] = sum[0] + (input[(select((t748 <= sum.s1.r85$x) || (sum.s1.r85$x < input.min.2), (t748 - int32((uint32)abs((((sum.s1.r85$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t748 + -1, sum.s1.r85$x), input.min.2))*input.stride.2) + (select(t815 < t746, max(min(t746 + -1, t815), input.min.0), t816 + -1) + t810)]*(((sum.s1.r85$x*3) + all_w.s0._2) + 4))
+      }
+     }
+     consume sum {
+      all_w[all_w.s0._0.rebased + t814] = sum[0]
+     }
+     free sum
+    }
+   }
+   let t824 = all_w.s0._2*t735
+   let t818 = t755 - t724
+   let t825 = t724 - t753
+   for (all_w.s0._1.rebased, 0, t818 + 1) {
+    let t827 = t747 - int32((uint32)abs(((((t724 - input.min.1) + all_w.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+    let t831 = ((all_w.s0._1.rebased + t825)*casted.extent.0) + t824
+    let t826 = all_w.s0._1.rebased + t724
+    for (all_w.s0._0.rebased, 0, casted.extent.0) {
+     allocate sum[int32 * 1]
+     produce sum {
+      sum[0] = 0
+      let t833 = (select(t826 < t747, max(min(t747 + -1, t826), input.min.1), t827 + -1)*input.stride.1) - t731
+      let t834 = t746 - int32((uint32)abs(((((casted.min.0 - input.min.0) + all_w.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+      let t832 = all_w.s0._0.rebased + casted.min.0
+      for (sum.s1.r85$x, 0, 3) {
+       sum[0] = sum[0] + (input[(select((t748 <= sum.s1.r85$x) || (sum.s1.r85$x < input.min.2), (t748 - int32((uint32)abs((((sum.s1.r85$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t748 + -1, sum.s1.r85$x), input.min.2))*input.stride.2) + (select((t746 <= t832) || (t832 < input.min.0), t834 + -1, max(min(t746 + -1, t832), input.min.0)) + t833)]*(((sum.s1.r85$x*3) + all_w.s0._2) + 4))
+      }
+     }
+     consume sum {
+      all_w[all_w.s0._0.rebased + t831] = sum[0]
+     }
+     free sum
+    }
+   }
+  }
+ }
+ allocate binary_op[int32 * casted.extent.0 * ((all_w._1.extent_realized.s*8) + 1) * 18]
+ produce binary_op {
+  consume all_w {
+   let t858 = casted.extent.0 + casted.min.0
+   let t859 = input.extent.0 + input.min.0
+   let t860 = input.extent.1 + input.min.1
+   let t861 = input.extent.2 + input.min.2
+   let t862 = input.min.2*input.stride.2
+   let t863 = input.min.1*input.stride.1
+   let t864 = max(min(t861, 3), 0)
+   let t865 = casted.min.1/8
+   let t866 = t865*8
+   let t867 = max(min(input.min.2, 3), 0)
+   let t868 = (all_w._1.extent_realized.s + t865)*8
+   let t869 = max(casted.min.0, input.min.0)
+   let t870 = max(input.min.1, t866)
+   let t871 = t868 + 1
+   let t837 = min(max(t860, t870), t871)
+   let t850 = min(max(t859, t869), t858)
+   let t836 = min(t870, t871)
+   let t849 = min(t858, t869)
+   let t848 = ((all_w._1.extent_realized.s*8) + 1)*casted.extent.0
+   let t854 = t864 - t867
+   let t855 = 3 - t864
+   let t844 = (t862 + t863) + input.min.0
+   for (binary_op.s0._2, 0, 18) {
+    let t878 = binary_op.s0._2*t848
+    let t872 = t836 - t866
+    for (binary_op.s0._1.rebased, 0, t872) {
+     let t880 = t860 - int32((uint32)abs(((((t866 - input.min.1) + binary_op.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+     let t884 = (binary_op.s0._1.rebased*casted.extent.0) + t878
+     let t879 = binary_op.s0._1.rebased + t866
+     for (binary_op.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r[int32 * 1]
+      produce all_r {
+       all_r[0] = 0
+       let t886 = (select((t860 <= t879) || (t879 < input.min.1), t880 + -1, max(min(t860 + -1, t879), input.min.1))*input.stride.1) - t844
+       let t887 = t859 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t885 = binary_op.s0._0.rebased + casted.min.0
+       for (all_r.s1.r107$x, 0, 3) {
+        all_r[0] = all_r[0] + (input[(select((t861 <= all_r.s1.r107$x) || (all_r.s1.r107$x < input.min.2), (t861 - int32((uint32)abs((((all_r.s1.r107$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t861 + -1, all_r.s1.r107$x), input.min.2))*input.stride.2) + (select((t859 <= t885) || (t885 < input.min.0), t887 + -1, max(min(t859 + -1, t885), input.min.0)) + t886)]*(((all_r.s1.r107$x*3) + binary_op.s0._2) + 4))
+       }
+      }
+      consume all_r {
+       let t578 = binary_op.s0._0.rebased + t884
+       binary_op[t578] = all_r[0] + all_w[t578]
+      }
+      free all_r
+     }
+    }
+    let t903 = binary_op.s0._2*t848
+    let t904 = t849 - casted.min.0
+    let t898 = max(min(t861, 3), 0)
+    let t897 = ((t849 - t862) - t863) - input.min.0
+    let t900 = t858 - t850
+    let t896 = t850 - t849
+    let t889 = t837 - t836
+    let t895 = t836 - t866
+    let t902 = (t850 - casted.min.0) + t903
+    for (binary_op.s0._1.rebased, 0, t889) {
+     let t905 = ((binary_op.s0._1.rebased + t836)*input.stride.1) - t844
+     let t909 = ((binary_op.s0._1.rebased + t895)*casted.extent.0) + t903
+     for (binary_op.s0._0.rebased, 0, t904) {
+      allocate all_r[int32 * 1]
+      produce all_r {
+       all_r[0] = 0
+       let t911 = t859 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t910 = binary_op.s0._0.rebased + casted.min.0
+       for (all_r.s1.r107$x, 0, 3) {
+        all_r[0] = all_r[0] + (input[(select((t861 <= all_r.s1.r107$x) || (all_r.s1.r107$x < input.min.2), (t861 - int32((uint32)abs((((all_r.s1.r107$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t861 + -1, all_r.s1.r107$x), input.min.2))*input.stride.2) + (select((t859 <= t910) || (t910 < input.min.0), t911 + -1, max(min(t859 + -1, t910), input.min.0)) + t905)]*(((all_r.s1.r107$x*3) + binary_op.s0._2) + 4))
+       }
+      }
+      consume all_r {
+       let t581 = binary_op.s0._0.rebased + t909
+       binary_op[t581] = all_r[0] + all_w[t581]
+      }
+      free all_r
+     }
+     let t916 = ((binary_op.s0._1.rebased + t895)*casted.extent.0) + (t903 + t904)
+     let t913 = ((binary_op.s0._1.rebased + t836)*input.stride.1) + t897
+     for (binary_op.s0._0.rebased, 0, t896) {
+      allocate all_r[int32 * 1]
+      produce all_r {
+       all_r[0] = 0
+       let t917 = binary_op.s0._0.rebased + t913
+       for (all_r.s1.r107$x, 0, t867) {
+        all_r[0] = all_r[0] + (input[(select((t861 <= all_r.s1.r107$x) || (all_r.s1.r107$x < input.min.2), (t861 - int32((uint32)abs((((all_r.s1.r107$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t861 + -1, all_r.s1.r107$x), input.min.2))*input.stride.2) + t917]*(((all_r.s1.r107$x*3) + binary_op.s0._2) + 4))
+       }
+       let t919 = binary_op.s0._0.rebased + t913
+       for (all_r.s1.r107$x.rebased, 0, t854) {
+        let t688 = all_r.s1.r107$x.rebased + t867
+        all_r[0] = all_r[0] + (input[(input.stride.2*t688) + t919]*(((t688*3) + binary_op.s0._2) + 4))
+       }
+       let t920 = binary_op.s0._0.rebased + t913
+       for (all_r.s1.r107$x.rebased, 0, t855) {
+        let t691 = all_r.s1.r107$x.rebased + t898
+        all_r[0] = all_r[0] + (input[(select(t691 < t861, max(min(t861 + -1, t691), input.min.2), (t861 - int32((uint32)abs(((((t898 - input.min.2) + all_r.s1.r107$x.rebased) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1)*input.stride.2) + t920]*(((t691*3) + binary_op.s0._2) + 4))
+       }
+      }
+      consume all_r {
+       let t584 = binary_op.s0._0.rebased + t916
+       binary_op[t584] = all_r[0] + all_w[t584]
+      }
+      free all_r
+     }
+     let t923 = ((binary_op.s0._1.rebased + t836)*input.stride.1) - t844
+     let t927 = ((binary_op.s0._1.rebased + t895)*casted.extent.0) + t902
+     for (binary_op.s0._0.rebased, 0, t900) {
+      allocate all_r[int32 * 1]
+      produce all_r {
+       all_r[0] = 0
+       let t929 = t859 - int32((uint32)abs(((((t850 - input.min.0) + binary_op.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t928 = binary_op.s0._0.rebased + t850
+       for (all_r.s1.r107$x, 0, 3) {
+        all_r[0] = all_r[0] + (input[(select((t861 <= all_r.s1.r107$x) || (all_r.s1.r107$x < input.min.2), (t861 - int32((uint32)abs((((all_r.s1.r107$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t861 + -1, all_r.s1.r107$x), input.min.2))*input.stride.2) + (select(t928 < t859, max(min(t859 + -1, t928), input.min.0), t929 + -1) + t923)]*(((all_r.s1.r107$x*3) + binary_op.s0._2) + 4))
+       }
+      }
+      consume all_r {
+       let t587 = binary_op.s0._0.rebased + t927
+       binary_op[t587] = all_r[0] + all_w[t587]
+      }
+      free all_r
+     }
+    }
+    let t937 = binary_op.s0._2*t848
+    let t931 = t868 - t837
+    let t938 = t837 - t866
+    for (binary_op.s0._1.rebased, 0, t931 + 1) {
+     let t940 = t860 - int32((uint32)abs(((((t837 - input.min.1) + binary_op.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+     let t944 = ((binary_op.s0._1.rebased + t938)*casted.extent.0) + t937
+     let t939 = binary_op.s0._1.rebased + t837
+     for (binary_op.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r[int32 * 1]
+      produce all_r {
+       all_r[0] = 0
+       let t946 = (select(t939 < t860, max(min(t860 + -1, t939), input.min.1), t940 + -1)*input.stride.1) - t844
+       let t947 = t859 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t945 = binary_op.s0._0.rebased + casted.min.0
+       for (all_r.s1.r107$x, 0, 3) {
+        all_r[0] = all_r[0] + (input[(select((t861 <= all_r.s1.r107$x) || (all_r.s1.r107$x < input.min.2), (t861 - int32((uint32)abs((((all_r.s1.r107$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t861 + -1, all_r.s1.r107$x), input.min.2))*input.stride.2) + (select((t859 <= t945) || (t945 < input.min.0), t947 + -1, max(min(t859 + -1, t945), input.min.0)) + t946)]*(((all_r.s1.r107$x*3) + binary_op.s0._2) + 4))
+       }
+      }
+      consume all_r {
+       let t591 = binary_op.s0._0.rebased + t944
+       binary_op[t591] = all_r[0] + all_w[t591]
+      }
+      free all_r
+     }
+    }
+   }
+  }
+ }
+ free all_w
+ allocate binary_op$1[int32 * casted.extent.0 * ((all_w._1.extent_realized.s*8) + 1) * 18]
+ produce binary_op$1 {
+  consume binary_op {
+   let t971 = casted.extent.0 + casted.min.0
+   let t972 = input.extent.0 + input.min.0
+   let t973 = input.extent.1 + input.min.1
+   let t974 = input.extent.2 + input.min.2
+   let t975 = input.min.2*input.stride.2
+   let t976 = input.min.1*input.stride.1
+   let t977 = max(min(t974, 3), 0)
+   let t978 = casted.min.1/8
+   let t979 = t978*8
+   let t980 = max(min(input.min.2, 3), 0)
+   let t981 = (all_w._1.extent_realized.s + t978)*8
+   let t982 = max(casted.min.0, input.min.0)
+   let t983 = max(input.min.1, t979)
+   let t984 = t981 + 1
+   let t950 = min(max(t973, t983), t984)
+   let t963 = min(max(t972, t982), t971)
+   let t949 = min(t983, t984)
+   let t962 = min(t971, t982)
+   let t961 = ((all_w._1.extent_realized.s*8) + 1)*casted.extent.0
+   let t967 = t977 - t980
+   let t968 = 3 - t977
+   let t957 = (t975 + t976) + input.min.0
+   for (binary_op$1.s0._2, 0, 18) {
+    let t991 = binary_op$1.s0._2*t961
+    let t985 = t949 - t979
+    for (binary_op$1.s0._1.rebased, 0, t985) {
+     let t993 = t973 - int32((uint32)abs(((((t979 - input.min.1) + binary_op$1.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+     let t997 = (binary_op$1.s0._1.rebased*casted.extent.0) + t991
+     let t992 = binary_op$1.s0._1.rebased + t979
+     for (binary_op$1.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r$2[int32 * 1]
+      produce all_r$2 {
+       all_r$2[0] = 0
+       let t999 = (select((t973 <= t992) || (t992 < input.min.1), t993 + -1, max(min(t973 + -1, t992), input.min.1))*input.stride.1) - t957
+       let t1000 = t972 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op$1.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t998 = binary_op$1.s0._0.rebased + casted.min.0
+       for (all_r$2.s1.r135$x, 0, 3) {
+        all_r$2[0] = all_r$2[0] + (input[(select((t974 <= all_r$2.s1.r135$x) || (all_r$2.s1.r135$x < input.min.2), (t974 - int32((uint32)abs((((all_r$2.s1.r135$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t974 + -1, all_r$2.s1.r135$x), input.min.2))*input.stride.2) + (select((t972 <= t998) || (t998 < input.min.0), t1000 + -1, max(min(t972 + -1, t998), input.min.0)) + t999)]*(((all_r$2.s1.r135$x*3) + binary_op$1.s0._2) + 4))
+       }
+      }
+      consume all_r$2 {
+       let t595 = all_r$2[0]
+       let t596 = binary_op$1.s0._0.rebased + t997
+       let t597 = binary_op[t596]
+       binary_op$1[t596] = max(max(t595, t597), t595*t597)
+      }
+      free all_r$2
+     }
+    }
+    let t1016 = binary_op$1.s0._2*t961
+    let t1017 = t962 - casted.min.0
+    let t1011 = max(min(t974, 3), 0)
+    let t1010 = ((t962 - t975) - t976) - input.min.0
+    let t1013 = t971 - t963
+    let t1009 = t963 - t962
+    let t1002 = t950 - t949
+    let t1008 = t949 - t979
+    let t1015 = (t963 - casted.min.0) + t1016
+    for (binary_op$1.s0._1.rebased, 0, t1002) {
+     let t1018 = ((binary_op$1.s0._1.rebased + t949)*input.stride.1) - t957
+     let t1022 = ((binary_op$1.s0._1.rebased + t1008)*casted.extent.0) + t1016
+     for (binary_op$1.s0._0.rebased, 0, t1017) {
+      allocate all_r$2[int32 * 1]
+      produce all_r$2 {
+       all_r$2[0] = 0
+       let t1024 = t972 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op$1.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t1023 = binary_op$1.s0._0.rebased + casted.min.0
+       for (all_r$2.s1.r135$x, 0, 3) {
+        all_r$2[0] = all_r$2[0] + (input[(select((t974 <= all_r$2.s1.r135$x) || (all_r$2.s1.r135$x < input.min.2), (t974 - int32((uint32)abs((((all_r$2.s1.r135$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t974 + -1, all_r$2.s1.r135$x), input.min.2))*input.stride.2) + (select((t972 <= t1023) || (t1023 < input.min.0), t1024 + -1, max(min(t972 + -1, t1023), input.min.0)) + t1018)]*(((all_r$2.s1.r135$x*3) + binary_op$1.s0._2) + 4))
+       }
+      }
+      consume all_r$2 {
+       let t600 = all_r$2[0]
+       let t601 = binary_op$1.s0._0.rebased + t1022
+       let t602 = binary_op[t601]
+       binary_op$1[t601] = max(max(t600, t602), t600*t602)
+      }
+      free all_r$2
+     }
+     let t1026 = ((binary_op$1.s0._1.rebased + t949)*input.stride.1) + t1010
+     let t1029 = ((binary_op$1.s0._1.rebased + t1008)*casted.extent.0) + (t1016 + t1017)
+     for (binary_op$1.s0._0.rebased, 0, t1009) {
+      allocate all_r$2[int32 * 1]
+      produce all_r$2 {
+       all_r$2[0] = 0
+       let t1030 = binary_op$1.s0._0.rebased + t1026
+       for (all_r$2.s1.r135$x, 0, t980) {
+        all_r$2[0] = all_r$2[0] + (input[(select((t974 <= all_r$2.s1.r135$x) || (all_r$2.s1.r135$x < input.min.2), (t974 - int32((uint32)abs((((all_r$2.s1.r135$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t974 + -1, all_r$2.s1.r135$x), input.min.2))*input.stride.2) + t1030]*(((all_r$2.s1.r135$x*3) + binary_op$1.s0._2) + 4))
+       }
+       let t1032 = binary_op$1.s0._0.rebased + t1026
+       for (all_r$2.s1.r135$x.rebased, 0, t967) {
+        let t709 = all_r$2.s1.r135$x.rebased + t980
+        all_r$2[0] = all_r$2[0] + (input[(input.stride.2*t709) + t1032]*(((t709*3) + binary_op$1.s0._2) + 4))
+       }
+       let t1033 = binary_op$1.s0._0.rebased + t1026
+       for (all_r$2.s1.r135$x.rebased, 0, t968) {
+        let t712 = all_r$2.s1.r135$x.rebased + t1011
+        all_r$2[0] = all_r$2[0] + (input[(select(t712 < t974, max(min(t974 + -1, t712), input.min.2), (t974 - int32((uint32)abs(((((t1011 - input.min.2) + all_r$2.s1.r135$x.rebased) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1)*input.stride.2) + t1033]*(((t712*3) + binary_op$1.s0._2) + 4))
+       }
+      }
+      consume all_r$2 {
+       let t605 = all_r$2[0]
+       let t606 = binary_op$1.s0._0.rebased + t1029
+       let t607 = binary_op[t606]
+       binary_op$1[t606] = max(max(t605, t607), t605*t607)
+      }
+      free all_r$2
+     }
+     let t1036 = ((binary_op$1.s0._1.rebased + t949)*input.stride.1) - t957
+     let t1040 = ((binary_op$1.s0._1.rebased + t1008)*casted.extent.0) + t1015
+     for (binary_op$1.s0._0.rebased, 0, t1013) {
+      allocate all_r$2[int32 * 1]
+      produce all_r$2 {
+       all_r$2[0] = 0
+       let t1042 = t972 - int32((uint32)abs(((((t963 - input.min.0) + binary_op$1.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t1041 = binary_op$1.s0._0.rebased + t963
+       for (all_r$2.s1.r135$x, 0, 3) {
+        all_r$2[0] = all_r$2[0] + (input[(select((t974 <= all_r$2.s1.r135$x) || (all_r$2.s1.r135$x < input.min.2), (t974 - int32((uint32)abs((((all_r$2.s1.r135$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t974 + -1, all_r$2.s1.r135$x), input.min.2))*input.stride.2) + (select(t1041 < t972, max(min(t972 + -1, t1041), input.min.0), t1042 + -1) + t1036)]*(((all_r$2.s1.r135$x*3) + binary_op$1.s0._2) + 4))
+       }
+      }
+      consume all_r$2 {
+       let t610 = all_r$2[0]
+       let t611 = binary_op$1.s0._0.rebased + t1040
+       let t612 = binary_op[t611]
+       binary_op$1[t611] = max(max(t610, t612), t610*t612)
+      }
+      free all_r$2
+     }
+    }
+    let t1050 = binary_op$1.s0._2*t961
+    let t1044 = t981 - t950
+    let t1051 = t950 - t979
+    for (binary_op$1.s0._1.rebased, 0, t1044 + 1) {
+     let t1053 = t973 - int32((uint32)abs(((((t950 - input.min.1) + binary_op$1.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+     let t1057 = ((binary_op$1.s0._1.rebased + t1051)*casted.extent.0) + t1050
+     let t1052 = binary_op$1.s0._1.rebased + t950
+     for (binary_op$1.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r$2[int32 * 1]
+      produce all_r$2 {
+       all_r$2[0] = 0
+       let t1059 = (select(t1052 < t973, max(min(t973 + -1, t1052), input.min.1), t1053 + -1)*input.stride.1) - t957
+       let t1060 = t972 - int32((uint32)abs(((((casted.min.0 - input.min.0) + binary_op$1.s0._0.rebased) % ((input.extent.0*2) + -2)) - input.extent.0) + 1))
+       let t1058 = binary_op$1.s0._0.rebased + casted.min.0
+       for (all_r$2.s1.r135$x, 0, 3) {
+        all_r$2[0] = all_r$2[0] + (input[(select((t974 <= all_r$2.s1.r135$x) || (all_r$2.s1.r135$x < input.min.2), (t974 - int32((uint32)abs((((all_r$2.s1.r135$x - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t974 + -1, all_r$2.s1.r135$x), input.min.2))*input.stride.2) + (select((t972 <= t1058) || (t1058 < input.min.0), t1060 + -1, max(min(t972 + -1, t1058), input.min.0)) + t1059)]*(((all_r$2.s1.r135$x*3) + binary_op$1.s0._2) + 4))
+       }
+      }
+      consume all_r$2 {
+       let t616 = all_r$2[0]
+       let t617 = binary_op$1.s0._0.rebased + t1057
+       let t618 = binary_op[t617]
+       binary_op$1[t617] = max(max(t616, t618), t616*t618)
+      }
+      free all_r$2
+     }
+    }
+   }
+  }
+ }
+ free binary_op
+ allocate all_r$3[int32 * casted.extent.0 * ((all_w._1.extent_realized.s*8) + 1) * 15]
+ produce all_r$3 {
+  let t1064 = all_w._1.extent_realized.s*8
+  let t1063 = (t1064 + 1)*casted.extent.0
+  for (all_r$3.s0._2, 0, 15) {
+   let t1065 = all_r$3.s0._2*t1063
+   for (all_r$3.s0._1.rebased, 0, t1064 + 1) {
+    let t1066 = (all_r$3.s0._1.rebased*casted.extent.0) + t1065
+    for (all_r$3.s0._0.rebased, 0, casted.extent.0) {
+     all_r$3[all_r$3.s0._0.rebased + t1066] = 0
+    }
+   }
+  }
+  consume binary_op$1 {
+   let t1069 = all_w._1.extent_realized.s*8
+   let t1068 = (t1069 + 1)*casted.extent.0
+   for (all_r$3.s1._2, 0, 15) {
+    for (all_r$3.s1._1.rebased, 0, t1069 + 1) {
+     let t1073 = all_r$3.s1._1.rebased*casted.extent.0
+     let t1071 = (all_r$3.s1._2*t1068) + t1073
+     for (all_r$3.s1._0.rebased, 0, casted.extent.0) {
+      let t1075 = all_r$3.s1._0.rebased + t1073
+      let t1074 = all_r$3.s1._0.rebased + t1071
+      for (all_r$3.s1.r149$x, 0, 18) {
+       all_r$3[t1074] = all_r$3[t1074] + (binary_op$1[(all_r$3.s1.r149$x*t1068) + t1075]*(((all_r$3.s1.r149$x*18) + all_r$3.s1._2) + 19))
+      }
+     }
+    }
+   }
+  }
+  free binary_op$1
+ }
+ allocate downsampled_nn__1[int32 * casted.extent.0 * (all_w._1.extent_realized.s + 1) * 15]
+ let downsampled_nn__1.s0._1.loop_extent = (((casted.extent.1 + casted.min.1) + 15)/8) - (casted.min.1/8)
+ produce downsampled_nn__1 {
+  consume all_r$3 {
+   let t1076 = ((all_w._1.extent_realized.s*8) + 1)*casted.extent.0
+   let t1077 = (all_w._1.extent_realized.s + 1)*casted.extent.0
+   for (downsampled_nn__1.s0._2, 0, 15) {
+    let t1079 = downsampled_nn__1.s0._2*t1077
+    let t1078 = downsampled_nn__1.s0._2*t1076
+    for (downsampled_nn__1.s0._1.rebased, 0, downsampled_nn__1.s0._1.loop_extent) {
+     let t1080 = casted.extent.0*downsampled_nn__1.s0._1.rebased
+     for (downsampled_nn__1.s0._0.rebased, 0, casted.extent.0) {
+      downsampled_nn__1[(t1079 + t1080) + downsampled_nn__1.s0._0.rebased] = all_r$3[((t1080*8) + t1078) + downsampled_nn__1.s0._0.rebased]
+     }
+    }
+   }
+  }
+ }
+ allocate relu[int32 * casted.extent.0 * (all_w._1.extent_realized.s + 1) * 15]
+ let relu.s0._1.loop_extent = (((casted.extent.1 + casted.min.1) + 15)/8) - (casted.min.1/8)
+ produce relu {
+  consume downsampled_nn__1 {
+   let t1081 = (all_w._1.extent_realized.s + 1)*casted.extent.0
+   for (relu.s0._2, 0, 15) {
+    let t1082 = relu.s0._2*t1081
+    for (relu.s0._1.rebased, 0, relu.s0._1.loop_extent) {
+     let t1083 = (casted.extent.0*relu.s0._1.rebased) + t1082
+     for (relu.s0._0.rebased, 0, casted.extent.0) {
+      let t624 = relu.s0._0.rebased + t1083
+      relu[t624] = max(downsampled_nn__1[t624], 0)
+     }
+    }
+   }
+  }
+ }
+ free downsampled_nn__1
+ allocate sliced$1[int32 * casted.extent.0 * casted.extent.1 * 1]
+ produce sliced$1 {
+  consume relu {
+   consume all_r$3 {
+    let t1084 = casted.min.1/8
+    let t1086 = ((all_w._1.extent_realized.s*8) + 1)*casted.extent.0
+    let t1085 = (all_w._1.extent_realized.s + 1)*casted.extent.0
+    let t1087 = casted.min.1 % 8
+    for (sliced$1.s0._1.rebased, 0, casted.extent.1) {
+     let t1092 = casted.min.1 + sliced$1.s0._1.rebased
+     let t1090 = (sliced$1.s0._1.rebased + t1087)*casted.extent.0
+     let t1091 = casted.extent.0*sliced$1.s0._1.rebased
+     let t1089 = t1092 % 8
+     let t1088 = (t1092/8) - t1084
+     for (sliced$1.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r$5[int32 * 2]
+      produce all_r$5 {
+       for (all_r$5.s0._1.rebased, 0, 2) {
+        all_r$5[all_r$5.s0._1.rebased] = 0
+       }
+       for (all_r$5.s1._1.rebased, 0, 2) {
+        let t1093 = ((all_r$5.s1._1.rebased + t1088)*casted.extent.0) + sliced$1.s0._0.rebased
+        for (all_r$5.s1.r240$x, 0, 15) {
+         all_r$5[all_r$5.s1._1.rebased] = all_r$5[all_r$5.s1._1.rebased] + (relu[(all_r$5.s1.r240$x*t1085) + t1093]*((all_r$5.s1.r240$x*15) + 16))
+        }
+       }
+      }
+      consume all_r$5 {
+       sliced$1[sliced$1.s0._0.rebased + t1091] = all_r$3[((max(min(int32((int16(((all_r$5[0]*(8 - t1089)) + (all_r$5[1]*t1089)))/(int16)16)), 14), 0)*t1086) + t1090) + sliced$1.s0._0.rebased]
+      }
+      free all_r$5
+     }
+    }
+   }
+  }
+ }
+ free all_r$3
+ free relu
+ produce casted {
+  consume sliced$1 {
+   let t1094 = 0 - ((casted.min.2*casted.stride.2) + (casted.min.1*casted.stride.1))
+   for (casted.s0._2.rebased, 0, casted.extent.2) {
+    let t1097 = casted.min.2 + casted.s0._2.rebased
+    let t1096 = (casted.stride.2*t1097) + t1094
+    for (casted.s0._1.rebased, 0, casted.extent.1) {
+     let t1098 = casted.extent.0*casted.s0._1.rebased
+     let t1099 = ((casted.min.1 + casted.s0._1.rebased)*casted.stride.1) + t1096
+     for (casted.s0._0.rebased, 0, casted.extent.0) {
+      allocate all_r$6[int32 * 1]
+      produce all_r$6 {
+       all_r$6[0] = 0
+       all_r$6[0] = all_r$6[0] + (sliced$1[casted.s0._0.rebased + t1098]*(t1097 + 2))
+      }
+      consume all_r$6 {
+       casted[casted.s0._0.rebased + t1099] = all_r$6[0]
+      }
+      free all_r$6
+     }
+    }
+   }
+  }
+ }
+ free sliced$1
+}
+
+
+Skipping Hexagon offload...
+Skipping GPU offload...
+Lowering Parallel Tasks...
+Target triple of initial module: x86_64--linux-gnu
+Generating llvm bitcode...
+Generating llvm bitcode prolog for function random_pipeline...
+Generating llvm bitcode for function random_pipeline...
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.0*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+add_temp_object_file: /tmp/BBYulR/random_pipeline.a.o
+Module.compile(): temporary object /tmp/BBYulR/random_pipeline.a.o
+emit_file.Compiling to native code...
+Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.a
+file_unlink: /tmp/BBYulR/random_pipeline.a.o
+dir_rmdir: /tmp/BBYulR
+Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.h
+Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.registration.cpp

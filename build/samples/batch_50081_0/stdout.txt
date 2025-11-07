@@ -1,0 +1,61 @@
+Using mirror_image
+Approx size: 2000, 2000, 3
+Convolving dimension 1 with kernel [-2, 3]
+Approx size: 2000, 2000, 3
+Binary op
+Approx size: 2000, 2000, 3
+Pooling using += with stride: 1 and kernel [ -4, 0]
+Approx size: 2000, 2000, 3
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 5] using sum() helper
+Approx size: 250, 250, 8
+Upsampling dimension 0 by 0x
+Approx size: 16000, 2000, 3
+Slice
+Resampling from 16000, 2000, 3 to 2000, 2000, 1
+Downsampling dimension 0 by 8x
+All to all on dimension 2 using += 
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+Convolving dimension 0 with kernel [0, 1]
+Approx size: 250, 250, 8
+Upsampling dimension 0 by 0x
+Approx size: 32000, 250, 8
+Binary op
+Resampling from 250, 250, 8 to 2000, 2000, 1
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 1
+Approx size: 2000, 2000, 1
+All to all on dimension 2 using += 
+Approx size: 32000, 250, 12
+All to all on dimension 2 using += 
+Approx size: 250, 250, 94
+Binary op
+Resampling from 250, 250, 94 to 32000, 250, 12
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 128x
+Resulting size: 32000, 250, 12
+Approx size: 32000, 250, 12
+Downsampling dimension 0 by 0x
+Approx size: 32, 250, 94
+All to all on dimension 2 using += 
+Approx size: 32, 250, 104
+Binary op
+Resampling from 250, 250, 8 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3
+Approx size: 2000, 2000, 3
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 17
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 2000, 2000, 13
+Padding
+Resampling from 250, 250, 8 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 0 by 8x
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3

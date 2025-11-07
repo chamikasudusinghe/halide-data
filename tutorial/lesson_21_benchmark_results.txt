@@ -1,0 +1,54 @@
+=== Lesson 21 Benchmark Results ===
+Date: Thu Nov  6 04:00:54 PM CST 2025
+
+Run 1:
+Manual schedule: 18.3826ms
+Auto schedule: 18.5211ms
+
+Run 2:
+Manual schedule: 18.5454ms
+Auto schedule: 18.4913ms
+
+Run 3:
+Manual schedule: 18.4583ms
+Auto schedule: 18.616ms
+
+Run 4:
+Manual schedule: 18.738ms
+Auto schedule: 18.6214ms
+
+Run 5:
+Manual schedule: 18.4512ms
+Auto schedule: 18.4275ms
+
+Run 6:
+Manual schedule: 18.8858ms
+Auto schedule: 18.6501ms
+
+Run 7:
+Manual schedule: 18.4238ms
+Auto schedule: 18.4799ms
+
+Run 8:
+Manual schedule: 19.5121ms
+Auto schedule: 18.7564ms
+
+Run 9:
+Manual schedule: 18.5417ms
+Auto schedule: 18.6182ms
+
+Run 10:
+Manual schedule: 18.3022ms
+Auto schedule: 18.4551ms
+
+=== Statistics (10 runs) ===
+
+Manual Schedule:
+  Mean: 18.6502 ms
+  Min:  18.3376 ms
+  Max:  19.5493 ms
+
+Auto Schedule:
+  Mean: 18.4552 ms
+  Min:  18.2194 ms
+  Max:  18.8382 ms

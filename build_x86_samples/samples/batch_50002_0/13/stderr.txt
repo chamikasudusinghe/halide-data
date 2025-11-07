@@ -1,0 +1,1467 @@
+Registering autoscheduler 'Adams2019'...
+Generator random_pipeline has base_path /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline
+compile_multitarget: single target is x86-64-linux-avx-avx2-avx512-avx512_cannonlake-avx512_sapphirerapids-avx512_skylake-f16c-fma-no_runtime-sse41
+In random expression: max((int16)pool2D_r__0_1(_0, _1 + -3, _2), (int16)pool2D_r__0_1(_0, _1 + 1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: ((int16)pool2D_r__0_1(_0, _1 + -2, _2) + (int16)pool2D_r__0_1(_0, _1 + 1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: (int16)pool2D_r__0_1(_0, _1 + -2, _2)
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+(int16)pool2D_r__0_1(_0, _1 + 1, _2)
+In random expression: ((int16)pool2D_r__0_1(_0, _1, _2)*(int16)pool2D_r__0_1(_0, _1 + -1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + 1, _2)
+In random expression: max((int16)pool2D_r__0_1(_0, _1, _2), (int16)pool2D_r__0_1(_0, _1 + 1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: (let t8 = (int16)pool2D_r__0_1(_0, _1 + 1, _2) in (t8*(int16)2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: ((int16)pool2D_r__0_1(_0, _1 + -3, _2)/(int16)pool2D_r__0_1(_0, _1 + 1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: (int16)0
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -2, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+(int16)pool2D_r__0_1(_0, _1 + 1, _2)
+In random expression: max((int16)pool2D_r__0_1(_0, _1 + -2, _2), (int16)pool2D_r__0_1(_0, _1 + 1, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1, _2)
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+In random expression: ((int16)pool2D_r__0_1(_0, _1, _2)/(int16)pool2D_r__0_1(_0, _1 + -2, _2))
+The following expressions were unused:
+(int16)pool2D_r__0_1(_0, _1 + -3, _2)
+(int16)pool2D_r__0_1(_0, _1 + -1, _2)
+(int16)pool2D_r__0_1(_0, _1 + 1, _2)
+((((((int16)0 + (int16)pool2D_r__0_1(_0, _1 + -3, _2)) + (int16)pool2D_r__0_1(_0, _1 + -2, _2)) + (int16)pool2D_r__0_1(_0, _1 + -1, _2)) + (int16)pool2D_r__0_1(_0, _1, _2)) + (int16)pool2D_r__0_1(_0, _1 + 1, _2))
+(all_r$1(_0, _1, _2) + all_w(_0, _1, _2))
+Applying autoscheduler Adams2019 to Generator random_pipeline ...
+generate_schedule for target=x86-64-linux-avx-avx2-avx512-avx512_cannonlake-avx512_sapphirerapids-avx512_skylake-f16c-fma-no_runtime-sse41
+Adams2019.parallelism:16
+Adams2019.beam_size:32
+Adams2019.random_dropout:100
+Adams2019.random_dropout_seed:0
+Adams2019.weights_path:
+Adams2019.disable_subtiling:0
+Adams2019.disable_memoized_features:0
+Adams2019.disable_memoized_blocks:0
+Adams2019.memory_limit:-1
+Loading weights from built-in data...
+Pass 0 of 5, cost: 248.187439, time (ms): 407
+Pass 1 of 5, cost: 197.291870, time (ms): 230
+Pass 2 of 5, cost: 178.468628, time (ms): 117
+Pass 3 of 5, cost: 178.468628, time (ms): 64
+Pass 4 of 5, cost: 178.468628, time (ms): 61
+Best cost: 178.468628
+Cache (block) hits: 28496
+Cache (block) misses: 3253
+AutoSchedule.cpp:521 ... AutoSchedule.cpp:553 : 888.485628 ms
+Cost evaluated this many times: 40636
+** Optimal schedule:
+Schedule features for casted
+    num_realizations:                      1.000000
+    num_productions:                       1.000000
+    points_computed_per_realization:       12000000.000000
+    points_computed_per_production:        12386304.000000
+    points_computed_total:                 12000000.000000
+    points_computed_minimum:               12000000.000000
+    innermost_loop_extent:                 3024.000000
+    innermost_pure_loop_extent:            3024.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     256.000000
+    outer_parallelism:                     1.000000
+    bytes_at_realization:                  48000000.000000
+    bytes_at_production:                   48000000.000000
+    bytes_at_root:                         48000000.000000
+    innermost_bytes_at_realization:        8000.000000
+    innermost_bytes_at_production:         8000.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     189000.000000
+    unique_lines_read_per_realization:     189.000000
+    allocation_bytes_read_per_realization: 189000.000000
+    working_set:                           7062390.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           750000.000000
+    num_scalars:                           0.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               1.000000
+    scalar_loads_per_scalar:               1.000000
+    bytes_at_task:                         186000.000000
+    innermost_bytes_at_task:               1000.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            280704.000000
+    unique_lines_read_per_task:            258.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             55062390.000000
+    working_set_at_realization:            55062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for all_r$4
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       47250.000000
+    points_computed_per_production:        48384.000000
+    points_computed_total:                 12096000.000000
+    points_computed_minimum:               12000000.000000
+    innermost_loop_extent:                 3024.000000
+    innermost_pure_loop_extent:            3024.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  189000.000000
+    bytes_at_production:                   189000.000000
+    bytes_at_root:                         48000000.000000
+    innermost_bytes_at_realization:        1000.000000
+    innermost_bytes_at_production:         1000.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           725760.000000
+    num_scalars:                           483840.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         189000.000000
+    innermost_bytes_at_task:               1000.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for all_r$4.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       236250.000000
+    points_computed_per_production:        241920.000000
+    points_computed_total:                 60480000.000000
+    points_computed_minimum:               60000000.000000
+    innermost_loop_extent:                 15120.000000
+    innermost_pure_loop_extent:            3024.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  189000.000000
+    bytes_at_production:                   189000.000000
+    bytes_at_root:                         48000000.000000
+    innermost_bytes_at_realization:        1000.000000
+    innermost_bytes_at_production:         1000.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     504000.000000
+    unique_lines_read_per_realization:     504.000000
+    allocation_bytes_read_per_realization: 504000.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           3628800.000000
+    num_scalars:                           2419200.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         189000.000000
+    innermost_bytes_at_task:               1000.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for conv_w__0$1
+    num_realizations:                      0.000000
+    num_productions:                       0.000000
+    points_computed_per_realization:       0.000000
+    points_computed_per_production:        0.000000
+    points_computed_total:                 0.000000
+    points_computed_minimum:               20000000.000000
+    innermost_loop_extent:                 0.000000
+    innermost_pure_loop_extent:            3024.000000
+    unrolled_loop_extent:                  0.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  0.000000
+    bytes_at_production:                   0.000000
+    bytes_at_root:                         80000000.000000
+    innermost_bytes_at_realization:        0.000000
+    innermost_bytes_at_production:         0.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         61931520.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           3628800.000000
+    num_scalars:                           2419200.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         0.000000
+    innermost_bytes_at_task:               0.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   0.000000
+    working_set_at_production:             0.000000
+    working_set_at_realization:            0.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum$6
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       78750.000000
+    points_computed_per_production:        80640.000000
+    points_computed_total:                 20160000.000000
+    points_computed_minimum:               20000000.000000
+    innermost_loop_extent:                 5040.000000
+    innermost_pure_loop_extent:            5040.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  315000.000000
+    bytes_at_production:                   315000.000000
+    bytes_at_root:                         80000000.000000
+    innermost_bytes_at_realization:        1000.000000
+    innermost_bytes_at_production:         1000.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           1209600.000000
+    num_scalars:                           806400.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         315000.000000
+    innermost_bytes_at_task:               1000.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum$6.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       1023750.000000
+    points_computed_per_production:        1048320.000000
+    points_computed_total:                 262080000.000000
+    points_computed_minimum:               260000000.000000
+    innermost_loop_extent:                 65520.000000
+    innermost_pure_loop_extent:            5040.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  315000.000000
+    bytes_at_production:                   315000.000000
+    bytes_at_root:                         80000000.000000
+    innermost_bytes_at_realization:        1000.000000
+    innermost_bytes_at_production:         1000.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     645120.000000
+    unique_lines_read_per_realization:     630.000000
+    allocation_bytes_read_per_realization: 645120.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           15724800.000000
+    num_scalars:                           10483200.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         315000.000000
+    innermost_bytes_at_task:               1000.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for all$1
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       82530.000000
+    points_computed_per_production:        90720.000000
+    points_computed_total:                 21127680.000000
+    points_computed_minimum:               20120000.000000
+    innermost_loop_extent:                 2835.000000
+    innermost_pure_loop_extent:            2835.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  330120.000000
+    bytes_at_production:                   330120.000000
+    bytes_at_root:                         80480000.000000
+    innermost_bytes_at_realization:        1048.000000
+    innermost_bytes_at_production:         1048.000000
+    innermost_bytes_at_root:               8048.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     528192.000000
+    unique_lines_read_per_realization:     1008.000000
+    allocation_bytes_read_per_realization: 528192.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           645120.000000
+    num_scalars:                           483840.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               16.000000
+    scalar_loads_per_scalar:               16.000000
+    bytes_at_task:                         330120.000000
+    innermost_bytes_at_task:               1048.000000
+    unique_bytes_read_per_vector:          1024.000000
+    unique_lines_read_per_vector:          16.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for pool2D_r__0_1$1
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       264096.000000
+    points_computed_per_production:        290304.000000
+    points_computed_total:                 67608576.000000
+    points_computed_minimum:               64384000.000000
+    innermost_loop_extent:                 9072.000000
+    innermost_pure_loop_extent:            9072.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  528192.000000
+    bytes_at_production:                   528192.000000
+    bytes_at_root:                         128768000.000000
+    innermost_bytes_at_realization:        524.000000
+    innermost_bytes_at_production:         524.000000
+    innermost_bytes_at_root:               4024.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           2064384.000000
+    num_scalars:                           1548288.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         528192.000000
+    innermost_bytes_at_task:               524.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for pool2D_r__0_1$1.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       9507456.000000
+    points_computed_per_production:        10450944.000000
+    points_computed_total:                 2433908736.000000
+    points_computed_minimum:               2317824000.000000
+    innermost_loop_extent:                 326592.000000
+    innermost_pure_loop_extent:            9072.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  528192.000000
+    bytes_at_production:                   528192.000000
+    bytes_at_root:                         128768000.000000
+    innermost_bytes_at_realization:        524.000000
+    innermost_bytes_at_production:         524.000000
+    innermost_bytes_at_root:               4024.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     1690176.000000
+    unique_lines_read_per_realization:     2096.000000
+    allocation_bytes_read_per_realization: 1690176.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           74317824.000000
+    num_scalars:                           55738368.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         528192.000000
+    innermost_bytes_at_task:               524.000000
+    unique_bytes_read_per_vector:          128.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for conv_w__1
+    num_realizations:                      0.000000
+    num_productions:                       0.000000
+    points_computed_per_realization:       0.000000
+    points_computed_per_production:        0.000000
+    points_computed_total:                 0.000000
+    points_computed_minimum:               64705360.000000
+    innermost_loop_extent:                 0.000000
+    innermost_pure_loop_extent:            9072.000000
+    unrolled_loop_extent:                  0.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  0.000000
+    bytes_at_production:                   0.000000
+    bytes_at_root:                         258821440.000000
+    innermost_bytes_at_realization:        0.000000
+    innermost_bytes_at_production:         0.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         2675441664.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           74317824.000000
+    num_scalars:                           55738368.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         0.000000
+    innermost_bytes_at_task:               0.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   0.000000
+    working_set_at_production:             0.000000
+    working_set_at_realization:            0.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum$4
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       290496.000000
+    points_computed_per_production:        295936.000000
+    points_computed_total:                 74366976.000000
+    points_computed_minimum:               64705360.000000
+    innermost_loop_extent:                 18496.000000
+    innermost_pure_loop_extent:            18496.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  1161984.000000
+    bytes_at_production:                   1161984.000000
+    bytes_at_root:                         258821440.000000
+    innermost_bytes_at_realization:        1068.000000
+    innermost_bytes_at_production:         1068.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           4456448.000000
+    num_scalars:                           3063808.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         1161984.000000
+    innermost_bytes_at_task:               1068.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum$4.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       4066944.000000
+    points_computed_per_production:        4143104.000000
+    points_computed_total:                 1041137664.000000
+    points_computed_minimum:               905875040.000000
+    innermost_loop_extent:                 258944.000000
+    innermost_pure_loop_extent:            18496.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  1161984.000000
+    bytes_at_production:                   1161984.000000
+    bytes_at_root:                         258821440.000000
+    innermost_bytes_at_realization:        1068.000000
+    innermost_bytes_at_production:         1068.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     2546112.000000
+    unique_lines_read_per_realization:     2384.000000
+    allocation_bytes_read_per_realization: 2546112.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           62390272.000000
+    num_scalars:                           42893312.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         1161984.000000
+    innermost_bytes_at_task:               1068.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for all_w
+    num_realizations:                      0.000000
+    num_productions:                       0.000000
+    points_computed_per_realization:       0.000000
+    points_computed_per_production:        0.000000
+    points_computed_total:                 0.000000
+    points_computed_minimum:               65124896.000000
+    innermost_loop_extent:                 0.000000
+    innermost_pure_loop_extent:            18496.000000
+    unrolled_loop_extent:                  0.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  0.000000
+    bytes_at_production:                   0.000000
+    bytes_at_root:                         260499584.000000
+    innermost_bytes_at_realization:        0.000000
+    innermost_bytes_at_production:         0.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         1060634624.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           62390272.000000
+    num_scalars:                           42893312.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         0.000000
+    innermost_bytes_at_task:               0.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   0.000000
+    working_set_at_production:             0.000000
+    working_set_at_realization:            0.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       346032.000000
+    points_computed_per_production:        352512.000000
+    points_computed_total:                 88584192.000000
+    points_computed_minimum:               65124896.000000
+    innermost_loop_extent:                 22032.000000
+    innermost_pure_loop_extent:            22032.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  1384128.000000
+    bytes_at_production:                   1384128.000000
+    bytes_at_root:                         260499584.000000
+    innermost_bytes_at_realization:        1068.000000
+    innermost_bytes_at_production:         1068.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           5308416.000000
+    num_scalars:                           3649536.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         1384128.000000
+    innermost_bytes_at_task:               1068.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for sum.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       7266672.000000
+    points_computed_per_production:        7838208.000000
+    points_computed_total:                 1860268032.000000
+    points_computed_minimum:               1367622816.000000
+    innermost_loop_extent:                 244944.000000
+    innermost_pure_loop_extent:            11664.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  1384128.000000
+    bytes_at_production:                   1384128.000000
+    bytes_at_root:                         260499584.000000
+    innermost_bytes_at_realization:        1068.000000
+    innermost_bytes_at_production:         1068.000000
+    innermost_bytes_at_root:               8068.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     2292462.000000
+    unique_lines_read_per_realization:     2997.000000
+    allocation_bytes_read_per_realization: 2292462.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           55738368.000000
+    num_scalars:                           76640256.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         1384128.000000
+    innermost_bytes_at_task:               1068.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for pool2D_r__0_1
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       454167.000000
+    points_computed_per_production:        489888.000000
+    points_computed_total:                 116266752.000000
+    points_computed_minimum:               85476426.000000
+    innermost_loop_extent:                 15309.000000
+    innermost_pure_loop_extent:            15309.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  908334.000000
+    bytes_at_production:                   908334.000000
+    bytes_at_root:                         170952852.000000
+    innermost_bytes_at_realization:        534.000000
+    innermost_bytes_at_production:         534.000000
+    innermost_bytes_at_root:               4034.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           3483648.000000
+    num_scalars:                           4790016.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         908334.000000
+    innermost_bytes_at_task:               534.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for pool2D_r__0_1.update(0)
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       16350012.000000
+    points_computed_per_production:        17635968.000000
+    points_computed_total:                 4185603072.000000
+    points_computed_minimum:               3077151336.000000
+    innermost_loop_extent:                 551124.000000
+    innermost_pure_loop_extent:            15309.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  908334.000000
+    bytes_at_production:                   908334.000000
+    bytes_at_root:                         170952852.000000
+    innermost_bytes_at_realization:        534.000000
+    innermost_bytes_at_production:         534.000000
+    innermost_bytes_at_root:               4034.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     2873262.000000
+    unique_lines_read_per_realization:     3507.000000
+    allocation_bytes_read_per_realization: 2873262.000000
+    working_set:                           0.000000
+    vector_size:                           32.000000
+    native_vector_size:                    32.000000
+    num_vectors:                           125411328.000000
+    num_scalars:                           172440576.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               2.000000
+    scalar_loads_per_scalar:               2.000000
+    bytes_at_task:                         908334.000000
+    innermost_bytes_at_task:               534.000000
+    unique_bytes_read_per_vector:          128.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for all
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       491232.000000
+    points_computed_per_production:        491232.000000
+    points_computed_total:                 125755392.000000
+    points_computed_minimum:               85900626.000000
+    innermost_loop_extent:                 30702.000000
+    innermost_pure_loop_extent:            30702.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  1964928.000000
+    bytes_at_production:                   1964928.000000
+    bytes_at_root:                         343602504.000000
+    innermost_bytes_at_realization:        1088.000000
+    innermost_bytes_at_production:         1088.000000
+    innermost_bytes_at_root:               8088.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     280704.000000
+    unique_lines_read_per_realization:     258.000000
+    allocation_bytes_read_per_realization: 280704.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           7859712.000000
+    num_scalars:                           0.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               3.000000
+    scalar_loads_per_scalar:               3.000000
+    bytes_at_task:                         1964928.000000
+    innermost_bytes_at_task:               1088.000000
+    unique_bytes_read_per_vector:          192.000000
+    unique_lines_read_per_vector:          3.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for mirror_interior
+    num_realizations:                      256.000000
+    num_productions:                       256.000000
+    points_computed_per_realization:       70176.000000
+    points_computed_per_production:        70176.000000
+    points_computed_total:                 17965056.000000
+    points_computed_minimum:               12271518.000000
+    innermost_loop_extent:                 4386.000000
+    innermost_pure_loop_extent:            4386.000000
+    unrolled_loop_extent:                  1.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  280704.000000
+    bytes_at_production:                   280704.000000
+    bytes_at_root:                         49086072.000000
+    innermost_bytes_at_realization:        1088.000000
+    innermost_bytes_at_production:         1088.000000
+    innermost_bytes_at_root:               8088.000000
+    inlined_calls:                         0.000000
+    unique_bytes_read_per_realization:     280704.000000
+    unique_lines_read_per_realization:     258.000000
+    allocation_bytes_read_per_realization: 48000000.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           1122816.000000
+    num_scalars:                           0.000000
+    scalar_loads_per_vector:               16.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               1.000000
+    bytes_at_task:                         280704.000000
+    innermost_bytes_at_task:               1088.000000
+    unique_bytes_read_per_vector:          64.000000
+    unique_lines_read_per_vector:          1.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   7062390.000000
+    working_set_at_production:             7062390.000000
+    working_set_at_realization:            7062390.000000
+    working_set_at_root:                   55062390.000000
+Schedule features for lambda_0
+    num_realizations:                      0.000000
+    num_productions:                       0.000000
+    points_computed_per_realization:       0.000000
+    points_computed_per_production:        0.000000
+    points_computed_total:                 0.000000
+    points_computed_minimum:               12000000.000000
+    innermost_loop_extent:                 0.000000
+    innermost_pure_loop_extent:            4386.000000
+    unrolled_loop_extent:                  0.000000
+    inner_parallelism:                     1.000000
+    outer_parallelism:                     256.000000
+    bytes_at_realization:                  0.000000
+    bytes_at_production:                   0.000000
+    bytes_at_root:                         48000000.000000
+    innermost_bytes_at_realization:        0.000000
+    innermost_bytes_at_production:         0.000000
+    innermost_bytes_at_root:               8000.000000
+    inlined_calls:                         17965056.000000
+    unique_bytes_read_per_realization:     0.000000
+    unique_lines_read_per_realization:     0.000000
+    allocation_bytes_read_per_realization: 0.000000
+    working_set:                           0.000000
+    vector_size:                           16.000000
+    native_vector_size:                    16.000000
+    num_vectors:                           1122816.000000
+    num_scalars:                           0.000000
+    scalar_loads_per_vector:               0.000000
+    vector_loads_per_vector:               0.000000
+    scalar_loads_per_scalar:               0.000000
+    bytes_at_task:                         0.000000
+    innermost_bytes_at_task:               0.000000
+    unique_bytes_read_per_vector:          0.000000
+    unique_lines_read_per_vector:          0.000000
+    unique_bytes_read_per_task:            0.000000
+    unique_lines_read_per_task:            0.000000
+    working_set_at_task:                   0.000000
+    working_set_at_production:             0.000000
+    working_set_at_realization:            0.000000
+    working_set_at_root:                   55062390.000000
+Creating initial loop nests...
+Injecting realization of { casted }
+Injecting realization of { all_r$4 }
+Inlining conv_w__0$1
+Injecting realization of { sum$6 }
+Injecting realization of { all$1 }
+Injecting realization of { pool2D_r__0_1$1 }
+Inlining conv_w__1
+Injecting realization of { sum$4 }
+Inlining all_w
+Injecting realization of { sum }
+Injecting realization of { pool2D_r__0_1 }
+Injecting realization of { all }
+Injecting realization of { mirror_interior }
+Inlining lambda_0
+Inlining input_im
+Skipping injecting memoization...
+Injecting tracing...
+Adding checks for parameters
+Computing bounds of each function's value
+Clamping unsafe data-dependent accesses
+Performing computation bounds inference...
+Removing extern loops...
+Performing sliding window optimization...
+Uniquifying variable names...
+Simplifying...
+Simplifying correlated differences...
+Performing allocation bounds inference...
+Adding checks for images
+Removing code that depends on undef values...
+Performing storage folding optimization...
+Injecting debug_to_file calls...
+Injecting prefetches...
+Discarding safe promises...
+Dynamically skipping stages...
+Forking asynchronous producers...
+Destructuring tuple-valued realizations...
+Bounding small realizations...
+Performing storage flattening...
+Adding atomic mutex allocation...
+Unpacking buffer arguments...
+Skipping rewriting memoized allocations...
+Simplifying...
+Reduce prefetch dimension...
+Simplifying correlated differences...
+Unrolling...
+Vectorizing...
+Detecting vector interleavings...
+Partitioning loops to simplify boundary conditions...
+Staging strided loads...
+Trimming loops to the region over which they do something...
+Rebasing loops to zero...
+Hoisting loop invariant if statements...
+Injecting early frees...
+Simplifying correlated differences...
+Bounding small allocations...
+Simplifying...
+Lowering unsafe promises...
+Extracting tile operations...
+Flattening nested ramps...
+Removing dead allocations and moving loop invariant code...
+Finding intrinsics...
+Hoisting prefetches...
+Lowering after final simplification:
+assert(reinterpret<uint64>((struct halide_buffer_t *)input.buffer) != (uint64)0, halide_error_buffer_argument_is_null("input"))
+assert(reinterpret<uint64>((struct halide_buffer_t *)casted.buffer) != (uint64)0, halide_error_buffer_argument_is_null("casted"))
+let casted = (void *)_halide_buffer_get_host((struct halide_buffer_t *)casted.buffer)
+let casted.type = (uint32)_halide_buffer_get_type((struct halide_buffer_t *)casted.buffer)
+let casted.device_dirty = (uint1)_halide_buffer_get_device_dirty((struct halide_buffer_t *)casted.buffer)
+let casted.dimensions = _halide_buffer_get_dimensions((struct halide_buffer_t *)casted.buffer)
+let casted.min.0 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 0)
+let casted.extent.0 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 0)
+let casted.stride.0 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 0)
+let casted.min.1 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 1)
+let casted.extent.1 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 1)
+let casted.stride.1 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 1)
+let casted.min.2 = _halide_buffer_get_min((struct halide_buffer_t *)casted.buffer, 2)
+let casted.extent.2 = _halide_buffer_get_extent((struct halide_buffer_t *)casted.buffer, 2)
+let casted.stride.2 = _halide_buffer_get_stride((struct halide_buffer_t *)casted.buffer, 2)
+let input = (void *)_halide_buffer_get_host((struct halide_buffer_t *)input.buffer)
+let input.type = (uint32)_halide_buffer_get_type((struct halide_buffer_t *)input.buffer)
+let input.device_dirty = (uint1)_halide_buffer_get_device_dirty((struct halide_buffer_t *)input.buffer)
+let input.dimensions = _halide_buffer_get_dimensions((struct halide_buffer_t *)input.buffer)
+let input.min.0 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 0)
+let input.extent.0 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 0)
+let input.stride.0 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 0)
+let input.min.1 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 1)
+let input.extent.1 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 1)
+let input.stride.1 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 1)
+let input.min.2 = _halide_buffer_get_min((struct halide_buffer_t *)input.buffer, 2)
+let input.extent.2 = _halide_buffer_get_extent((struct halide_buffer_t *)input.buffer, 2)
+let input.stride.2 = _halide_buffer_get_stride((struct halide_buffer_t *)input.buffer, 2)
+let casted.extent.0.required.s = min(max(max(-256 - casted.extent.0, casted.extent.0 + -1)/256, 0)*256, casted.extent.0 + -256)
+let casted.extent.1.required.s = let t773 = (0 < casted.extent.0) in (let t774 = (((((casted.extent.0 + 255)/256)*((casted.extent.1 + 62)/63)) + -1)/((casted.extent.0 + 255)/256)) in (min(select(t773, t774, 0)*63, casted.extent.1 + -63) - min(select(t773, 0, t774)*63, casted.extent.1 + -63)))
+let casted.min.1.required.s = min(select(0 < casted.extent.0, 0, ((((casted.extent.0 + 255)/256)*((casted.extent.1 + 62)/63)) + -1)/((casted.extent.0 + 255)/256))*63, casted.extent.1 + -63)
+let casted.stride.2.required = (max(casted.extent.0.required.s, 0) + 256)*(casted.extent.1.required.s + 63)
+let input.extent.0.required.s = let t775 = (input.extent.0 + input.min.0) in (let t776 = (min(casted.extent.0, 256) + casted.min.0) in (let t777 = (casted.extent.0.required.s + casted.min.0) in (let t778 = (((t775 + 266) <= t776) || (t777 < (input.min.0 + -267))) in (let t779 = max(min(t777 + 268, t775) + -1, input.min.0) in (let t780 = (((t775 + -267) <= t777) || (t776 < (input.min.0 + 266))) in (let t781 = (input.min.0 + (input.extent.0 - int32(max(uint32((input.extent.0 + -1)), uint32(((max(1 - (input.extent.0*2), max(input.extent.0*2, 3) + -3) - input.extent.0) + 1)))))) in (let t782 = max(min(t776, t775 + 265) + -266, input.min.0) in (max(select(t778, t775 + -1, t779), select(t780, t775 + -1, t779)) - min(select(t778, t781 + -1, t782), select(t780, t781 + -1, t782))))))))))
+let input.min.0.required = let t783 = (input.extent.0 + input.min.0) in (let t784 = (min(casted.extent.0, 256) + casted.min.0) in (let t785 = (casted.extent.0.required.s + casted.min.0) in (let t786 = (input.min.0 + (input.extent.0 - int32(max(uint32((input.extent.0 + -1)), uint32(((max(1 - (input.extent.0*2), max(input.extent.0*2, 3) + -3) - input.extent.0) + 1)))))) in (let t787 = max(min(t784, t783 + 265) + -266, input.min.0) in min(select(((t783 + 266) <= t784) || (t785 < (input.min.0 + -267)), t786 + -1, t787), select(((t783 + -267) <= t785) || (t784 < (input.min.0 + 266)), t786 + -1, t787))))))
+let input.extent.1.required.s = let t788 = (input.extent.1 + input.min.1) in (let t789 = (casted.min.1 + casted.min.1.required.s) in (let t790 = (casted.min.1 + min(select(0 < casted.extent.0, ((((casted.extent.0 + 255)/256)*((casted.extent.1 + 62)/63)) + -1)/((casted.extent.0 + 255)/256), 0)*63, casted.extent.1 + -63)) in (let t791 = (((t788 + 13) <= t789) || (t790 < (input.min.1 + -72))) in (let t792 = max(min(t790 + 73, t788) + -1, input.min.1) in (let t793 = (((t788 + -72) <= t790) || (t789 < (input.min.1 + 13))) in (let t794 = (input.min.1 + (input.extent.1 - int32(max(uint32((input.extent.1 + -1)), uint32(((max(1 - (input.extent.1*2), max(input.extent.1*2, 3) + -3) - input.extent.1) + 1)))))) in (let t795 = max(min(t789, t788 + 12) + -13, input.min.1) in (max(select(t791, t788 + -1, t792), select(t793, t788 + -1, t792)) - min(select(t791, t794 + -1, t795), select(t793, t794 + -1, t795))))))))))
+let input.min.1.required = let t796 = (input.extent.1 + input.min.1) in (let t797 = (casted.min.1 + casted.min.1.required.s) in (let t798 = (casted.min.1 + min(select(0 < casted.extent.0, ((((casted.extent.0 + 255)/256)*((casted.extent.1 + 62)/63)) + -1)/((casted.extent.0 + 255)/256), 0)*63, casted.extent.1 + -63)) in (let t799 = (input.min.1 + (input.extent.1 - int32(max(uint32((input.extent.1 + -1)), uint32(((max(1 - (input.extent.1*2), max(input.extent.1*2, 3) + -3) - input.extent.1) + 1)))))) in (let t800 = max(min(t797, t796 + 12) + -13, input.min.1) in min(select(((t796 + 13) <= t797) || (t798 < (input.min.1 + -72)), t799 + -1, t800), select(((t796 + -72) <= t798) || (t797 < (input.min.1 + 13)), t799 + -1, t800))))))
+let input.extent.2.required.s = let t801 = (input.extent.2 + input.min.2) in (let t802 = ((t801 <= 0) || (2 < input.min.2)) in (let t803 = max(min(t801, 3) + -1, input.min.2) in (let t804 = ((t801 <= 2) || (0 < input.min.2)) in (let t805 = (input.min.2 + (input.extent.2 - int32(max(uint32((input.extent.2 + -1)), uint32(((max(1 - (input.extent.2*2), max(input.extent.2*2, 3) + -3) - input.extent.2) + 1)))))) in (let t806 = max(min(t801, 1) + -1, input.min.2) in (max(select(t802, t801 + -1, t803), select(t804, t801 + -1, t803)) - min(select(t802, t805 + -1, t806), select(t804, t805 + -1, t806))))))))
+let input.min.2.required = let t807 = (input.extent.2 + input.min.2) in (let t808 = (input.min.2 + (input.extent.2 - int32(max(uint32((input.extent.2 + -1)), uint32(((max(1 - (input.extent.2*2), max(input.extent.2*2, 3) + -3) - input.extent.2) + 1)))))) in (let t809 = max(min(t807, 1) + -1, input.min.2) in min(select((t807 <= 0) || (2 < input.min.2), t808 + -1, t809), select((t807 <= 2) || (0 < input.min.2), t808 + -1, t809))))
+let input.stride.2.required = (input.extent.0.required.s + 1)*(input.extent.1.required.s + 1)
+if ((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)casted.buffer)) {
+ let t810 = max(casted.extent.0.required.s, 0) in (struct halide_buffer_t *)_halide_buffer_init((struct halide_buffer_t *)casted.buffer, (struct halide_dimension_t *)_halide_buffer_get_shape((struct halide_buffer_t *)casted.buffer), reinterpret<(void *)>((uint64)0), (uint64)0, reinterpret<(struct halide_device_interface_t *)>((uint64)0), 0, 32, 3, (struct halide_dimension_t *)make_struct((min(casted.extent.0, 256) + casted.min.0) + -256, t810 + 256, 1, 0, casted.min.1 + casted.min.1.required.s, casted.extent.1.required.s + 63, t810 + 256, 0, casted.min.2, casted.extent.2, casted.stride.2.required, 0), (uint64)0)
+}
+if ((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)input.buffer)) {
+ (struct halide_buffer_t *)_halide_buffer_init((struct halide_buffer_t *)input.buffer, (struct halide_dimension_t *)_halide_buffer_get_shape((struct halide_buffer_t *)input.buffer), reinterpret<(void *)>((uint64)0), (uint64)0, reinterpret<(struct halide_device_interface_t *)>((uint64)0), 0, 32, 3, (struct halide_dimension_t *)make_struct(input.min.0.required, input.extent.0.required.s + 1, 1, 0, input.min.1.required, input.extent.1.required.s + 1, input.extent.0.required.s + 1, 0, input.min.2.required, input.extent.2.required.s + 1, input.stride.2.required, 0), (uint64)0)
+}
+if (!((uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)casted.buffer) || (uint1)_halide_buffer_is_bounds_query((struct halide_buffer_t *)input.buffer))) {
+ assert(casted.type == (uint32)73728, halide_error_bad_type("Output buffer casted", casted.type, (uint32)73728))
+ assert(casted.dimensions == 3, halide_error_bad_dimensions("Output buffer casted", casted.dimensions, 3))
+ assert(input.type == (uint32)73728, halide_error_bad_type("Input buffer input", input.type, (uint32)73728))
+ assert(input.dimensions == 3, halide_error_bad_dimensions("Input buffer input", input.dimensions, 3))
+ assert(max(max(casted.extent.0.required.s, 0) + min(casted.extent.0, 256), 256) <= casted.extent.0, let t811 = min(casted.extent.0, 256) in halide_error_access_out_of_bounds("Output buffer casted", 0, (t811 + casted.min.0) + -256, ((max(casted.extent.0.required.s, 0) + t811) + casted.min.0) + -1, casted.min.0, (casted.extent.0 + casted.min.0) + -1))
+ assert((0 <= casted.min.1.required.s) && ((((casted.min.1 + casted.min.1.required.s) + casted.extent.1.required.s) + 63) <= (casted.extent.1 + casted.min.1)), let t812 = (casted.min.1 + casted.min.1.required.s) in halide_error_access_out_of_bounds("Output buffer casted", 1, t812, (t812 + casted.extent.1.required.s) + 62, casted.min.1, (casted.extent.1 + casted.min.1) + -1))
+ assert(0 <= casted.extent.1, halide_error_buffer_extents_negative("Output buffer casted", 1, casted.extent.1))
+ assert(0 <= casted.extent.2, halide_error_buffer_extents_negative("Output buffer casted", 2, casted.extent.2))
+ assert((input.min.0 <= input.min.0.required) && (((input.extent.0.required.s + input.min.0.required) + 1) <= (input.extent.0 + input.min.0)), halide_error_access_out_of_bounds("Input buffer input", 0, input.min.0.required, input.extent.0.required.s + input.min.0.required, input.min.0, (input.extent.0 + input.min.0) + -1))
+ assert(0 <= input.extent.0, halide_error_buffer_extents_negative("Input buffer input", 0, input.extent.0))
+ assert((input.min.1 <= input.min.1.required) && (((input.extent.1.required.s + input.min.1.required) + 1) <= (input.extent.1 + input.min.1)), halide_error_access_out_of_bounds("Input buffer input", 1, input.min.1.required, input.extent.1.required.s + input.min.1.required, input.min.1, (input.extent.1 + input.min.1) + -1))
+ assert(0 <= input.extent.1, halide_error_buffer_extents_negative("Input buffer input", 1, input.extent.1))
+ assert((input.min.2 <= input.min.2.required) && (((input.extent.2.required.s + input.min.2.required) + 1) <= (input.extent.2 + input.min.2)), halide_error_access_out_of_bounds("Input buffer input", 2, input.min.2.required, input.extent.2.required.s + input.min.2.required, input.min.2, (input.extent.2 + input.min.2) + -1))
+ assert(0 <= input.extent.2, halide_error_buffer_extents_negative("Input buffer input", 2, input.extent.2))
+ assert(casted.stride.0 == 1, halide_error_constraint_violated("casted.stride.0", casted.stride.0, "1", 1))
+ assert(input.stride.0 == 1, halide_error_constraint_violated("input.stride.0", input.stride.0, "1", 1))
+ let casted.total_extent.1 = int64(casted.extent.1)*int64(casted.extent.0)
+ let casted.total_extent.2 = casted.total_extent.1*int64(casted.extent.2)
+ let input.total_extent.1 = int64(input.extent.1)*int64(input.extent.0)
+ let input.total_extent.2 = input.total_extent.1*int64(input.extent.2)
+ assert(uint64(casted.extent.0) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", uint64(casted.extent.0), (uint64)2147483647))
+ assert((uint64)abs(int64(casted.extent.1)*int64(casted.stride.1)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", (uint64)abs(int64(casted.extent.1)*int64(casted.stride.1)), (uint64)2147483647))
+ assert(casted.total_extent.1 <= (int64)2147483647, halide_error_buffer_extents_too_large("casted", casted.total_extent.1, (int64)2147483647))
+ assert((uint64)abs(int64(casted.extent.2)*int64(casted.stride.2)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("casted", (uint64)abs(int64(casted.extent.2)*int64(casted.stride.2)), (uint64)2147483647))
+ assert(casted.total_extent.2 <= (int64)2147483647, halide_error_buffer_extents_too_large("casted", casted.total_extent.2, (int64)2147483647))
+ assert(uint64(input.extent.0) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", uint64(input.extent.0), (uint64)2147483647))
+ assert((uint64)abs(int64(input.extent.1)*int64(input.stride.1)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", (uint64)abs(int64(input.extent.1)*int64(input.stride.1)), (uint64)2147483647))
+ assert(input.total_extent.1 <= (int64)2147483647, halide_error_buffer_extents_too_large("input", input.total_extent.1, (int64)2147483647))
+ assert((uint64)abs(int64(input.extent.2)*int64(input.stride.2)) <= (uint64)2147483647, halide_error_buffer_allocation_too_large("input", (uint64)abs(int64(input.extent.2)*int64(input.stride.2)), (uint64)2147483647))
+ assert(input.total_extent.2 <= (int64)2147483647, halide_error_buffer_extents_too_large("input", input.total_extent.2, (int64)2147483647))
+ assert(!casted.device_dirty, halide_error_device_dirty_with_no_device_support("Output buffer casted"))
+ assert(!input.device_dirty, halide_error_device_dirty_with_no_device_support("Input buffer input"))
+ assert(casted != reinterpret<(void *)>((uint64)0), halide_error_host_is_null("Output buffer casted"))
+ assert(input != reinterpret<(void *)>((uint64)0), halide_error_host_is_null("Input buffer input"))
+ let casted.s0._0._0._0.loop_extent = ((casted.extent.0 + 255)/256)*((casted.extent.1 + 62)/63)
+ produce casted {
+  let t629 = input.extent.0 + input.min.0
+  let t630 = input.extent.2 + input.min.2
+  let t631 = max(min(t630, 3), 0)
+  let t632 = max(min(input.min.2, 3), 0)
+  let t613 = (casted.extent.0 + 255)/256
+  let t623 = input.extent.0*2
+  let t624 = t631 - t632
+  let t627 = 3 - t631
+  let t622 = 1 - input.extent.0
+  let t628 = 0 - ((casted.min.2*casted.stride.2) + (casted.min.1*casted.stride.1))
+  let t619 = ((input.min.2*input.stride.2) + (input.min.1*input.stride.1)) + input.min.0
+  parallel (casted.s0._0._0._0, 0, casted.s0._0._0._0.loop_extent) {
+   let casted.s0._0._0i.base.s = min((casted.s0._0._0._0 % t613)*256, casted.extent.0 + -256)
+   let casted.s0._1._1i.base.s = min((casted.s0._0._0._0/t613)*63, casted.extent.1 + -63)
+   allocate mirror_interior[int32 * 288 * 86 * 3]
+   produce mirror_interior {
+    let t637 = (casted.min.1 - input.min.1) + casted.s0._1._1i.base.s
+    let t634 = casted.min.1 + casted.s0._1._1i.base.s
+    let t633 = casted.min.0 + casted.s0._0._0i.base.s
+    for (mirror_interior.s0._2, 0, t632) {
+     let t639 = (select((t630 <= mirror_interior.s0._2) || (mirror_interior.s0._2 < input.min.2), (t630 - int32((uint32)abs((((mirror_interior.s0._2 - input.min.2) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))) + -1, max(min(t630 + -1, mirror_interior.s0._2), input.min.2))*input.stride.2) - t619
+     let t642 = (mirror_interior.s0._2*24768) - t633
+     for (mirror_interior.s0._1.rebased, 0, 86) {
+      let t647 = input.extent.1 + input.min.1
+      let t645 = t647 - int32((uint32)abs(((((mirror_interior.s0._1.rebased + t637) + -13) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+      let t646 = (mirror_interior.s0._1.rebased*288) + t642
+      let t643 = mirror_interior.s0._1.rebased + t634
+      for (mirror_interior.s0._0._0, 0, 18) {
+       let mirror_interior.s0._0._0i.base.s = min(mirror_interior.s0._0._0*16, 262) + t633
+       mirror_interior[ramp(mirror_interior.s0._0._0i.base.s + t646, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16((select(((t647 + 13) <= t643) || (t643 < (input.min.1 + 13)), t645 + -1, max(min(t647 + 12, t643) + -13, input.min.1))*input.stride.1) + t639)]
+      }
+     }
+    }
+    let t657 = casted.min.1 + casted.s0._1._1i.base.s
+    let t658 = input.extent.1 + input.min.1
+    let t659 = (input.min.0 - casted.min.0) - casted.s0._0._0i.base.s
+    let t660 = max(t657 + -13, input.min.1)
+    let t661 = t657 + 73
+    let t656 = max(min((t659 + 25)/16, 18), (min((t629 - casted.min.0) - casted.s0._0._0i.base.s, 268) + 10)/16)
+    let t649 = min(max(t658, t660), t661)
+    let t648 = min(t660, t661)
+    let t653 = (casted.min.1 - input.min.1) + casted.s0._1._1i.base.s
+    let t650 = casted.min.0 + casted.s0._0._0i.base.s
+    for (mirror_interior.s0._2.rebased, 0, t624) {
+     let t662 = (t648 - casted.min.1) - casted.s0._1._1i.base.s
+     let t663 = mirror_interior.s0._2.rebased + t632
+     for (mirror_interior.s0._1.rebased, 0, t662 + 13) {
+      let t666 = (input.stride.2*t663) - t619
+      let t667 = t658 - int32((uint32)abs(((((mirror_interior.s0._1.rebased + t653) + -13) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+      let t668 = (mirror_interior.s0._1.rebased*288) + ((t663*24768) - t650)
+      let t665 = mirror_interior.s0._1.rebased + t657
+      for (mirror_interior.s0._0._0, 0, 18) {
+       let mirror_interior.s0._0._0i.base.s = min(mirror_interior.s0._0._0*16, 262) + t650
+       mirror_interior[ramp(mirror_interior.s0._0._0i.base.s + t668, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16((select(((t658 + 13) <= t665) || (t665 < (input.min.1 + 13)), t667 + -1, max(min(t658 + 12, t665) + -13, input.min.1))*input.stride.1) + t666)]
+      }
+     }
+     let t676 = max(t656, 0)
+     let t677 = max(min((t659 + 25)/16, 18), 0)
+     let t672 = (t648 - casted.min.1) - casted.s0._1._1i.base.s
+     let t669 = t649 - t648
+     let t671 = mirror_interior.s0._2.rebased + t632
+     for (mirror_interior.s0._1.rebased, 0, t669) {
+      let t679 = ((mirror_interior.s0._1.rebased + t672)*288) + ((t671*24768) - t650)
+      let t678 = ((mirror_interior.s0._1.rebased + t648)*input.stride.1) + ((input.stride.2*t671) - t619)
+      for (mirror_interior.s0._0._0, 0, t677) {
+       let mirror_interior.s0._0._0i.base.s = min(mirror_interior.s0._0._0*16, 262) + t650
+       mirror_interior[ramp((mirror_interior.s0._0._0i.base.s + t679) + 3744, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16(t678)]
+      }
+      let t680 = t676 - t677
+      let t682 = ((mirror_interior.s0._1.rebased + t672)*288) + ((t671*24768) - t650)
+      let t681 = ((mirror_interior.s0._1.rebased + t648)*input.stride.1) + ((input.stride.2*t671) - t619)
+      for (mirror_interior.s0._0._0.rebased, 0, t680) {
+       let mirror_interior.s0._0._0i.base.s = ((mirror_interior.s0._0._0.rebased + t677)*16) + t650
+       mirror_interior[ramp((mirror_interior.s0._0._0i.base.s + t682) + 3744, 1, 16)] = input[ramp((mirror_interior.s0._0._0i.base.s + t681) + -10, 1, 16)]
+      }
+      let t685 = ((mirror_interior.s0._1.rebased + t672)*288) + ((t671*24768) - t650)
+      let t684 = ((mirror_interior.s0._1.rebased + t648)*input.stride.1) + ((input.stride.2*t671) - t619)
+      for (mirror_interior.s0._0._0.rebased, 0, 18 - t676) {
+       let mirror_interior.s0._0._0i.base.s = min((mirror_interior.s0._0._0.rebased + t676)*16, 262) + t650
+       mirror_interior[ramp((mirror_interior.s0._0._0i.base.s + t685) + 3744, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16(t684)]
+      }
+     }
+     let t690 = (t649 - casted.min.1) - casted.s0._1._1i.base.s
+     let t686 = t657 - t649
+     let t687 = mirror_interior.s0._2.rebased + t632
+     for (mirror_interior.s0._1.rebased, 0, t686 + 73) {
+      let t692 = (input.stride.2*t687) - t619
+      let t693 = t658 - int32((uint32)abs(((((t649 - input.min.1) + mirror_interior.s0._1.rebased) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+      let t694 = ((mirror_interior.s0._1.rebased + t690)*288) + ((t687*24768) - t650)
+      let t691 = mirror_interior.s0._1.rebased + t649
+      for (mirror_interior.s0._0._0, 0, 18) {
+       let mirror_interior.s0._0._0i.base.s = min(mirror_interior.s0._0._0*16, 262) + t650
+       mirror_interior[ramp((mirror_interior.s0._0._0i.base.s + t694) + 3744, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16((select(t691 < t658, max(min(t658 + -1, t691), input.min.1), t693 + -1)*input.stride.1) + t692)]
+      }
+     }
+    }
+    let t696 = max(min(t630, 3), 0)
+    let t700 = (casted.min.1 - input.min.1) + casted.s0._1._1i.base.s
+    let t697 = casted.min.1 + casted.s0._1._1i.base.s
+    let t695 = casted.min.0 + casted.s0._0._0i.base.s
+    for (mirror_interior.s0._2.rebased, 0, t627) {
+     let t703 = t630 - int32((uint32)abs(((((t696 - input.min.2) + mirror_interior.s0._2.rebased) % ((input.extent.2*2) + -2)) - input.extent.2) + 1))
+     let t702 = mirror_interior.s0._2.rebased + t696
+     for (mirror_interior.s0._1.rebased, 0, 86) {
+      let t711 = input.extent.1 + input.min.1
+      let t707 = (select(t702 < t630, max(min(t630 + -1, t702), input.min.2), t703 + -1)*input.stride.2) - t619
+      let t709 = t711 - int32((uint32)abs(((((mirror_interior.s0._1.rebased + t700) + -13) % ((input.extent.1*2) + -2)) - input.extent.1) + 1))
+      let t710 = (mirror_interior.s0._1.rebased*288) + ((t702*24768) - t695)
+      let t706 = mirror_interior.s0._1.rebased + t697
+      for (mirror_interior.s0._0._0, 0, 18) {
+       let mirror_interior.s0._0._0i.base.s = min(mirror_interior.s0._0._0*16, 262) + t695
+       mirror_interior[ramp(mirror_interior.s0._0._0i.base.s + t710, 1, 16)] = input[select((x16(t629) <= ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16)) || (ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16) < x16(input.min.0)), x16(t629 + -1) - int32x16((uint32x16)abs((ramp((mirror_interior.s0._0._0i.base.s - input.min.0) + -10, 1, 16) % x16(t623 + -2)) + x16(t622))), max(min(ramp(mirror_interior.s0._0._0i.base.s + -10, 1, 16), x16(t629 + -1)), x16(input.min.0))) + x16((select(((t711 + 13) <= t706) || (t706 < (input.min.1 + 13)), t709 + -1, max(min(t711 + 12, t706) + -13, input.min.1))*input.stride.1) + t707)]
+      }
+     }
+    }
+   }
+   allocate all[int32 * 293 * 86 * 21]
+   produce all {
+    consume mirror_interior {
+     for (all.s0._2, 0, 21) {
+      for (all.s0._1.rebased, 0, 86) {
+       let t714 = ((all.s0._2*86) + all.s0._1.rebased)*293
+       let t713 = all.s0._1.rebased*18
+       for (all.s0._0._0, 0, 18) {
+        let t611 = all.s0._0._0 + t713
+        all[ramp((all.s0._0._0*16) + t714, 1, 16)] = (mirror_interior[ramp((t611*16) + 24768, 1, 16) aligned(16, 0)]*x16(all.s0._2 + 7)) + ((mirror_interior[ramp((t611*16) + 49536, 1, 16) aligned(16, 0)]*x16(all.s0._2 + 10)) + (mirror_interior[ramp(t611*16, 1, 16) aligned(16, 0)]*x16(all.s0._2 + 4)))
+       }
+      }
+     }
+    }
+   }
+   free mirror_interior
+   allocate pool2D_r__0_1[int16 * 288 * 81 * 21]
+   produce pool2D_r__0_1 {
+    for (pool2D_r__0_1.s0._2, 0, 21) {
+     let t715 = pool2D_r__0_1.s0._2*729
+     for (pool2D_r__0_1.s0._1.rebased, 0, 81) {
+      let t716 = (pool2D_r__0_1.s0._1.rebased*9) + t715
+      for (pool2D_r__0_1.s0._0._0, 0, 9) {
+       pool2D_r__0_1[ramp((pool2D_r__0_1.s0._0._0 + t716)*32, 1, 32) aligned(32, 0)] = x32((int16)0)
+      }
+     }
+    }
+    consume all {
+     for (pool2D_r__0_1.s1._2, 0, 21) {
+      let t718 = pool2D_r__0_1.s1._2*25198
+      let t717 = pool2D_r__0_1.s1._2*729
+      for (pool2D_r__0_1.s1._1.rebased, 0, 81) {
+       let t719 = (pool2D_r__0_1.s1._1.rebased*9) + t717
+       for (pool2D_r__0_1.s1._0._0, 0, 9) {
+        let t721 = (pool2D_r__0_1.s1._0._0*32) + t718
+        let t720 = pool2D_r__0_1.s1._0._0 + t719
+        for (pool2D_r__0_1.s1.r88$y.rebased, 0, 6) {
+         let t722 = t720*32
+         let t723 = ((pool2D_r__0_1.s1._1.rebased + pool2D_r__0_1.s1.r88$y.rebased)*293) + t721
+         for (pool2D_r__0_1.s1.r88$x.rebased, 0, 6) {
+          pool2D_r__0_1[ramp(t722, 1, 32) aligned(32, 0)] = pool2D_r__0_1[ramp(t722, 1, 32) aligned(32, 0)] + (int16x32(all[ramp(pool2D_r__0_1.s1.r88$x.rebased + t723, 1, 32)])/x32((int16)36))
+         }
+        }
+       }
+      }
+     }
+    }
+    free all
+   }
+   allocate sum[int32 * 288 * 81 * 16]
+   produce sum {
+    for (sum.s0._2, 0, 16) {
+     let t724 = sum.s0._2*1458
+     for (sum.s0._1.rebased, 0, 81) {
+      let t725 = (sum.s0._1.rebased*18) + t724
+      for (sum.s0._0._0, 0, 18) {
+       sum[ramp((sum.s0._0._0 + t725)*16, 1, 16) aligned(16, 0)] = x16(0)
+      }
+     }
+    }
+    consume pool2D_r__0_1 {
+     for (sum.s1._2, 0, 16) {
+      for (sum.s1._1.rebased, 0, 81) {
+       let t727 = ((sum.s1._2*81) + sum.s1._1.rebased)*9
+       let t728 = sum.s1._1.rebased*9
+       for (sum.s1._0._0, 0, 9) {
+        let t730 = sum.s1._0._0 + t728
+        let t729 = sum.s1._0._0 + t727
+        for (sum.s1.r113$x, 0, 21) {
+         sum[ramp(t729*32, 1, 32) aligned(32, 0)] = sum[ramp(t729*32, 1, 32) aligned(32, 0)] + (int32x32)widen_right_mul(x32(((sum.s1.r113$x*21) + sum.s1._2) + 22), pool2D_r__0_1[ramp(((sum.s1.r113$x*729) + t730)*32, 1, 32) aligned(32, 0)])
+        }
+       }
+      }
+     }
+    }
+    free pool2D_r__0_1
+   }
+   allocate sum$4[int32 * 293 * 68 * 16]
+   produce sum$4 {
+    for (sum$4.s0._2, 0, 16) {
+     let t731 = sum$4.s0._2*19924
+     for (sum$4.s0._1.rebased, 0, 68) {
+      let t732 = (sum$4.s0._1.rebased*293) + t731
+      for (sum$4.s0._0._0, 0, 18) {
+       sum$4[ramp((sum$4.s0._0._0*16) + t732, 1, 16)] = x16(0)
+      }
+     }
+    }
+    consume sum {
+     for (sum$4.s1._2, 0, 16) {
+      let t733 = sum$4.s1._2*19924
+      let t734 = sum$4.s1._2*1458
+      for (sum$4.s1._1.rebased, 0, 68) {
+       let t735 = (sum$4.s1._1.rebased*293) + t733
+       for (sum$4.s1._0._0, 0, 18) {
+        let t736 = (sum$4.s1._0._0*16) + t735
+        let t737 = sum$4.s1._0._0 + t734
+        for (sum$4.s1.r201$x.rebased, 0, 14) {
+         sum$4[ramp(t736, 1, 16)] = sum$4[ramp(t736, 1, 16)] + (int32x16)widen_right_mul(sum[ramp((((sum$4.s1._1.rebased + sum$4.s1.r201$x.rebased)*18) + t737)*16, 1, 16) aligned(16, 0)], x16((int16)13))
+        }
+       }
+      }
+     }
+    }
+    free sum
+   }
+   allocate pool2D_r__0_1$1[int16 * 288 * 63 * 16]
+   produce pool2D_r__0_1$1 {
+    for (pool2D_r__0_1$1.s0._2, 0, 16) {
+     let t738 = pool2D_r__0_1$1.s0._2*567
+     for (pool2D_r__0_1$1.s0._1.rebased, 0, 63) {
+      let t739 = (pool2D_r__0_1$1.s0._1.rebased*9) + t738
+      for (pool2D_r__0_1$1.s0._0._0, 0, 9) {
+       pool2D_r__0_1$1[ramp((pool2D_r__0_1$1.s0._0._0 + t739)*32, 1, 32) aligned(32, 0)] = x32((int16)0)
+      }
+     }
+    }
+    consume sum$4 {
+     for (pool2D_r__0_1$1.s1._2, 0, 16) {
+      let t741 = pool2D_r__0_1$1.s1._2*19924
+      let t740 = pool2D_r__0_1$1.s1._2*567
+      for (pool2D_r__0_1$1.s1._1.rebased, 0, 63) {
+       let t742 = (pool2D_r__0_1$1.s1._1.rebased*9) + t740
+       for (pool2D_r__0_1$1.s1._0._0, 0, 9) {
+        let t744 = (pool2D_r__0_1$1.s1._0._0*32) + t741
+        let t743 = pool2D_r__0_1$1.s1._0._0 + t742
+        for (pool2D_r__0_1$1.s1.r223$y.rebased, 0, 6) {
+         let t745 = t743*32
+         let t746 = ((pool2D_r__0_1$1.s1._1.rebased + pool2D_r__0_1$1.s1.r223$y.rebased)*293) + t744
+         for (pool2D_r__0_1$1.s1.r223$x.rebased, 0, 6) {
+          pool2D_r__0_1$1[ramp(t745, 1, 32) aligned(32, 0)] = pool2D_r__0_1$1[ramp(t745, 1, 32) aligned(32, 0)] + (int16x32(sum$4[ramp(pool2D_r__0_1$1.s1.r223$x.rebased + t746, 1, 32)])/x32((int16)36))
+         }
+        }
+       }
+      }
+     }
+    }
+    free sum$4
+   }
+   allocate all$1[int32 * 288 * 63 * 5]
+   produce all$1 {
+    consume pool2D_r__0_1$1 {
+     for (all$1.s0._2, 0, 5) {
+      for (all$1.s0._1.rebased, 0, 63) {
+       let t749 = ((all$1.s0._2*63) + all$1.s0._1.rebased)*9
+       let t748 = all$1.s0._1.rebased*9
+       for (all$1.s0._0._0, 0, 9) {
+        let t612 = all$1.s0._0._0 + t748
+        all$1[ramp((all$1.s0._0._0 + t749)*32, 1, 32) aligned(32, 0)] = (int32x32)widen_right_mul(x32(all$1.s0._2 + 33), pool2D_r__0_1$1[ramp((t612*32) + 18144, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 17), pool2D_r__0_1$1[ramp(t612*32, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 49), pool2D_r__0_1$1[ramp((t612*32) + 36288, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 65), pool2D_r__0_1$1[ramp((t612*32) + 54432, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 81), pool2D_r__0_1$1[ramp((t612*32) + 72576, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 97), pool2D_r__0_1$1[ramp((t612*32) + 90720, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 113), pool2D_r__0_1$1[ramp((t612*32) + 108864, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 129), pool2D_r__0_1$1[ramp((t612*32) + 127008, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 145), pool2D_r__0_1$1[ramp((t612*32) + 145152, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 161), pool2D_r__0_1$1[ramp((t612*32) + 163296, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 177), pool2D_r__0_1$1[ramp((t612*32) + 181440, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 193), pool2D_r__0_1$1[ramp((t612*32) + 199584, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 209), pool2D_r__0_1$1[ramp((t612*32) + 217728, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 225), pool2D_r__0_1$1[ramp((t612*32) + 235872, 1, 32) aligned(32, 0)]) + ((int32x32)widen_right_mul(x32(all$1.s0._2 + 257), pool2D_r__0_1$1[ramp((t612*32) + 272160, 1, 32) aligned(32, 0)]) + (int32x32)widen_right_mul(x32(all$1.s0._2 + 241), pool2D_r__0_1$1[ramp((t612*32) + 254016, 1, 32) aligned(32, 0)])))))))))))))))
+       }
+      }
+     }
+    }
+   }
+   free pool2D_r__0_1$1
+   allocate sum$6[int32 * 256 * 63 * 5]
+   produce sum$6 {
+    for (sum$6.s0._2, 0, 5) {
+     let t750 = sum$6.s0._2*1008
+     for (sum$6.s0._1.rebased, 0, 63) {
+      let t751 = (sum$6.s0._1.rebased*16) + t750
+      for (sum$6.s0._0._0, 0, 16) {
+       sum$6[ramp((sum$6.s0._0._0 + t751)*16, 1, 16) aligned(16, 0)] = x16(0)
+      }
+     }
+    }
+    consume all$1 {
+     for (sum$6.s1._2, 0, 5) {
+      let t753 = sum$6.s1._2*18144
+      let t752 = sum$6.s1._2*1008
+      for (sum$6.s1._1.rebased, 0, 63) {
+       let t755 = (sum$6.s1._1.rebased*288) + t753
+       let t754 = (sum$6.s1._1.rebased*16) + t752
+       for (sum$6.s1._0._0, 0, 16) {
+        let t757 = (sum$6.s1._0._0*16) + t755
+        let t756 = sum$6.s1._0._0 + t754
+        for (sum$6.s1.r301$x.rebased, 0, 13) {
+         sum$6[ramp(t756*16, 1, 16) aligned(16, 0)] = sum$6[ramp(t756*16, 1, 16) aligned(16, 0)] + (int32x16)widen_right_mul(all$1[ramp(sum$6.s1.r301$x.rebased + t757, 1, 16)], x16((int16)78))
+        }
+       }
+      }
+     }
+    }
+    free all$1
+   }
+   allocate all_r$4[int32 * 256 * 63 * casted.extent.2]
+   produce all_r$4 {
+    for (all_r$4.s0._2.rebased, 0, casted.extent.2) {
+     let t758 = all_r$4.s0._2.rebased*1008
+     for (all_r$4.s0._1.rebased, 0, 63) {
+      let t759 = (all_r$4.s0._1.rebased*16) + t758
+      for (all_r$4.s0._0._0, 0, 16) {
+       all_r$4[ramp((all_r$4.s0._0._0 + t759)*16, 1, 16) aligned(16, 0)] = x16(0)
+      }
+     }
+    }
+    consume sum$6 {
+     for (all_r$4.s1._2.rebased, 0, casted.extent.2) {
+      let t760 = all_r$4.s1._2.rebased*1008
+      let t761 = all_r$4.s1._2.rebased + casted.min.2
+      for (all_r$4.s1._1.rebased, 0, 63) {
+       let t764 = all_r$4.s1._1.rebased*16
+       let t762 = t760 + t764
+       for (all_r$4.s1._0._0, 0, 16) {
+        let t766 = all_r$4.s1._0._0 + t764
+        let t765 = all_r$4.s1._0._0 + t762
+        for (all_r$4.s1.r323$x, 0, 5) {
+         all_r$4[ramp(t765*16, 1, 16) aligned(16, 0)] = all_r$4[ramp(t765*16, 1, 16) aligned(16, 0)] + (sum$6[ramp(((all_r$4.s1.r323$x*1008) + t766)*16, 1, 16) aligned(16, 0)]*x16(((all_r$4.s1.r323$x*5) + t761) + 6))
+        }
+       }
+      }
+     }
+    }
+    free sum$6
+   }
+   consume all_r$4 {
+    let t767 = casted.s0._0._0i.base.s + t628
+    let t768 = casted.min.1 + casted.s0._1._1i.base.s
+    for (casted.s0._2.rebased, 0, casted.extent.2) {
+     let t769 = casted.s0._2.rebased*1008
+     let t770 = ((casted.min.2 + casted.s0._2.rebased)*casted.stride.2) + t767
+     for (casted.s0._1._1i, 0, 63) {
+      let t772 = ((casted.s0._1._1i + t768)*casted.stride.1) + t770
+      let t771 = (casted.s0._1._1i*16) + t769
+      for (casted.s0._0._0i._0i, 0, 16) {
+       casted[ramp((casted.s0._0._0i._0i*16) + t772, 1, 16)] = all_r$4[ramp((casted.s0._0._0i._0i + t771)*16, 1, 16) aligned(16, 0)]
+      }
+     }
+    }
+   }
+   free all_r$4
+  }
+ }
+}
+
+
+Skipping Hexagon offload...
+Skipping GPU offload...
+Lowering Parallel Tasks...
+Target triple of initial module: x86_64--linux-gnu
+Generating llvm bitcode...
+Generating llvm bitcode prolog for function random_pipeline_par_for_casted_s0__0__0__0...
+Generating llvm bitcode for function random_pipeline_par_for_casted_s0__0__0__0...
+Failed to prove, but could not find a counter-example:
+ (v0 != 0)
+Original expression:
+(t613 != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 0)
+Original expression:
+(t613 != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.2*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ (v0 != 1)
+Original expression:
+(((input.extent.1*2) + -2) != 0)
+Failed to prove, but could not find a counter-example:
+ x16(v0 != 2)
+Original expression:
+(x16(t623 + -2) != x16(0))
+Generating llvm bitcode prolog for function random_pipeline...
+Generating llvm bitcode for function random_pipeline...
+Failed to prove, but could not find a counter-example:
+ (((v0 + 255)/256) != 0)
+Original expression:
+(((casted.extent.0 + 255)/256) != 0)
+Failed to prove, but could not find a counter-example:
+ (((v0 + 255)/256) != 0)
+Original expression:
+(((casted.extent.0 + 255)/256) != 0)
+Failed to prove, but could not find a counter-example:
+ (((v0 + 255)/256) != 0)
+Original expression:
+(((casted.extent.0 + 255)/256) != 0)
+add_temp_object_file: /tmp/g7Xi5f/random_pipeline.a.o
+Module.compile(): temporary object /tmp/g7Xi5f/random_pipeline.a.o
+emit_file.Compiling to native code...
+Module.compile(): static_library /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline.a
+file_unlink: /tmp/g7Xi5f/random_pipeline.a.o
+dir_rmdir: /tmp/g7Xi5f
+Module.compile(): c_header /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline.h
+Module.compile(): schedule /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline.schedule.h
+Module.compile(): featurization /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline.featurization
+Module.compile(): registration /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50002_0/13/random_pipeline.registration.cpp

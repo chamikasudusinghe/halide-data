@@ -1,0 +1,55 @@
+Using constant_exterior
+Approx size: 2000, 2000, 3
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 3
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 36
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-3, 4]
+Approx size: 2000, 250, 51
+Binary op
+Resampling from 2000, 250, 3 to 2000, 250, 51
+All to all on dimension 2 using += 
+Resulting size: 2000, 250, 51
+Approx size: 2000, 250, 51
+Binary op
+Resampling from 2000, 250, 3 to 2000, 250, 51
+All to all on dimension 2 using += 
+Resulting size: 2000, 250, 51
+Approx size: 2000, 250, 51
+Convolving dimension 1 with kernel [-3, 6] using sum() helper
+Approx size: 2000, 250, 51
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 189
+Convolving dimension 1 with kernel [0, 10] using sum() helper
+Approx size: 2000, 250, 189
+Binary op
+Approx size: 2000, 250, 51
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 123
+All to all on dimension 2
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 63
+Convolving dimension 0 with kernel [-7, 0] using sum() helper
+Approx size: 2000, 250, 63
+Slice
+Resampling from 2000, 2000, 3 to 2000, 250, 1
+Downsampling dimension 1 by 8x
+All to all on dimension 2 using += 
+Resulting size: 2000, 250, 1
+Approx size: 2000, 250, 1
+Binary op
+Resampling from 2000, 250, 51 to 2000, 250, 189
+All to all on dimension 2 using += 
+Resulting size: 2000, 250, 189
+Approx size: 2000, 250, 189
+Convolving 2D dimension 1: 0 dimension 2: 1 with kernel [-4, 2] using sum() helper
+Approx size: 1000, 125, 87
+All to all on dimension 2 using += 
+Approx size: 2000, 250, 179
+Pooling using sum() with stride: 1 and kernel [ -1, 0]
+Approx size: 2000, 250, 51
+Convolving dimension 0 with kernel [-1, 0]
+Resampling from 2000, 250, 189 to 2000, 2000, 3
+All to all on dimension 2 using += 
+Upsampling dimension 1 by 8x
+Resulting size: 2000, 2000, 3
