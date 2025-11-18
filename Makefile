@@ -13,7 +13,12 @@ LIB_HALIDE ?= $(HALIDE_INSTALL_ROOT)/lib/libHalide.so
 GENERATOR_DEPS ?= $(LIB_HALIDE) $(HALIDE_INSTALL_ROOT)/include/Halide.h $(HALIDE_INSTALL_ROOT)/share/tools/GenGen.cpp
 GENERATOR_LDFLAGS ?= -Wl,-rpath,$(dir $(LIB_HALIDE))
 AUTOSCHED_TOOLS_BIN ?= $(HALIDE_INSTALL_ROOT)/bin
+# Set weight paths based on the model type
+ifeq ($(HL_USE_LIBTORCH_COST_MODEL),1)
+WEIGHTS ?= ${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
+else
 WEIGHTS ?= ${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline.weights
+endif
 AUTOSCHED_BIN ?=$(HALIDE_INSTALL_ROOT)/lib
 USE_EXPORT_DYNAMIC ?= -rdynamic
 
@@ -29,6 +34,7 @@ HL_RANDOM_DROPOUT ?= 100
 HL_SEED ?= 0
 HL_BEAM_SIZE ?= 1
 HL_USE_MANUAL_COST_MODEL ?= 0
+HL_USE_LIBTORCH_COST_MODEL ?= 1
 
 # Use apps/autoscheduler by default
 NEW_AUTOSCHEDULER ?= 1
@@ -79,6 +85,7 @@ $(BIN)/random_pipeline.a $(BIN)/random_pipeline.registration.cpp: $(GENERATOR) $
 	HL_USE_MANUAL_COST_MODEL=$(HL_USE_MANUAL_COST_MODEL) \
 	HL_PERMIT_FAILED_UNROLL=1 \
 	HL_WEIGHTS_DIR=$(WEIGHTS) \
+	HL_USE_LIBTORCH_COST_MODEL=$(HL_USE_LIBTORCH_COST_MODEL) \
 	$(GENERATOR) -g $(PIPELINE) -o $(BIN) \
 	-e stmt,assembly,static_library,c_header,registration,schedule,featurization \
 	-f random_pipeline target=$(HL_TARGET)-no_runtime \

@@ -5,11 +5,16 @@ set -e
 # ====================================================
 # Set up environment vars necessary to build generator
 # ====================================================
+# The following are for Halide installation and changes per user
 export HALIDE_ROOT=/home/chamika2/upstream/Halide
 export HALIDE_INSTALL_ROOT=/home/chamika2/upstream/halide-install
+# The following are for halide
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
-export AUTOSCHED_TOOLS=${HALIDE_ROOT}/src/autoschedulers/adams2019
+export AUTOSCHED_TOOLS=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019
 export HL_DEBUG_CODEGEN=1
+# Default to 1 to use LibTorch cost model. Set to 0 to use original Halide model
+export HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-1}
+# export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
 
 # =================================================================
 # Set up more variables for arguments to compile, bench and retrain
@@ -20,7 +25,12 @@ BLD_TOP=${BASELOC}/build_x86_samples
 BIN=${BLD_TOP}/${PIPELINE}/bin
 GENERATOR=${BIN}/${PIPELINE}.generator
 RUNTIME=${BIN}/runtime.a
-START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
+# Use LibTorch weights if LibTorch is enabled, otherwise use baseline.weights
+if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
+    START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
+else
+    START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
+fi
 
 BATCH_SIZE=32
 NUM_BATCHES=5 # limited NUM_BATCHES for testing
@@ -55,6 +65,10 @@ make_featurization() {
     BATCH_ID=${4}
     EXTRA_GENERATOR_ARGS=${5}
     mkdir -p ${D}
+    if [ ! -d "${D}" ] || [ ! -w "${D}" ]; then
+        echo "ERROR: Cannot create or write to directory ${D}" >&2
+        return 1
+    fi
     rm -f "${D}/${FNAME}.featurization"
     rm -f "${D}/${FNAME}.sample"
     if [[ $D == */0 ]]; then
@@ -74,17 +88,41 @@ make_featurization() {
 	HL_PERMIT_FAILED_UNROLL=1 \
 	HL_WEIGHTS_DIR=${WEIGHTS} \
 	HL_PREFETCHING=1 \
+	HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-1} \
+    GEN_EXIT=0
     ${TIMEOUT_CMD} -k ${COMPILATION_TIMEOUT} ${COMPILATION_TIMEOUT} \
 	${GENERATOR} -g ${PIPELINE} -o ${D} \
 	-e static_library,c_header,registration,schedule,featurization \
 	-f random_pipeline target=${TARGET}-no_runtime \
 	seed=${BATCH_ID} max_stages=${MAX_STAGES} autoscheduler=Adams2019 \
     -p ${AUTOSCHED_BIN}/libauto_schedule.so \
-    2> ${D}/stderr.txt > ${D}/stdout.txt && \
+    2> ${D}/stderr.txt > ${D}/stdout.txt
+    GEN_EXIT=$?
+    
+    if [ $GEN_EXIT -ne 0 ]; then
+        echo "Generator failed with exit code $GEN_EXIT for ${D}" >> ${D}/stderr.txt
+        return 1
+    fi
+    
+    A_FILE=$(ls ${D}/*.a 2>/dev/null | head -1)
+    REG_FILE=$(ls ${D}/*registration.cpp 2>/dev/null | head -1)
+    if [ -z "$A_FILE" ] || [ -z "$REG_FILE" ]; then
+        echo "ERROR: Generator did not produce required files (.a or .registration.cpp) in ${D}" >> ${D}/stderr.txt
+        echo "Files in ${D}:" >> ${D}/stderr.txt
+        ls -la ${D}/ >> ${D}/stderr.txt 2>&1
+        return 1
+    fi
+    
     ${CXX_X86} ${CXXFLAGS_X86} \
     -I ${D} -I ${HALIDE_INSTALL_ROOT}/include -I/${HALIDE_ROOT}/support \
     ${HALIDE_INSTALL_ROOT}/share/tools/RunGenMain.cpp ${RUNTIME} \
-    ${D}/*registration.cpp ${D}/*.a -o ${D}/bench ${LDFLAGS_X86}
+    ${D}/*registration.cpp ${D}/*.a -o ${D}/bench ${LDFLAGS_X86} 2>> ${D}/stderr.txt
+    COMPILE_EXIT=$?
+    
+    if [ $COMPILE_EXIT -ne 0 ]; then
+        echo "Compilation failed with exit code $COMPILE_EXIT for ${D}" >> ${D}/stderr.txt
+        return 1
+    fi
 
     # remove the files that are not needed anymore
 #    rm -rf ${D}/*.a ${D}/*registration.cpp 
@@ -141,14 +179,25 @@ fi;
 SAMPLES=${BLD_TOP}/samples
 mkdir -p ${SAMPLES}
 
-WEIGHTS=${SAMPLES}/updated.weights
+# Set weights path based on format
+if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
+    WEIGHTS=${SAMPLES}/updated.pt
+else
+    WEIGHTS=${SAMPLES}/updated.weights
+fi
+
+# Copy starting weights if updated version doesn't exist
+# This allows restarted jobs to continue from where they left off
 if [[ -f ${WEIGHTS} ]]; then
     echo Using existing weights "${WEIGHTS}"
 else
-    # Only copy over the weights if we don't have any already,
-    # so that restarted jobs can continue from where they left off
-    cp ${START_WEIGHTS_FILE} ${WEIGHTS}
-    echo Copying starting weights from ${START_WEIGHTS_FILE} to ${WEIGHTS}
+    # Copy over the starting weights if we don't have any already
+    if [[ -f ${START_WEIGHTS_FILE} ]]; then
+        cp ${START_WEIGHTS_FILE} ${WEIGHTS}
+        echo Copying starting weights from ${START_WEIGHTS_FILE} to ${WEIGHTS}
+    else
+        echo "Warning: ${START_WEIGHTS_FILE} not found, weights will be random"
+    fi
 fi
 
 TIMEOUT_CMD="timeout"
@@ -218,7 +267,13 @@ for ((BATCH_ID=$((FIRST+OFFSET+1));BATCH_ID<$((FIRST+OFFSET+1+NUM_BATCHES));BATC
 
         # Copy the weights being used into the batch folder so that we can repro failures
         mkdir -p ${DIR}/
-        cp ${WEIGHTS} ${DIR}/used.weights
+        if [[ -f ${WEIGHTS} ]]; then
+            if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
+                cp ${WEIGHTS} ${DIR}/used.weights.pt
+            else
+                cp ${WEIGHTS} ${DIR}/used.weights
+            fi
+        fi
 
         EXTRA_GENERATOR_ARGS=${GENERATOR_ARGS_SETS_ARRAY[EXTRA_ARGS_IDX]/;/ }
         if [ ! -z "${EXTRA_GENERATOR_ARGS}" ]; then
