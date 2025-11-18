@@ -12,8 +12,8 @@ export HALIDE_INSTALL_ROOT=/home/chamika2/upstream/halide-install
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
 export AUTOSCHED_TOOLS=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019
 export HL_DEBUG_CODEGEN=1
-# Default to 0 to use original Halide cost model. Set to 1 to use LibTorch cost model
-export HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-0}
+# Default to 1 to use LibTorch cost model. Set to 0 to use original Halide model
+export HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-1}
 # export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
 
 # =================================================================
@@ -21,12 +21,12 @@ export HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-0}
 # =================================================================
 BASELOC=`pwd`
 PIPELINE="random_pipeline"
-BLD_TOP=${BASELOC}/build_x86_samples
+BLD_TOP=${BASELOC}/build_x86_samples_libtorch
 BIN=${BLD_TOP}/${PIPELINE}/bin
 GENERATOR=${BIN}/${PIPELINE}.generator
 RUNTIME=${BIN}/runtime.a
 # Use LibTorch weights if LibTorch is enabled, otherwise use baseline.weights
-if [ "${HL_USE_LIBTORCH_COST_MODEL:-0}" = "1" ]; then
+if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
     START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
 else
     START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
@@ -88,7 +88,7 @@ make_featurization() {
 	HL_PERMIT_FAILED_UNROLL=1 \
 	HL_WEIGHTS_DIR=${WEIGHTS} \
 	HL_PREFETCHING=1 \
-	HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-0} \
+	HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-1} \
     GEN_EXIT=0
     ${TIMEOUT_CMD} -k ${COMPILATION_TIMEOUT} ${COMPILATION_TIMEOUT} \
 	${GENERATOR} -g ${PIPELINE} -o ${D} \
@@ -180,7 +180,7 @@ SAMPLES=${BLD_TOP}/samples
 mkdir -p ${SAMPLES}
 
 # Set weights path based on format
-if [ "${HL_USE_LIBTORCH_COST_MODEL:-0}" = "1" ]; then
+if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
     WEIGHTS=${SAMPLES}/updated.pt
 else
     WEIGHTS=${SAMPLES}/updated.weights
@@ -268,7 +268,7 @@ for ((BATCH_ID=$((FIRST+OFFSET+1));BATCH_ID<$((FIRST+OFFSET+1+NUM_BATCHES));BATC
         # Copy the weights being used into the batch folder so that we can repro failures
         mkdir -p ${DIR}/
         if [[ -f ${WEIGHTS} ]]; then
-            if [ "${HL_USE_LIBTORCH_COST_MODEL:-0}" = "1" ]; then
+            if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
                 cp ${WEIGHTS} ${DIR}/used.weights.pt
             else
                 cp ${WEIGHTS} ${DIR}/used.weights
