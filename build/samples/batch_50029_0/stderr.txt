@@ -3464,11 +3464,11 @@ Failed to prove, but could not find a counter-example:
  (int32((int8)v0) != 0)
 Original expression:
 (int32((int8)t666.s) != 0)
-add_temp_object_file: /tmp/MhJtNP/random_pipeline.a.o
-Module.compile(): temporary object /tmp/MhJtNP/random_pipeline.a.o
+add_temp_object_file: /tmp/HPsYb7/random_pipeline.a.o
+Module.compile(): temporary object /tmp/HPsYb7/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50029_0/random_pipeline.a
-file_unlink: /tmp/MhJtNP/random_pipeline.a.o
-dir_rmdir: /tmp/MhJtNP
+file_unlink: /tmp/HPsYb7/random_pipeline.a.o
+dir_rmdir: /tmp/HPsYb7
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50029_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50029_0/random_pipeline.registration.cpp

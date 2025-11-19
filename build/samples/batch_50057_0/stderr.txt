@@ -919,11 +919,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 1)
 Original expression:
 (((input.extent.2*2) + -2) != 0)
-add_temp_object_file: /tmp/BBYulR/random_pipeline.a.o
-Module.compile(): temporary object /tmp/BBYulR/random_pipeline.a.o
+add_temp_object_file: /tmp/jOYCbA/random_pipeline.a.o
+Module.compile(): temporary object /tmp/jOYCbA/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.a
-file_unlink: /tmp/BBYulR/random_pipeline.a.o
-dir_rmdir: /tmp/BBYulR
+file_unlink: /tmp/jOYCbA/random_pipeline.a.o
+dir_rmdir: /tmp/jOYCbA
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50057_0/random_pipeline.registration.cpp

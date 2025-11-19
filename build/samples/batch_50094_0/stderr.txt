@@ -1116,11 +1116,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (t516 != 0)
-add_temp_object_file: /tmp/nb7Bhn/random_pipeline.a.o
-Module.compile(): temporary object /tmp/nb7Bhn/random_pipeline.a.o
+add_temp_object_file: /tmp/BCdZLh/random_pipeline.a.o
+Module.compile(): temporary object /tmp/BCdZLh/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50094_0/random_pipeline.a
-file_unlink: /tmp/nb7Bhn/random_pipeline.a.o
-dir_rmdir: /tmp/nb7Bhn
+file_unlink: /tmp/BCdZLh/random_pipeline.a.o
+dir_rmdir: /tmp/BCdZLh
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50094_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50094_0/random_pipeline.registration.cpp

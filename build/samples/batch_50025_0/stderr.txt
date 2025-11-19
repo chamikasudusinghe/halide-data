@@ -534,11 +534,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (t518 != 0)
-add_temp_object_file: /tmp/xYj0nZ/random_pipeline.a.o
-Module.compile(): temporary object /tmp/xYj0nZ/random_pipeline.a.o
+add_temp_object_file: /tmp/TUAtP9/random_pipeline.a.o
+Module.compile(): temporary object /tmp/TUAtP9/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50025_0/random_pipeline.a
-file_unlink: /tmp/xYj0nZ/random_pipeline.a.o
-dir_rmdir: /tmp/xYj0nZ
+file_unlink: /tmp/TUAtP9/random_pipeline.a.o
+dir_rmdir: /tmp/TUAtP9
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50025_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50025_0/random_pipeline.registration.cpp

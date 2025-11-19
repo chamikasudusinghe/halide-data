@@ -684,16 +684,18 @@ Adams2019.disable_subtiling:0
 Adams2019.disable_memoized_features:0
 Adams2019.disable_memoized_blocks:0
 Adams2019.memory_limit:-1
-Loading weights from built-in data...
-Pass 0 of 5, cost: 196.279831, time (ms): 430
-Pass 1 of 5, cost: 191.045105, time (ms): 193
-Pass 2 of 5, cost: 191.354279, time (ms): 289
-Pass 3 of 5, cost: 191.354279, time (ms): 224
-Pass 4 of 5, cost: 191.354279, time (ms): 213
+AutoSchedule: Using HL_WEIGHTS_DIR: /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights
+Using default Halide-based cost model
+Loading weights from /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights ...
+Pass 0 of 5, cost: 196.279831, time (ms): 495
+Pass 1 of 5, cost: 191.045105, time (ms): 328
+Pass 2 of 5, cost: 191.354279, time (ms): 443
+Pass 3 of 5, cost: 191.354279, time (ms): 453
+Pass 4 of 5, cost: 191.354279, time (ms): 400
 Best cost: 191.045105
 Cache (block) hits: 28189
 Cache (block) misses: 2832
-AutoSchedule.cpp:521 ... AutoSchedule.cpp:553 : 1360.067517 ms
+AutoSchedule.cpp:525 ... AutoSchedule.cpp:582 : 2131.230664 ms
 Cost evaluated this many times: 48616
 ** Optimal schedule:
 Schedule features for casted
@@ -3309,12 +3311,12 @@ Failed to prove, but could not find a counter-example:
  (0 <= max(v0 - v1, (v1 - v0) + 499))
 Original expression:
 (max(t3971 - t3973, (t3973 - t3971) + 499) >= 0)
-add_temp_object_file: /tmp/QFit9f/random_pipeline.a.o
-Module.compile(): temporary object /tmp/QFit9f/random_pipeline.a.o
+add_temp_object_file: /tmp/leiB7B/random_pipeline.a.o
+Module.compile(): temporary object /tmp/leiB7B/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50001_0/21/random_pipeline.a
-file_unlink: /tmp/QFit9f/random_pipeline.a.o
-dir_rmdir: /tmp/QFit9f
+file_unlink: /tmp/leiB7B/random_pipeline.a.o
+dir_rmdir: /tmp/leiB7B
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50001_0/21/random_pipeline.h
 Module.compile(): schedule /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50001_0/21/random_pipeline.schedule.h
 Module.compile(): featurization /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50001_0/21/random_pipeline.featurization

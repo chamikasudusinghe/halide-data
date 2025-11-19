@@ -941,11 +941,11 @@ Failed to prove, but could not find a counter-example:
  (int32(((int16)v0/(int16)4)) != 0)
 Original expression:
 (int32(((int16)t706/(int16)4)) != 0)
-add_temp_object_file: /tmp/YYyuEp/random_pipeline.a.o
-Module.compile(): temporary object /tmp/YYyuEp/random_pipeline.a.o
+add_temp_object_file: /tmp/9h4pgy/random_pipeline.a.o
+Module.compile(): temporary object /tmp/9h4pgy/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50037_0/random_pipeline.a
-file_unlink: /tmp/YYyuEp/random_pipeline.a.o
-dir_rmdir: /tmp/YYyuEp
+file_unlink: /tmp/9h4pgy/random_pipeline.a.o
+dir_rmdir: /tmp/9h4pgy
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50037_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50037_0/random_pipeline.registration.cpp

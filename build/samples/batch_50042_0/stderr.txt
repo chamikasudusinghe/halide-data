@@ -850,11 +850,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 ((input.extent.1*2) != 0)
-add_temp_object_file: /tmp/RAl6HN/random_pipeline.a.o
-Module.compile(): temporary object /tmp/RAl6HN/random_pipeline.a.o
+add_temp_object_file: /tmp/u9Iigm/random_pipeline.a.o
+Module.compile(): temporary object /tmp/u9Iigm/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50042_0/random_pipeline.a
-file_unlink: /tmp/RAl6HN/random_pipeline.a.o
-dir_rmdir: /tmp/RAl6HN
+file_unlink: /tmp/u9Iigm/random_pipeline.a.o
+dir_rmdir: /tmp/u9Iigm
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50042_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50042_0/random_pipeline.registration.cpp

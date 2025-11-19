@@ -1,0 +1,48 @@
+Using repeat_edge
+Approx size: 2000, 2000, 3
+Downsampling dimension 1 by 0x
+Approx size: 2000, 250, 3
+Relu
+Approx size: 2000, 250, 3
+All to all on dimension 2
+Approx size: 2000, 250, 90
+Upsampling dimension 0 by 0x
+Approx size: 32000, 250, 3
+Upsampling dimension 0 by 0x
+Approx size: 32000, 250, 3
+Padding
+Approx size: 2000, 250, 90
+Binary op
+Resampling from 2000, 250, 3 to 32000, 250, 3
+Upsampling dimension 0 by 16x
+Resulting size: 32000, 250, 3
+Approx size: 32000, 250, 3
+Binary op
+Resampling from 2000, 250, 3 to 32000, 250, 3
+Upsampling dimension 0 by 16x
+Resulting size: 32000, 250, 3
+Approx size: 32000, 250, 3
+Pooling unrolled with stride: 1 and kernel [ -1, 5]
+Pooling using += with stride: 2 and kernel [ -1, 5]
+Approx size: 16000, 125, 3
+Pooling unrolled with stride: 1 and kernel [ -4, 1]
+Pooling using += with stride: 1 and kernel [ -4, 1]
+Approx size: 32000, 250, 3
+Binary op
+Approx size: 32000, 250, 3
+Convolving dimension 0 with kernel [-10, 6] using sum() helper
+Approx size: 32000, 250, 3
+Relu
+Approx size: 32000, 250, 3
+Convolving dimension 0 with kernel [-2, 7] using +=
+Approx size: 32000, 250, 3
+Pooling using += with stride: 2 and kernel [ -1, 4]
+Approx size: 8000, 63, 3
+Padding
+Approx size: 8000, 63, 3
+All to all on dimension 2 using += 
+Approx size: 32000, 250, 6
+Downsampling dimension 0 by 0x
+Resampling from 2000, 125, 3 to 2000, 2000, 3
+Upsampling dimension 1 by 16x
+Resulting size: 2000, 2000, 3

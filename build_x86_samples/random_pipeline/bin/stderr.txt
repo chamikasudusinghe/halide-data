@@ -131,16 +131,18 @@ Adams2019.disable_subtiling:0
 Adams2019.disable_memoized_features:0
 Adams2019.disable_memoized_blocks:0
 Adams2019.memory_limit:-1
-Loading weights from built-in data...
-Pass 0 of 5, cost: 129.661667, time (ms): 181
-Pass 1 of 5, cost: 129.780609, time (ms): 75
-Pass 2 of 5, cost: 129.780609, time (ms): 63
-Pass 3 of 5, cost: 129.780609, time (ms): 64
+AutoSchedule: Using HL_WEIGHTS_DIR: /home/chamika2/upstream/halide-install/src/autoschedulers/adams2019/baseline.weights
+Using default Halide-based cost model
+Loading weights from /home/chamika2/upstream/halide-install/src/autoschedulers/adams2019/baseline.weights ...
+Pass 0 of 5, cost: 129.661667, time (ms): 193
+Pass 1 of 5, cost: 129.780609, time (ms): 99
+Pass 2 of 5, cost: 129.780609, time (ms): 77
+Pass 3 of 5, cost: 129.780609, time (ms): 88
 Pass 4 of 5, cost: 129.780609, time (ms): 73
 Best cost: 129.661667
 Cache (block) hits: 8221
 Cache (block) misses: 2312
-AutoSchedule.cpp:521 ... AutoSchedule.cpp:553 : 463.634333 ms
+AutoSchedule.cpp:525 ... AutoSchedule.cpp:582 : 538.527315 ms
 Cost evaluated this many times: 23898
 ** Optimal schedule:
 Schedule features for casted
@@ -2141,12 +2143,12 @@ Generating llvm bitcode prolog for function random_pipeline_par_for_casted_s0__1
 Generating llvm bitcode for function random_pipeline_par_for_casted_s0__1__1...
 Generating llvm bitcode prolog for function random_pipeline...
 Generating llvm bitcode for function random_pipeline...
-add_temp_object_file: /tmp/7x1G96/random_pipeline.a.o
-Module.compile(): temporary object /tmp/7x1G96/random_pipeline.a.o
+add_temp_object_file: /tmp/m2MFoy/random_pipeline.a.o
+Module.compile(): temporary object /tmp/m2MFoy/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build_x86_samples/random_pipeline/bin/random_pipeline.a
-file_unlink: /tmp/7x1G96/random_pipeline.a.o
-dir_rmdir: /tmp/7x1G96
+file_unlink: /tmp/m2MFoy/random_pipeline.a.o
+dir_rmdir: /tmp/m2MFoy
 Module.compile(): assembly /home/chamika2/upstream/halide-data/build_x86_samples/random_pipeline/bin/random_pipeline.s
 emit_file.Compiling to native code...
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build_x86_samples/random_pipeline/bin/random_pipeline.h

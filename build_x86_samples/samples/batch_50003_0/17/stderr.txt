@@ -53,16 +53,18 @@ Adams2019.disable_subtiling:0
 Adams2019.disable_memoized_features:0
 Adams2019.disable_memoized_blocks:0
 Adams2019.memory_limit:-1
-Loading weights from built-in data...
-Pass 0 of 5, cost: 18.452728, time (ms): 114
-Pass 1 of 5, cost: 17.385590, time (ms): 45
-Pass 2 of 5, cost: 17.691441, time (ms): 45
-Pass 3 of 5, cost: 17.691441, time (ms): 36
-Pass 4 of 5, cost: 17.691441, time (ms): 35
+AutoSchedule: Using HL_WEIGHTS_DIR: /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights
+Using default Halide-based cost model
+Loading weights from /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights ...
+Pass 0 of 5, cost: 18.452728, time (ms): 113
+Pass 1 of 5, cost: 17.385590, time (ms): 55
+Pass 2 of 5, cost: 17.691441, time (ms): 58
+Pass 3 of 5, cost: 17.691441, time (ms): 54
+Pass 4 of 5, cost: 17.691441, time (ms): 42
 Best cost: 17.385590
 Cache (block) hits: 8458
 Cache (block) misses: 804
-AutoSchedule.cpp:521 ... AutoSchedule.cpp:553 : 285.786800 ms
+AutoSchedule.cpp:525 ... AutoSchedule.cpp:582 : 332.301443 ms
 Cost evaluated this many times: 16294
 ** Optimal schedule:
 Schedule features for casted
@@ -1508,12 +1510,12 @@ Failed to prove, but could not find a counter-example:
  (((v0 + 62)/63) != 0)
 Original expression:
 (((casted.extent.1 + 62)/63) != 0)
-add_temp_object_file: /tmp/uAHtkV/random_pipeline.a.o
-Module.compile(): temporary object /tmp/uAHtkV/random_pipeline.a.o
+add_temp_object_file: /tmp/28wdBw/random_pipeline.a.o
+Module.compile(): temporary object /tmp/28wdBw/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50003_0/17/random_pipeline.a
-file_unlink: /tmp/uAHtkV/random_pipeline.a.o
-dir_rmdir: /tmp/uAHtkV
+file_unlink: /tmp/28wdBw/random_pipeline.a.o
+dir_rmdir: /tmp/28wdBw
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50003_0/17/random_pipeline.h
 Module.compile(): schedule /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50003_0/17/random_pipeline.schedule.h
 Module.compile(): featurization /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50003_0/17/random_pipeline.featurization

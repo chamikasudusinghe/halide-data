@@ -806,11 +806,11 @@ Failed to prove, but could not find a counter-example:
  (0 <= select(((((v0 <= v1) || (v1 < v2)) || (v3 < (v4 + 4))) || ((v5 + 4) <= v3)) || (uint1)v6, 7, (int32)input[max(min(v0 + -1, v1), v2) + ((max(min(v5 + 3, v3) + -4, v4)*v7) + v8)]))
 Original expression:
 (select(((((t484 <= t317) || (t317 < input.min.0)) || (t493 < (input.min.1 + 4))) || ((t485 + 4) <= t493)) || (uint1)t494, 7, (int32)input[max(min(t484 + -1, t317), input.min.0) + ((max(min(t485 + 3, t493) + -4, input.min.1)*input.stride.1) + t495)]) >= 0)
-add_temp_object_file: /tmp/G8V5Pw/random_pipeline.a.o
-Module.compile(): temporary object /tmp/G8V5Pw/random_pipeline.a.o
+add_temp_object_file: /tmp/JRtQS4/random_pipeline.a.o
+Module.compile(): temporary object /tmp/JRtQS4/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50033_0/random_pipeline.a
-file_unlink: /tmp/G8V5Pw/random_pipeline.a.o
-dir_rmdir: /tmp/G8V5Pw
+file_unlink: /tmp/JRtQS4/random_pipeline.a.o
+dir_rmdir: /tmp/JRtQS4
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50033_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50033_0/random_pipeline.registration.cpp

@@ -1,1 +1,1 @@
-Benchmark for random_pipeline produces best case of 1.98519 sec/iter (over 3 samples, 3 iterations, accuracy 1.2%).
+Benchmark for random_pipeline produces best case of 1.97148 sec/iter (over 3 samples, 3 iterations, accuracy 1.3%).

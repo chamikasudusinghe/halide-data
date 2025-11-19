@@ -2445,11 +2445,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (input.extent.2 != 0)
-add_temp_object_file: /tmp/cB33oF/random_pipeline.a.o
-Module.compile(): temporary object /tmp/cB33oF/random_pipeline.a.o
+add_temp_object_file: /tmp/8ILXZn/random_pipeline.a.o
+Module.compile(): temporary object /tmp/8ILXZn/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50023_0/random_pipeline.a
-file_unlink: /tmp/cB33oF/random_pipeline.a.o
-dir_rmdir: /tmp/cB33oF
+file_unlink: /tmp/8ILXZn/random_pipeline.a.o
+dir_rmdir: /tmp/8ILXZn
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50023_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50023_0/random_pipeline.registration.cpp

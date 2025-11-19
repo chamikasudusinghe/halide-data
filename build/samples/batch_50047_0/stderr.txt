@@ -2425,11 +2425,11 @@ Failed to prove, but could not find a counter-example:
  (0 <= int32(uint16((v0 == v1))))
 Original expression:
 (int32(uint16((t665 == t668))) >= 0)
-add_temp_object_file: /tmp/AtEgkR/random_pipeline.a.o
-Module.compile(): temporary object /tmp/AtEgkR/random_pipeline.a.o
+add_temp_object_file: /tmp/utA1Hb/random_pipeline.a.o
+Module.compile(): temporary object /tmp/utA1Hb/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50047_0/random_pipeline.a
-file_unlink: /tmp/AtEgkR/random_pipeline.a.o
-dir_rmdir: /tmp/AtEgkR
+file_unlink: /tmp/utA1Hb/random_pipeline.a.o
+dir_rmdir: /tmp/utA1Hb
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50047_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50047_0/random_pipeline.registration.cpp

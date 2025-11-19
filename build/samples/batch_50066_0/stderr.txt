@@ -971,11 +971,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (input.extent.0 != 0)
-add_temp_object_file: /tmp/Ru1gy3/random_pipeline.a.o
-Module.compile(): temporary object /tmp/Ru1gy3/random_pipeline.a.o
+add_temp_object_file: /tmp/N7jEtg/random_pipeline.a.o
+Module.compile(): temporary object /tmp/N7jEtg/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50066_0/random_pipeline.a
-file_unlink: /tmp/Ru1gy3/random_pipeline.a.o
-dir_rmdir: /tmp/Ru1gy3
+file_unlink: /tmp/N7jEtg/random_pipeline.a.o
+dir_rmdir: /tmp/N7jEtg
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50066_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50066_0/random_pipeline.registration.cpp

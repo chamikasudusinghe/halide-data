@@ -3866,11 +3866,11 @@ Failed to prove, but could not find a counter-example:
  (0 <= int32((uint1)v0))
 Original expression:
 (int32((uint1)t480.s) >= 0)
-add_temp_object_file: /tmp/z8rDjE/random_pipeline.a.o
-Module.compile(): temporary object /tmp/z8rDjE/random_pipeline.a.o
+add_temp_object_file: /tmp/2mVS70/random_pipeline.a.o
+Module.compile(): temporary object /tmp/2mVS70/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50014_0/random_pipeline.a
-file_unlink: /tmp/z8rDjE/random_pipeline.a.o
-dir_rmdir: /tmp/z8rDjE
+file_unlink: /tmp/2mVS70/random_pipeline.a.o
+dir_rmdir: /tmp/2mVS70
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50014_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50014_0/random_pipeline.registration.cpp

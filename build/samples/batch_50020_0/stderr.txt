@@ -616,11 +616,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 1)
 Original expression:
 (((input.extent.0*2) + -2) != 0)
-add_temp_object_file: /tmp/5Cif1m/random_pipeline.a.o
-Module.compile(): temporary object /tmp/5Cif1m/random_pipeline.a.o
+add_temp_object_file: /tmp/qkACeP/random_pipeline.a.o
+Module.compile(): temporary object /tmp/qkACeP/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50020_0/random_pipeline.a
-file_unlink: /tmp/5Cif1m/random_pipeline.a.o
-dir_rmdir: /tmp/5Cif1m
+file_unlink: /tmp/qkACeP/random_pipeline.a.o
+dir_rmdir: /tmp/qkACeP
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50020_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50020_0/random_pipeline.registration.cpp

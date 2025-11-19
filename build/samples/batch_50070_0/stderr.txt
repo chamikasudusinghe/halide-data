@@ -1058,11 +1058,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (t780 != 0)
-add_temp_object_file: /tmp/5koAgl/random_pipeline.a.o
-Module.compile(): temporary object /tmp/5koAgl/random_pipeline.a.o
+add_temp_object_file: /tmp/sIEJwF/random_pipeline.a.o
+Module.compile(): temporary object /tmp/sIEJwF/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50070_0/random_pipeline.a
-file_unlink: /tmp/5koAgl/random_pipeline.a.o
-dir_rmdir: /tmp/5koAgl
+file_unlink: /tmp/sIEJwF/random_pipeline.a.o
+dir_rmdir: /tmp/sIEJwF
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50070_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50070_0/random_pipeline.registration.cpp

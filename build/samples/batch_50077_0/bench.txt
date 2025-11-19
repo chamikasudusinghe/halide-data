@@ -1,2 +1,2 @@
-Benchmark for random_pipeline produces best case of 7.6133 sec/iter (over 3 samples, 3 iterations, accuracy 4.9%).
-Best output throughput is 0.5 mpix/sec.
+Benchmark for random_pipeline produces best case of 7.78907 sec/iter (over 3 samples, 3 iterations, accuracy 1.6%).
+Best output throughput is 0.49 mpix/sec.

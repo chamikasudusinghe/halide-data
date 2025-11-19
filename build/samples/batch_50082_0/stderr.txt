@@ -752,11 +752,11 @@ Target triple of initial module: x86_64--linux-gnu
 Generating llvm bitcode...
 Generating llvm bitcode prolog for function random_pipeline...
 Generating llvm bitcode for function random_pipeline...
-add_temp_object_file: /tmp/aXSAHQ/random_pipeline.a.o
-Module.compile(): temporary object /tmp/aXSAHQ/random_pipeline.a.o
+add_temp_object_file: /tmp/P01Jv4/random_pipeline.a.o
+Module.compile(): temporary object /tmp/P01Jv4/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50082_0/random_pipeline.a
-file_unlink: /tmp/aXSAHQ/random_pipeline.a.o
-dir_rmdir: /tmp/aXSAHQ
+file_unlink: /tmp/P01Jv4/random_pipeline.a.o
+dir_rmdir: /tmp/P01Jv4
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50082_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50082_0/random_pipeline.registration.cpp

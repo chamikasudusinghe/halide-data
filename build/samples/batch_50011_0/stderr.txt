@@ -569,11 +569,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (input.extent.0 != 0)
-add_temp_object_file: /tmp/WKFlJM/random_pipeline.a.o
-Module.compile(): temporary object /tmp/WKFlJM/random_pipeline.a.o
+add_temp_object_file: /tmp/zy2SMY/random_pipeline.a.o
+Module.compile(): temporary object /tmp/zy2SMY/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50011_0/random_pipeline.a
-file_unlink: /tmp/WKFlJM/random_pipeline.a.o
-dir_rmdir: /tmp/WKFlJM
+file_unlink: /tmp/zy2SMY/random_pipeline.a.o
+dir_rmdir: /tmp/zy2SMY
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50011_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50011_0/random_pipeline.registration.cpp

@@ -845,11 +845,11 @@ Failed to prove, but could not find a counter-example:
  (0 <= int32((int32((int8)v0) <= 0)))
 Original expression:
 (int32((int32((int8)t283.s) <= 0)) >= 0)
-add_temp_object_file: /tmp/FXGkq9/random_pipeline.a.o
-Module.compile(): temporary object /tmp/FXGkq9/random_pipeline.a.o
+add_temp_object_file: /tmp/xb4vZe/random_pipeline.a.o
+Module.compile(): temporary object /tmp/xb4vZe/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50072_0/random_pipeline.a
-file_unlink: /tmp/FXGkq9/random_pipeline.a.o
-dir_rmdir: /tmp/FXGkq9
+file_unlink: /tmp/xb4vZe/random_pipeline.a.o
+dir_rmdir: /tmp/xb4vZe
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50072_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50072_0/random_pipeline.registration.cpp

@@ -862,11 +862,11 @@ Failed to prove, but could not find a counter-example:
  (0 <= (v0*v0))
 Original expression:
 ((t1637*t1637) >= 0)
-add_temp_object_file: /tmp/3LuJKr/random_pipeline.a.o
-Module.compile(): temporary object /tmp/3LuJKr/random_pipeline.a.o
+add_temp_object_file: /tmp/DwBT35/random_pipeline.a.o
+Module.compile(): temporary object /tmp/DwBT35/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50055_0/random_pipeline.a
-file_unlink: /tmp/3LuJKr/random_pipeline.a.o
-dir_rmdir: /tmp/3LuJKr
+file_unlink: /tmp/DwBT35/random_pipeline.a.o
+dir_rmdir: /tmp/DwBT35
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50055_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50055_0/random_pipeline.registration.cpp

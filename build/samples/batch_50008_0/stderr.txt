@@ -1356,11 +1356,11 @@ Failed to prove, but could not find a counter-example:
  (v0 != 0)
 Original expression:
 (t404 != 0)
-add_temp_object_file: /tmp/VIv7DL/random_pipeline.a.o
-Module.compile(): temporary object /tmp/VIv7DL/random_pipeline.a.o
+add_temp_object_file: /tmp/H4z0XB/random_pipeline.a.o
+Module.compile(): temporary object /tmp/H4z0XB/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build/samples/batch_50008_0/random_pipeline.a
-file_unlink: /tmp/VIv7DL/random_pipeline.a.o
-dir_rmdir: /tmp/VIv7DL
+file_unlink: /tmp/H4z0XB/random_pipeline.a.o
+dir_rmdir: /tmp/H4z0XB
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build/samples/batch_50008_0/random_pipeline.h
 Module.compile(): registration /home/chamika2/upstream/halide-data/build/samples/batch_50008_0/random_pipeline.registration.cpp

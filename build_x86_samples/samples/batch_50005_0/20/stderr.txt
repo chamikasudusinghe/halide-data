@@ -81,16 +81,18 @@ Adams2019.disable_subtiling:0
 Adams2019.disable_memoized_features:0
 Adams2019.disable_memoized_blocks:0
 Adams2019.memory_limit:-1
-Loading weights from built-in data...
-Pass 0 of 5, cost: 6.834513, time (ms): 82
-Pass 1 of 5, cost: 4.734916, time (ms): 44
-Pass 2 of 5, cost: 4.734916, time (ms): 44
-Pass 3 of 5, cost: 4.734916, time (ms): 38
-Pass 4 of 5, cost: 4.734916, time (ms): 39
+AutoSchedule: Using HL_WEIGHTS_DIR: /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights
+Using default Halide-based cost model
+Loading weights from /home/chamika2/upstream/halide-data/build_x86_samples/samples/updated.weights ...
+Pass 0 of 5, cost: 6.834513, time (ms): 83
+Pass 1 of 5, cost: 4.734916, time (ms): 42
+Pass 2 of 5, cost: 4.734916, time (ms): 42
+Pass 3 of 5, cost: 4.734916, time (ms): 39
+Pass 4 of 5, cost: 4.734916, time (ms): 38
 Best cost: 4.734916
 Cache (block) hits: 2088
 Cache (block) misses: 380
-AutoSchedule.cpp:521 ... AutoSchedule.cpp:553 : 252.198038 ms
+AutoSchedule.cpp:525 ... AutoSchedule.cpp:582 : 250.610917 ms
 Cost evaluated this many times: 13100
 ** Optimal schedule:
 Schedule features for casted
@@ -1191,12 +1193,12 @@ Generating llvm bitcode prolog for function random_pipeline_par_for_casted_s0__1
 Generating llvm bitcode for function random_pipeline_par_for_casted_s0__1__1...
 Generating llvm bitcode prolog for function random_pipeline...
 Generating llvm bitcode for function random_pipeline...
-add_temp_object_file: /tmp/1B1H53/random_pipeline.a.o
-Module.compile(): temporary object /tmp/1B1H53/random_pipeline.a.o
+add_temp_object_file: /tmp/f74heP/random_pipeline.a.o
+Module.compile(): temporary object /tmp/f74heP/random_pipeline.a.o
 emit_file.Compiling to native code...
 Module.compile(): static_library /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50005_0/20/random_pipeline.a
-file_unlink: /tmp/1B1H53/random_pipeline.a.o
-dir_rmdir: /tmp/1B1H53
+file_unlink: /tmp/f74heP/random_pipeline.a.o
+dir_rmdir: /tmp/f74heP
 Module.compile(): c_header /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50005_0/20/random_pipeline.h
 Module.compile(): schedule /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50005_0/20/random_pipeline.schedule.h
 Module.compile(): featurization /home/chamika2/upstream/halide-data/build_x86_samples/samples/batch_50005_0/20/random_pipeline.featurization
