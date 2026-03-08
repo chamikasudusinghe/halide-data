@@ -6,15 +6,17 @@ set -e
 # Set up environment vars necessary to build generator
 # ====================================================
 # The following are for Halide installation and changes per user
-export HALIDE_ROOT=/home/chamika2/upstream/Halide
-export HALIDE_INSTALL_ROOT=/home/chamika2/upstream/halide-install
+export HALIDE_ROOT=/home/bhirani2/cosmos/superHalide/Halide
+export HALIDE_INSTALL_ROOT=/home/bhirani2/cosmos/superHalide/halide-install-all/halide-install-libtorch-mod
 # The following are for halide
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
-export AUTOSCHED_TOOLS=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019
+export AUTOSCHED_TOOLS=${HALIDE_ROOT}/src/autoschedulers/adams2019
 export HL_DEBUG_CODEGEN=1
 # Default to 1 to use LibTorch cost model. Set to 0 to use original Halide model
 export HL_USE_LIBTORCH_COST_MODEL=${HL_USE_LIBTORCH_COST_MODEL:-1}
-# export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
+#export HL_WEIGHTS_DIR=${HALIDE_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
+export HL_WEIGHTS_DIR=`pwd`/weights_archive/baseline_libtorch.pt
+export HL_COST_MODEL_TYPE=adams2019
 
 # =================================================================
 # Set up more variables for arguments to compile, bench and retrain
@@ -27,13 +29,16 @@ GENERATOR=${BIN}/${PIPELINE}.generator
 RUNTIME=${BIN}/runtime.a
 # Use LibTorch weights if LibTorch is enabled, otherwise use baseline.weights
 if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
-    START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
+    #START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
+    START_WEIGHTS_FILE=${BASELOC}/weights_archive/baseline_libtorch.pt
+
 else
-    START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
+    #START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
+    START_WEIGHTS_FILE=${BASELOC}/weights_archive/baseline.weights
 fi
 
-BATCH_SIZE=32
-NUM_BATCHES=5 # limited NUM_BATCHES for testing
+BATCH_SIZE=1
+NUM_BATCHES=1 # limited NUM_BATCHES for testing
 MAX_STAGES=20
 
 # Read the generator-arg sets into an array. Each set is delimited
@@ -95,7 +100,13 @@ make_featurization() {
 	-e static_library,c_header,registration,schedule,featurization \
 	-f random_pipeline target=${TARGET}-no_runtime \
 	seed=${BATCH_ID} max_stages=${MAX_STAGES} autoscheduler=Adams2019 \
-    -p ${AUTOSCHED_BIN}/libauto_schedule.so \
+    -p ${AUTOSCHED_BIN}/libautoschedule_adams2019.so \
+	autoscheduler=Adams2019 \
+	autoscheduler.parallelism=32 \
+	autoscheduler.beam_size=${HL_BEAM_SIZE} \
+	autoscheduler.random_dropout=${HL_RANDOM_DROPOUT} \
+	autoscheduler.random_dropout_seed=${HL_SEED} \
+	autoscheduler.weights_path=${HL_WEIGHTS_DIR} \
     2> ${D}/stderr.txt > ${D}/stdout.txt
     GEN_EXIT=$?
     
@@ -296,7 +307,7 @@ for ((BATCH_ID=$((FIRST+OFFSET+1));BATCH_ID<$((FIRST+OFFSET+1+NUM_BATCHES));BATC
                 fi
             done
 
-            S=$(printf "%04d%04d" $BATCH_ID $SAMPLE_ID)
+            S="500180000" #$(printf "%04d%04d" $BATCH_ID $SAMPLE_ID)
             FNAME=${PIPELINE}
             make_featurization "${DIR}/${SAMPLE_ID}" $S $FNAME $BATCH_ID "$EXTRA_GENERATOR_ARGS" &
             echo -n .

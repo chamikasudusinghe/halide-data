@@ -3,3 +3,5 @@ build/
 build_x86_samples/
 build_x86_samples_libtorch/
 build_x86_samples_libtorch_old/
+build_benchapp_samples/
+results_benchapp/
