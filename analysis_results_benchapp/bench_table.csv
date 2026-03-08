@@ -1,0 +1,16 @@
+Benchmark,manual,custom,adams2019,adams2019Halide
+bgu,26.0,26.0,26.0,27.0
+bilateral_grid,16.0,15.0,17.0,17.0
+camera_pipe,12.0,11.0,12.0,11.0
+conv_layer,19.0,17.0,18.0,17.0
+depthwise_separable_conv,nan,13.0,13.0,13.0
+harris,26.0,26.0,26.0,26.0
+hist,13.0,12.0,14.0,13.0
+iir_blur,26.0,26.0,26.0,25.0
+interpolate,31.0,30.0,30.0,31.0
+lens_blur,12.0,11.0,12.0,12.0
+local_laplacian,12.0,17.0,13.0,12.0
+max_filter,26.0,27.0,27.0,26.0
+nl_means,26.0,27.0,25.0,25.0
+stencil_chain,10.0,11.0,12.0,11.0
+unsharp,26.0,25.0,26.0,26.0
