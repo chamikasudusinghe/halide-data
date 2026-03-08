@@ -31,7 +31,7 @@ bool rand_bool() { return rng() % 2 == 0; }
 // tree depth, recursively generates an expression by combining
 // subexpressions.  At the base case where depth is 0, we just return
 // a randomly chosen input.
-Type expr_types[] = {UInt(8), UInt(16), UInt(32), Int(8), Int(16), Int(32), Float(32)};
+Type expr_types[] = { UInt(8), UInt(16), UInt(32), Int(8), Int(16), Int(32) };
 const int expr_type_count = sizeof(expr_types)/sizeof(expr_types[0]);
 
 typedef Expr (*make_bin_op_fn)(Expr, Expr);
@@ -87,7 +87,7 @@ Expr make_leaf(vector<Expr> inputs) {
 }
 
 Expr random_expr_inner(vector<Expr> inputs, int depth, int func_size) {
-    const int op_count = bin_op_count + bool_bin_op_count + 4 + 5;
+    const int op_count = bin_op_count + bool_bin_op_count + 4;
 
     if (depth <= 0) {
         return make_leaf(inputs);
@@ -126,67 +126,6 @@ Expr random_expr_inner(vector<Expr> inputs, int depth, int func_size) {
     {
         return random_condition(inputs, depth-1, func_size);
     }
-	case 4: // pow - exponentiation (common in CV)
-    {
-        auto base = random_expr_inner(inputs, depth-1, func_size);
-        // Use small integer exponents (2 or 3)
-        int exp_val = rand_int(2, 3);
-
-		Expr base_f = cast<float>(base);
-		Expr r = pow(base_f, (float)exp_val);
-		return cast(base.type(), r);
-
-		//Type t = base.type();
-		//Expr r = pow(cast<float>(base), cast<float>(exp_val));
-		//return cast(t, r);
-        //return pow(cast<float>(base), cast<float>(exp_val));
-    }
-    
-    case 5: // sqrt - square root (common in distance calculations)
-    {
-        auto e = random_expr_inner(inputs, depth-1, func_size);
-        // Take abs first to avoid sqrt of negative numbers
-		Type t = e.type();
-		Expr r = sqrt(abs(cast<float>(e)));
-		return cast(t, r);
-        //return sqrt(abs(cast<float>(e)));
-    }
-    
-    case 6: // abs - absolute value (common in edge detection)
-    {
-        auto e = random_expr_inner(inputs, depth-1, func_size);
-		if (e.type().is_uint()) {
-			return e;
-		} else {
-			return abs(e);
-		}
-    }
-    
-    case 7: // absd - absolute difference (common in stereo, motion)
-    {
-        auto e1 = random_expr_inner(inputs, depth-1, func_size);
-        auto e2 = random_expr_inner(inputs, depth-2, func_size);
-		if (e1.type() != e2.type()) {
-			e2 = cast(e1.type(), e2);
-		}
-
-		if (e1.type().is_float()) {
-			return abs(e1 - e2);
-		} else {
-			return absd(e1, e2);
-		}
-    }
-    
-    case 8: // lerp - linear interpolation (common in blending)
-    {
-        auto e1 = random_expr_inner(inputs, depth-1, func_size);
-        auto e2 = random_expr_inner(inputs, depth-2, func_size);
-        // Random weight between 0.25 and 0.75
-        float weight = 0.25f + (rand_int(0, 2) * 0.25f);
-		Expr w = cast<float>(weight);
-		Expr r = lerp(cast<float>(e1), cast<float>(e2), w);
-		return cast(e1.type(), r);
-    }
     default: // binary op
         make_bin_op_fn maker;
         auto e1 = random_expr_inner(inputs, depth-1, func_size);
@@ -194,18 +133,7 @@ Expr random_expr_inner(vector<Expr> inputs, int depth, int func_size) {
         if (e1.type().is_bool() && e2.type().is_bool()) {
             maker = make_bool_bin_op[op % bool_bin_op_count];
         } else {
-			if(e1.type().is_float() || e2.type().is_float()) {
-				if(op % bin_op_count == 6) {
-					int new_op = 5;
-					maker = make_bin_op[new_op];
-				} else{
-
-					maker = make_bin_op[op % bin_op_count];
-				}
-			}else{
-
-				maker = make_bin_op[op % bin_op_count];
-			}
+            maker = make_bin_op[op % bin_op_count];
         }
 
         return maker(e1, e2);
@@ -221,10 +149,8 @@ Expr rand_value(Type t) {
     } else if (t.is_int() || t.is_uint()) {
         return cast(t, rand_int(1, 127));
     } else if (t.is_float()) {
-        //assert(false);
-        //return undef(t);
-		float v = (float)rand_int(0, 100) / 10.0f;
-		return cast(t, v);
+        assert(false);
+        return undef(t);
     } else {
         // Shouldn't get here.
         assert(false);
@@ -298,7 +224,6 @@ public:
     Input<Buffer<int8_t>>  int8_weights {"int8_weights", 4};
     Input<Buffer<int16_t>>  int16_weights{"int16_weights", 4};
     Input<Buffer<int32_t>>  int32_weights{"int32_weights", 4};
-	Input<Buffer<float>> float32_weights{"float32_weights", 4};
     Output<Buffer<int32_t>> output{"output", 3};
 
     Func uint8_weights_bounded {"uint8_weights_bounded"};
@@ -307,7 +232,6 @@ public:
     Func int8_weights_bounded  {"int8_weights_bounded"};
     Func int16_weights_bounded {"int16_weights_bounded"};
     Func int32_weights_bounded {"int32_weights_bounded"};
-	Func float32_weights_bounded {"float32_weights_bounded"};
 
     void set_upcast_types(Type input_type, Type& mult_type, Type& sum_type) {
         if (input_type.is_bool()) {
@@ -352,24 +276,10 @@ public:
         else if (t == Int(8)) return int8_weights_bounded;
         else if (t == Int(16)) return int16_weights_bounded;
         else if (t == Int(32)) return int32_weights_bounded;
-		else if (t == Float(32)) return float32_weights_bounded;
         else {
 	        assert(false);
         }
     }
-
-	
-	// BHsketch
-	// Helper: average two expressions
-	//Expr avg(Expr a, Expr b) {
-		//Type wider = a.type().with_bits(a.type().bits() * 2);
-		//return cast(a.type(), (cast(wider, a) + b + 1) / 2);
-	//}
-
-	//// Alternative simpler version for float:
-	//Expr avg_float(Expr a, Expr b) {
-		//return (cast<float>(a) + cast<float>(b)) / 2.0f;
-	//}
 
     struct Stage {
         Func func;
@@ -427,13 +337,6 @@ public:
         vector<Var> args = f.func.args();
 
         // generate random expression using potentially all values in the stencil
-		// Essentially this is generating a Stage (which is basically a function) of the kind:
-		// Convolve(x, y, z) = input(x, y+kernel_min, z) + input(x, y+(kernel_min+1), z) + ... + input(x, y+(kernel_max), z)
-		// where each "+" could be any operation.
-		// args gives a list with names for each dimension of the input (i.e. x, y, z etc.)
-		// Convolving in a particular dimension just means we're taking a linear combination of the inputs in that dimension
-		// "statically unrolled" just means we're generating each "input(x, y+k, z)" term individualy, instead of just using 
-		// some sort of RDom to do the same.
         vector<Expr> inputs;
         for (int i = kernel_min; i <= kernel_max; i++) {
             vector<Expr> coords = make_arguments(f.func.args());
@@ -848,7 +751,6 @@ public:
         int func_size = f.w * f.h * std::min(f.c, g.c);
         Expr def = random_expr(inputs, rand_int(min_depth, max_depth), func_size);
         std::cerr << def << "\n";
-		std::cout <<"generating binary op: "<< def <<"\n"; 
         binary(f.func.args()) = def;
         return {binary, f.w, f.h, std::min(f.c, g.c)};
     }
@@ -954,19 +856,10 @@ public:
 
         Func hist("hist");
         hist(f.func.args()) = cast<int32_t>(0);
-
-		// from_coords defines a (box_size x box_size) shaped tile 
         from_coords[0] = to_coords[0] * box_size + r.x;
         from_coords[1] = to_coords[1] * box_size + r.y;
         from_coords[2] = 0;
-		// assuming f.func(x, y, z) will be normalized (i.e. between 0 and 1), the multiplication
-		// will be between 0 and histogram_buckets; cast into i32_t will truncate it; thus giving
-		// us a bucket index between 0 and (histogram_buckets - 1).
         to_coords[2] = clamp(cast<int32_t>(f.func(from_coords) * histogram_buckets), 0, histogram_buckets - 1);
-		// to_cords == (x, y, z), where (x, y) is the TILE number, 
-		// and z is the bucket index.
-		// Through the RDom, we get a bucket index for all elements within a tile, and we update the appropriate
-		// (x, y, bucket_index) in hist. So it's a per-tile histogram.
         hist(to_coords) += 1;
 
         return {hist, f.w / box_size, f.h / box_size, histogram_buckets};
@@ -1017,101 +910,6 @@ public:
         return {casted, f.w, f.h, f.c};
     }
 
-	// Aggregation stage: reduces data using random expressions
-	Stage aggregation_stage(Stage f, int func_size) {
-		std::cout << "Creating aggregation stage from " << f.w << "×" << f.h << "×" << f.c << "\n";
-		
-		std::vector<Expr> coords = make_arguments(f.func.args());
-		std::vector<Expr> agg_coords = coords;
-		//Func f_bounded = BoundaryConditions::repeat_edge(f.func);
-		Func result("aggregation");
-		// Choose which dimension to aggregate over (0=x, 1=y, 2=c)
-		int reduce_dim = rand_int(0, 2);
-		// Choose whether to use simple aggregation (depth=0) or complex (depth=1)
-		int expr_depth = rand_int(0, 1);
-		
-		std::cout << "  Reducing over dimension " << reduce_dim 
-				  << " with expression depth " << expr_depth << "\n";
-
-
-		// ### create a randomly generated aggregate function over a randomly chosen reduction domain.
-		// #### decide over what dimension and window size to aggregate.
-		int extent = reduce_dim==0 ? f.w :
-			reduce_dim==1 ? f.h :
-			f.c;
-		int window_size = rand_int(1, std::min(10, extent));
-		RDom r(0, window_size);
-		agg_coords[reduce_dim] = clamp(agg_coords[reduce_dim] + r, 0, 
-										reduce_dim==0 ? f.w-1 :
-										reduce_dim==1 ? f.h-1 :
-										f.c-1);
-		std::vector<Expr> inputs;
-		inputs.push_back(f.func(agg_coords));
-		Expr agg_expr = random_expr(inputs, expr_depth, func_size);
-		
-
-		// Choosing Reduction =========
-		int agg_type = rand_int(0, 4);
-
-		if(agg_type == 0) {
-			result(f.func.args()) = sum(cast(f.func.value().type(), agg_expr));
-			std::cout<<"finding sum(cast(" << f.func.value().type() <<", "<< agg_expr << "))\n";
-		} else if(agg_type == 1) {
-			result(f.func.args()) += cast(f.func.value().type(), agg_expr/window_size);
-			std::cout<<"finding avg(cast(" << f.func.value().type() <<", "<< agg_expr << "))\n";
-		}else if(agg_type == 2) {
-			result(f.func.args()) = argmin(cast(f.func.value().type(), agg_expr))[0];
-			std::cout<<"finding argmin(cast(" << f.func.value().type() <<", "<< agg_expr << "))\n";
-		}else if(agg_type == 3) {
-			result(f.func.args()) = argmax(cast(f.func.value().type(), agg_expr))[0];
-			std::cout<<"finding argmax(cast(" << f.func.value().type() <<", "<< agg_expr << "))\n";
-		}else{
-			result(f.func.args()) = sum(cast(f.func.value().type(), agg_expr));
-			std::cout<<"finding sum(cast(" << f.func.value().type() <<", "<< agg_expr << "))\n";
-		}
-		
-		return {result, f.w, f.h, f.c};
-	}
-
-
-	// ============================================================================
-	// REVISED Mux Stage
-	// ============================================================================
-
-	// Mux stage: N-way selection based on index value
-	// REVISED: Always maintains 3D output
-	//Stage mux_stage(Stage data, Stage index) {
-		//std::cout << "Creating mux stage from data " << data.w << "×" << data.h << "×" << data.c 
-				  //<< " with index " << index.w << "×" << index.h << "×" << index.c << "\n";
-		
-		//Func result("mux");
-		
-		//if (data.c == 3) {
-			//// Mux over channels using index stage, result per-channel
-			//std::cout << "  Mux: selecting from " << data.c << " channels\n";
-			
-			//// Use modulo to ensure index is in valid range
-			//Expr idx = cast<int>(index.func(x, y, c)) % data.c;
-			
-			//// Build mux options
-			//std::vector<Expr> options;
-			//for (int i = 0; i < std::min(data.c, 8); i++) {
-				//options.push_back(data.func(x, y, i));
-			//}
-			
-			//// REVISED: Apply mux per-channel (each channel might select different source)
-			//result(x, y, c) = mux(idx, options);
-			
-			//return {result, data.w, data.h, data.c};  // CHANGED: Keep 3D
-		//}
-		
-		//// Fallback: just return data as-is
-		//std::cout << "  Mux: fallback to identity (not enough channels)\n";
-		//result(x, y, c) = data.func(x, y, c);
-		//return {result, data.w, data.h, data.c};
-	//}
-
-
     // Add a random new stage onto the end of the pipeline.
     Stage random_stage(const vector<Stage> &s) {
         int m = (int)s.size() - 1;
@@ -1120,7 +918,7 @@ public:
 
         Stage f = s[i1], g = s[i2];
 
-        int stage_type = rand_int(0, 16);
+        int stage_type = rand_int(0, 15);
 
         if (stage_type == 0) {
             int dim = rand_int(0, 1);
@@ -1166,11 +964,7 @@ public:
             return all_to_all_w(f, dim);
         } else if (stage_type == 13) {
             return slice(f, g);
-        } else if (stage_type == 14) {
-        // CHANGED: Pass func_size to aggregation_stage
-			int func_size = 20;
-			return aggregation_stage(f, func_size);
-		} else if (i1 != i2) {
+        } else if (i1 != i2) {
             return binary_op(f, g);
         } else {
             // Try again
@@ -1211,7 +1005,6 @@ public:
 	int8_weights_bounded   = BoundaryConditions::repeat_edge(int8_weights);
 	int16_weights_bounded  = BoundaryConditions::repeat_edge(int16_weights);
 	int32_weights_bounded  = BoundaryConditions::repeat_edge(int32_weights);
-	float32_weights_bounded = BoundaryConditions::repeat_edge(float32_weights);
 
         int W=2000;
         int H=2000;
@@ -1272,10 +1065,6 @@ public:
             .dim(2).set_estimate(-5, 5)
             .dim(3).set_estimate(0, 512);
         int32_weights.dim(0).set_estimate(0, 512)
-            .dim(1).set_estimate(-5, 5)
-            .dim(2).set_estimate(-5, 5)
-            .dim(3).set_estimate(0, 512);
-        float32_weights.dim(0).set_estimate(0, 512)
             .dim(1).set_estimate(-5, 5)
             .dim(2).set_estimate(-5, 5)
             .dim(3).set_estimate(0, 512);
