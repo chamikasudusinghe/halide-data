@@ -4,12 +4,89 @@
 #include <random>
 #include <cstdlib>
 #include <unordered_map>
+#include <queue>
+#include <fstream>
 
 using namespace Halide;
 using namespace Halide::Internal;
 using namespace std;
 using std::vector;
 using std::unordered_map;
+
+// PATCH TO REPLACE RANDOM NUMBER GENERATION ################################
+ 
+// Controlled RNG: reads from a pre-supplied queue, falls back to mt19937.
+struct ControlledRNG {
+    std::queue<uint32_t> prescribed;
+    std::mt19937 fallback;
+    bool log_enabled = false;
+    int call_count = 0;
+ 
+    void seed_fallback(uint32_t s) {
+        fallback.seed(s);
+    }
+ 
+    void load_from_file(const std::string &path) {
+        std::ifstream f(path);
+        if (!f.is_open()) {
+            std::cerr << "[ControlledRNG] WARNING: could not open "
+                      << path << ", falling back to mt19937\n";
+            return;
+        }
+        uint32_t v;
+        while (f >> v) {
+            prescribed.push(v);
+        }
+        std::cerr << "[ControlledRNG] Loaded " << prescribed.size()
+                  << " prescribed values from " << path << "\n";
+    }
+ 
+    uint32_t operator()() {
+        uint32_t val;
+        bool from_queue = false;
+        if (!prescribed.empty()) {
+            val = prescribed.front();
+            prescribed.pop();
+            from_queue = true;
+        } else {
+            val = fallback();
+        }
+        if (log_enabled) {
+            std::cout << "[RNG call " << call_count << "] "
+                      << val
+                      << (from_queue ? " (prescribed)" : " (fallback)")
+                      << "\n";
+        }
+        ++call_count;
+        return val;
+    }
+ 
+    // Satisfy the mt19937 interface used by rand_int / rand_bool
+    using result_type = uint32_t;
+    static constexpr uint32_t min() { return 0; }
+    static constexpr uint32_t max() { return UINT32_MAX; }
+};
+ 
+ControlledRNG rng;
+ 
+// Helper: initialise rng from GeneratorParam seed and optional file.
+// Call this at the top of generate() instead of rng.seed(seed).
+void init_rng(int seed_val) {
+    rng.seed_fallback(seed_val);
+ 
+    const char *choices_file = std::getenv("HL_RNG_CHOICES_FILE");
+    if (choices_file && choices_file[0] != '\0') {
+        rng.load_from_file(choices_file);
+    }
+ 
+    const char *log_flag = std::getenv("HL_RNG_LOG");
+    rng.log_enabled = (log_flag && std::string(log_flag) == "1");
+}
+ 
+
+
+// END, PATCH TO REPLACE RANDOM NUMBER GENERATION ################################
+
 
 // Convert a vector of Vars to Exprs. Useful for generating references
 // to Funcs.
@@ -21,7 +98,7 @@ vector<Expr> make_arguments(vector<Var> vars) {
     return result;
 }
 
-std::mt19937 rng;
+//std::mt19937 rng;
 
 // Helpers to generate random values.
 int rand_int(int min, int max) { return (rng() % (max - min + 1)) + min; }
@@ -1179,7 +1256,8 @@ public:
     }
 
     void generate() {
-        rng.seed((int)seed);
+        //rng.seed((int)seed);
+		init_rng((int)seed);
 
         Var x("x"), y("y"), c("c");
 
