@@ -14,18 +14,31 @@ using std::vector;
 using std::unordered_map;
 
 // PATCH TO REPLACE RANDOM NUMBER GENERATION ################################
- 
-// Controlled RNG: reads from a pre-supplied queue, falls back to mt19937.
+
+// Controlled RNG with per-stage chunk isolation.
+//
+// File format (written by Python):
+//   <count_0> <val> <val> ...    ← chunk 0 (boundary)
+//   <count_1> <val> <val> ...    ← chunk 1 (stage 0: i2, i1, stage_type, params...)
+//   <count_2> <val> <val> ...    ← chunk 2 (stage 1: ...)
+//   ...
+//
+// Call advance_stage() before each stage.  Any leftover values from the
+// previous chunk are discarded, so a mismatch in one stage cannot cascade
+// into the next.
 struct ControlledRNG {
-    std::queue<uint32_t> prescribed;
+    std::vector<std::vector<uint32_t>> stage_chunks;
+    int current_stage = -1;
+    std::queue<uint32_t> prescribed;   // current chunk's values
     std::mt19937 fallback;
     bool log_enabled = false;
     int call_count = 0;
- 
+    std::ofstream log_file;
+
     void seed_fallback(uint32_t s) {
         fallback.seed(s);
     }
- 
+
     void load_from_file(const std::string &path) {
         std::ifstream f(path);
         if (!f.is_open()) {
@@ -33,14 +46,44 @@ struct ControlledRNG {
                       << path << ", falling back to mt19937\n";
             return;
         }
-        uint32_t v;
-        while (f >> v) {
-            prescribed.push(v);
+        uint32_t count;
+        while (f >> count) {
+            stage_chunks.emplace_back();
+            auto &chunk = stage_chunks.back();
+            for (uint32_t i = 0; i < count; i++) {
+                uint32_t v;
+                if (!(f >> v)) break;
+                chunk.push_back(v);
+            }
         }
-        std::cerr << "[ControlledRNG] Loaded " << prescribed.size()
-                  << " prescribed values from " << path << "\n";
+        std::cerr << "[ControlledRNG] Loaded " << stage_chunks.size()
+                  << " chunks from " << path << "\n";
+
+        // getting the log file ready as well
+        const char *log_path = std::getenv("HL_RNG_LOG_FILE");
+        if (log_path && log_path[0] != '\0') {
+            log_file.open(log_path);
+        }
     }
- 
+
+    void advance_stage() {
+        // Discard any leftover values from the previous chunk
+        std::queue<uint32_t> empty;
+        std::swap(prescribed, empty);
+        current_stage++;
+        if (current_stage < (int)stage_chunks.size()) {
+            for (auto v : stage_chunks[current_stage]) {
+                prescribed.push(v);
+            }
+            if (log_file.is_open()) {
+                log_file << "[STAGE " << current_stage << "] loaded "
+                         << stage_chunks[current_stage].size()
+                         << " prescribed values\n";
+                log_file.flush();
+            }
+        }
+    }
+
     uint32_t operator()() {
         uint32_t val;
         bool from_queue = false;
@@ -51,34 +94,35 @@ struct ControlledRNG {
         } else {
             val = fallback();
         }
-        if (log_enabled) {
-            std::cout << "[RNG call " << call_count << "] "
-                      << val
-                      << (from_queue ? " (prescribed)" : " (fallback)")
-                      << "\n";
+
+        if (log_file.is_open()) {
+            log_file << "[RNG call " << call_count << "] "
+                     << val << " "
+                     << (from_queue ? "(prescribed)" : "(fallback)") << "\n";
+            log_file.flush();
         }
         ++call_count;
         return val;
     }
- 
+
     // Satisfy the mt19937 interface used by rand_int / rand_bool
     using result_type = uint32_t;
     static constexpr uint32_t min() { return 0; }
     static constexpr uint32_t max() { return UINT32_MAX; }
 };
- 
+
 ControlledRNG rng;
- 
+
 // Helper: initialise rng from GeneratorParam seed and optional file.
 // Call this at the top of generate() instead of rng.seed(seed).
 void init_rng(int seed_val) {
     rng.seed_fallback(seed_val);
- 
+
     const char *choices_file = std::getenv("HL_RNG_CHOICES_FILE");
     if (choices_file && choices_file[0] != '\0') {
         rng.load_from_file(choices_file);
     }
- 
+
     const char *log_flag = std::getenv("HL_RNG_LOG");
     rng.log_enabled = (log_flag && std::string(log_flag) == "1");
 }
@@ -314,7 +358,7 @@ Expr random_expr(vector<Expr> inputs, int depth, int func_size) {
         e = Internal::simplify(e);
     }
 
-    for (int attempts = 0; attempts < 10; attempts++) {
+    for (int attempts = 0; attempts < 1; attempts++) {
         Expr result =
             Internal::simplify(Internal::common_subexpression_elimination(random_expr_inner(inputs, depth, func_size)));
 
@@ -577,6 +621,7 @@ public:
     }
 
     Stage convolve2D(Stage f, int kernel_min, int kernel_max) {
+		std::cout << "convolve2D with kernel_min=" << kernel_min << " kernel_max="<< kernel_max<<"\n";
         int conv_type = rand_int(0,2);
         if (conv_type == 0) return convolve2D_unrolled(f, kernel_min, kernel_max);
         if (conv_type == 1) return convolve2D_w(f, kernel_min, kernel_max);
@@ -584,6 +629,7 @@ public:
     }
 
     Stage pool2D(Stage f, int kernel_min, int kernel_max) {
+		std::cout<<"created pool2D\n";
         int pool_type = rand_int(0,2);
         if (pool_type == 0) return pool2D_unrolled(f, kernel_min, kernel_max);
         if (pool_type == 1) return pool2D_w(f, kernel_min, kernel_max);
@@ -591,11 +637,12 @@ public:
     }
 
     Stage activation(Stage f) {
+		std::cout<<"created activation\n";
         return relu_layer(f);
     }
 
     Stage relu_layer(Stage f) {
-        std::cout << "Relu\n";
+        std::cout << "Created Relu\n";
         Func activation("relu");
         // if input type is int, downcast with 50% chance
         Type input_type = f.func.value().type();
@@ -607,6 +654,7 @@ public:
         return {activation, f.w, f.h, f.c};
     }
     Stage pool2D_unrolled(Stage f, int kernel_min, int kernel_max) {
+		std::cout <<"Created pool2D_unrolled with kmin=" << kernel_min << ", kmax=" << kernel_max << "\n";
         vector<Var> args = f.func.args();
         Func pooled2D("pooled2D" + args[0].name() + args[1].name());
         int stride = f.random_size_reduce_factor();
@@ -651,6 +699,7 @@ public:
     }
 
     Stage pool2D_r(Stage f, int kernel_min, int kernel_max) {
+		std::cout <<"Created pool2D_r with kmin=" << kernel_min << ", kmax=" << kernel_max << "\n";
         vector<Var> args = f.func.args();
         Func pooled2D_r("pool2D_r_" + args[0].name() + args[1].name());
         int stride = f.random_size_reduce_factor();
@@ -682,6 +731,7 @@ public:
     }
 
     Stage pool2D_w(Stage f, int kernel_min, int kernel_max) {
+		std::cout <<"Created pool2D_w with kmin=" << kernel_min << ", kmax=" << kernel_max << "\n";
         vector<Var> args = f.func.args();
         Func pooled2D_w("pooled2D_w_" + args[0].name() + args[1].name());
         int stride = f.random_size_reduce_factor();
@@ -998,7 +1048,7 @@ public:
     // Do a data-dependent looking into one stage using another as the
     // index.
     Stage slice(Stage f, Stage g) {
-        std::cout << "Slice\n";
+        std::cout << "Created Slice\n";
         if (f.c > g.c) {
             std::swap(f, g);
         }
@@ -1017,7 +1067,7 @@ public:
 
     // Construct a tiled histogram of regions of a stage.
     Stage tiled_histogram(Stage f) {
-        std::cout << "Tiled histogram\n";
+        std::cout << " Created Tiled histogram\n";
 
         int old_c = f.c;
         f = resample_to(f, f.w, f.h, 1);
@@ -1089,6 +1139,7 @@ public:
     }
 
     Stage cast_stage(Type t, Stage f) {
+		std::cout << "Creating cast stage\n";
         Func casted("casted");
         casted(f.func.args()) = cast(t, f.func(f.func.args()));
         return {casted, f.w, f.h, f.c};
@@ -1257,6 +1308,12 @@ public:
 
     void generate() {
         //rng.seed((int)seed);
+		std::cerr << "[DEBUG] HL_RNG_LOG=" 
+			<< (std::getenv("HL_RNG_LOG") ? std::getenv("HL_RNG_LOG") : "unset") 
+			<< "\n";
+		std::cerr << "[DEBUG] HL_RNG_CHOICES_FILE=" 
+			<< (std::getenv("HL_RNG_CHOICES_FILE") ? std::getenv("HL_RNG_CHOICES_FILE") : "unset") 
+			<< "\n";
 		init_rng((int)seed);
 
         Var x("x"), y("y"), c("c");
@@ -1265,6 +1322,7 @@ public:
 
 	// Need boundary conditions to avoid out of bounds access on input buffer
         // first(x, y, c) = input(x, y, c);
+        rng.advance_stage();  // chunk 0: boundary
         int rand_boundary = rand_int(0, 4);
 	if (rand_boundary == 0) {
             std::cout << "Using constant_exterior" << "\n";
@@ -1300,6 +1358,7 @@ public:
 
         for (int i = 0; i < max_stages - 2; i++) {
             std::cout << "Approx size: " << stages.back().w << ", " << stages.back().h << ", " << stages.back().c << "\n";
+            rng.advance_stage();  // chunk i+1: stage i
             Stage next = random_stage(stages);
             stages.push_back(next);
             if (!using_autoscheduler()) {
