@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 BENCHMARK=$1
 BENCH_MODE=$2
@@ -83,11 +83,10 @@ LENS_BLUR_BUILD_DIR=${HALIDE_ROOT}/apps/${BENCHMARK}/build
 
 # Generator and runtime locations from CMake build
 GENERATOR=${LENS_BLUR_BUILD_DIR}/${BENCHMARK}.generator
-RUNTIME=${HALIDE_ROOT}/bin/auto_schedule_runtime.a  # Use installed Halide runtime
 
 # Output directory for samples
 BLD_TOP=${BASELOC}/build_benchapp_samples
-
+RUNTIME=${BLD_TOP}/auto_schedule_runtime.a  # Generated on first run
 
 # CHANGED: benchapp specific parameters
 # You may need to adjust these based on your benchapp generator's arguments
@@ -178,8 +177,8 @@ make_featurization() {
     ${CXX_X86} ${CXXFLAGS_X86} \
     -I ${D} -I ${HALIDE_INSTALL_ROOT}/include -I${HALIDE_ROOT}/tools \
     ${HALIDE_INSTALL_ROOT}/share/tools/RunGenMain.cpp ${RUNTIME}\
-	-L${HALIDE_ROOT}/lib -lHalide \
-	-Wl,-rpath,${HALIDE_ROOT}/lib \
+	-L${HALIDE_INSTALL_ROOT}/lib -lHalide \
+	-Wl,-rpath,${HALIDE_INSTALL_ROOT}/lib \
     ${D}/*registration.cpp ${D}/*.a -o ${D}/bench ${LDFLAGS_X86} 2>> ${D}/stderr.txt
     COMPILE_EXIT=$?
     
@@ -327,6 +326,14 @@ LDFLAGS_X86="-lpthread -ldl -fPIE -pie"
 #TARGET="x86-64-linux-avx-avx2-avx512f-avx512bw-avx512dq-avx512cd-avx512vl-f16c-fma-sse41"
 TARGET="x86-64-linux-avx-avx2-avx512-f16c-fma-sse41"
 
+# Generate standalone Halide runtime if it doesn't exist
+if [ ! -f ${RUNTIME} ]; then
+    echo "Generating Halide runtime..."
+    mkdir -p ${BLD_TOP}
+    ${GENERATOR} -r auto_schedule_runtime -o ${BLD_TOP} target=${TARGET}
+    echo "✓ Generated runtime: ${RUNTIME}"
+fi
+
 AUTOSCHED_BIN=${HALIDE_INSTALL_ROOT}/lib
 
 if [[ $(ls -A build_benchapp_samples/samples/batch*) ]];
@@ -391,7 +398,7 @@ for ((BATCH_ID=$((FIRST+OFFSET+1));BATCH_ID<$((FIRST+OFFSET+1+NUM_BATCHES));BATC
     for ((SAMPLE_ID=0;SAMPLE_ID<${BATCH_SIZE};SAMPLE_ID++)); do
         while [[ 1 ]]; do
             RUNNING=$(jobs -r | wc -l)
-            if [[ RUNNING -ge LOCAL_CORES ]]; then
+            if [[ ${RUNNING} -ge ${LOCAL_CORES} ]]; then
                 sleep 1
             else
                 break
