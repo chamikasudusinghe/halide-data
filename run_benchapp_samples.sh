@@ -4,13 +4,14 @@ set -e
 
 BENCHMARK=$1
 BENCH_MODE=$2
+CUSTOM_TYPE=${3:-}
 
 # ====================================================
 # Set up environment vars necessary to build generator
 # ====================================================
 # The following are for Halide installation and changes per user
-export HALIDE_ROOT=/home/bhirani2/cosmos/superHalide/Halide
-export HALIDE_INSTALL_ROOT=/home/bhirani2/cosmos/superHalide/halide-install-all/halide-install-libtorch-mod
+export HALIDE_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/Halide
+export HALIDE_INSTALL_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/halide-install-all/halide-install-libtorch-mod
 # The following are for halide
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
 export AUTOSCHED_TOOLS=${HALIDE_ROOT}/src/autoschedulers/adams2019
@@ -29,33 +30,52 @@ fi
 
 #BIN=${BLD_TOP}/${}
 PIPELINE="${BENCHMARK}"  # CHANGED: from random_pipeline to benchapp
+WEIGHTS_ARCHIVE=${BASELOC}/weights_archive
 
 if [[ "$BENCH_MODE" == "custom" ]]; then
-	export HL_WEIGHTS_DIR=${AUTOSCHED_TOOLS}/baseline_custom0.pt
 	export HL_COST_MODEL_TYPE=custom
+	if [[ "$CUSTOM_TYPE" == "custom0" ]]; then
+		echo "bash: custom type custom0 detected for ${BENCHMARK}"
+		export HL_WEIGHTS_DIR=${WEIGHTS_ARCHIVE}/baseline_custom0.pt
+		START_WEIGHTS_FILE=${WEIGHTS_ARCHIVE}/baseline_custom0.pt
+		export HL_COST_MODEL_TYPE=custom
+		export HL_CUSTOM_MODEL_TYPE=custom0
+		export HL_WEIGHTS_INPUT_FORMAT=torchscript
+	elif [[ "$CUSTOM_TYPE" == "adams2019" ]]; then
+		echo "bash: custom type adams2019 detected for ${BENCHMARK}"
+		export HL_WEIGHTS_DIR=${WEIGHTS_ARCHIVE}/intermediate_weights_halide_cpu.pt
+		START_WEIGHTS_FILE=${WEIGHTS_ARCHIVE}/intermediate_weights_halide_cpu.pt
+		export HL_COST_MODEL_TYPE=custom
+		export HL_CUSTOM_MODEL_TYPE=adams2019
+		export HL_WEIGHTS_INPUT_FORMAT=torchscript
+	fi
 elif [[ "$BENCH_MODE" == "adams2019Libtorch" ]]; then
-	export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline_libtorch.pt
+	echo "bash: adams2019 libtorch version detected for ${BENCHMARK}"
+	export HL_WEIGHTS_DIR=${WEIGHTS_ARCHIVE}/baseline_libtorch.pt
+	START_WEIGHTS_FILE=${WEIGHTS_ARCHIVE}/baseline_libtorch.pt
 	export HL_COST_MODEL_TYPE=adams2019
+	export HL_WEIGHTS_INPUT_FORMAT=archive
 elif [[ "$BENCH_MODE" == "adams2019Halide" ]]; then
-	export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline.weights
+	echo "bash: adams2019 halide version detected for ${BENCHMARK}"
+	export HL_WEIGHTS_DIR=${WEIGHTS_ARCHIVE}/baseline.weights
 	export HL_USE_LIBTORCH_COST_MODEL=0
 else 
 	echo "Warning: Mode not supported, setting weights to default halide weights"
-	export HL_WEIGHTS_DIR=${HALIDE_INSTALL_ROOT}/src/autoschedulers/adams2019/baseline.weights
+	export HL_WEIGHTS_DIR=${WEIGHTS_ARCHIVE}/baseline.weights
 	export HL_USE_LIBTORCH_COST_MODEL=0
 fi
 
 
 # Use LibTorch weights if LibTorch is enabled, otherwise use baseline.weights
-if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
-	if [[ "$BENCH_MODE" == "custom" ]]; then
-		START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_custom0.pt
-	else
-		START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
-	fi
-else
-    START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
-fi
+#if [ "${HL_USE_LIBTORCH_COST_MODEL:-1}" = "1" ]; then
+	#if [[ "$BENCH_MODE" == "custom" ]]; then
+		#START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_custom0.pt
+	#else
+		#START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
+	#fi
+#else
+    #START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
+#fi
 
 # IMPORTANT: Path to your CMake build directory where benchapp was built
 # Adjust this to match your actual build location
