@@ -9,8 +9,8 @@ BENCH_MODE=$2
 # Set up environment vars necessary to build generator
 # ====================================================
 # The following are for Halide installation and changes per user
-export HALIDE_ROOT=/home/bhirani2/cosmos/superHalide/Halide
-export HALIDE_INSTALL_ROOT=/home/bhirani2/cosmos/superHalide/halide-install-all/halide-install-libtorch-mod
+export HALIDE_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/Halide
+export HALIDE_INSTALL_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/halide-install-all/halide-install-libtorch-mod
 # The following are for halide
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
 export AUTOSCHED_TOOLS=${HALIDE_ROOT}/src/autoschedulers/adams2019
@@ -48,14 +48,32 @@ fi
 
 # IMPORTANT: Path to your CMake build directory where benchapp was built
 # Adjust this to match your actual build location
-LENS_BLUR_BUILD_DIR=${HALIDE_ROOT}/apps/${BENCHMARK}/build
+BENCH_BUILD_DIR=${HALIDE_ROOT}/apps/${BENCHMARK}/build
 
 # Generator and runtime locations from CMake build
-GENERATOR=${LENS_BLUR_BUILD_DIR}/${BENCHMARK}.generator
-RUNTIME=${HALIDE_ROOT}/bin/auto_schedule_runtime.a  # Use installed Halide runtime
+GENERATOR=${BENCH_BUILD_DIR}/${BENCHMARK}.generator
+
+if [[ -d "${BENCH_BUILD_DIR}" ]]; then
+	if [[ -f "${GENERATOR}" ]]; then
+		echo "found generator..."
+	else
+		echo "build dir exists but generator not found. Run make to produce one"
+	fi
+else
+	echo "generator does not exist. Compiling..."
+	mkdir -p ${BENCH_BUILD_DIR}
+	cd ${BENCH_BUILD_DIR}
+	cmake .. -DCMAKE_PREFIX_PATH=${HALIDE_INSTALL_ROOT} && make
+	if [[ -f "${GENERATOR}" ]]; then
+		echo "generator successfully compiled..."
+	else
+		echo "unable to compile generator, probably because cmake or make failed..."
+	fi
+fi
 
 # Output directory for samples
 BLD_TOP=${BASELOC}/build_benchapp_samples
+RUNTIME=${BLD_TOP}/auto_schedule_runtime.a  # Generated on first run
 
 
 # CHANGED: benchapp specific parameters
@@ -140,8 +158,8 @@ make_featurization() {
     ${CXX_X86} ${CXXFLAGS_X86} \
     -I ${D} -I ${HALIDE_INSTALL_ROOT}/include -I${HALIDE_ROOT}/tools \
     ${HALIDE_INSTALL_ROOT}/share/tools/RunGenMain.cpp ${RUNTIME}\
-	-L${HALIDE_ROOT}/lib -lHalide \
-	-Wl,-rpath,${HALIDE_ROOT}/lib \
+	-L${HALIDE_INSTALL_ROOT}/lib -lHalide \
+	-Wl,-rpath,${HALIDE_INSTALL_ROOT}/lib \
     ${D}/*registration.cpp ${D}/*.a -o ${D}/bench ${LDFLAGS_X86} 2>> ${D}/stderr.txt
     COMPILE_EXIT=$?
     
@@ -223,7 +241,7 @@ if [ ! -f ${GENERATOR} ]; then
     echo ""
     echo "This will create: build/benchapp.generator"
     echo ""
-    echo "Then update LENS_BLUR_BUILD_DIR in this script to point to that build directory."
+    echo "Then update BENCH_BUILD_DIR in this script to point to that build directory."
     exit 1
 fi
 
@@ -289,6 +307,14 @@ LDFLAGS_X86="-lpthread -ldl -fPIE -pie"
 #TARGET="x86-64-linux-avx-avx2-avx512f-avx512bw-avx512dq-avx512cd-avx512vl-f16c-fma-sse41"
 TARGET="x86-64-linux-avx-avx2-avx512-f16c-fma-sse41"
 
+# Generate standalone Halide runtime if it doesn't exist
+if [ ! -f ${RUNTIME} ]; then
+    echo "Generating Halide runtime..."
+    mkdir -p ${BLD_TOP}
+    ${GENERATOR} -r auto_schedule_runtime -o ${BLD_TOP} target=${TARGET}
+    echo "✓ Generated runtime: ${RUNTIME}"
+fi
+
 AUTOSCHED_BIN=${HALIDE_INSTALL_ROOT}/lib
 
 if [[ $(ls -A build_benchapp_samples/samples/batch*) ]];
@@ -353,7 +379,7 @@ for ((BATCH_ID=$((FIRST+OFFSET+1));BATCH_ID<$((FIRST+OFFSET+1+NUM_BATCHES));BATC
     for ((SAMPLE_ID=0;SAMPLE_ID<${BATCH_SIZE};SAMPLE_ID++)); do
         while [[ 1 ]]; do
             RUNNING=$(jobs -r | wc -l)
-            if [[ RUNNING -ge LOCAL_CORES ]]; then
+            if [[ $RUNNING -ge $LOCAL_CORES ]]; then
                 sleep 1
             else
                 break

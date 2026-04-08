@@ -79,10 +79,29 @@ fi
 
 # IMPORTANT: Path to your CMake build directory where benchapp was built
 # Adjust this to match your actual build location
-LENS_BLUR_BUILD_DIR=${HALIDE_ROOT}/apps/${BENCHMARK}/build
+BENCH_BUILD_DIR=${HALIDE_ROOT}/apps/${BENCHMARK}/build
 
 # Generator and runtime locations from CMake build
-GENERATOR=${LENS_BLUR_BUILD_DIR}/${BENCHMARK}.generator
+GENERATOR=${BENCH_BUILD_DIR}/${BENCHMARK}.generator
+
+if [[ -d "${BENCH_BUILD_DIR}" ]]; then
+	if [[ -f "${GENERATOR}" ]]; then
+		echo "found generator..."
+	else
+		echo "build dir exists but generator not found. Run make to produce one"
+	fi
+else
+	echo "generator does not exist. Compiling..."
+	mkdir -p ${BENCH_BUILD_DIR}
+	cd ${BENCH_BUILD_DIR}
+	cmake .. -DCMAKE_PREFIX_PATH=${HALIDE_INSTALL_ROOT} && make
+	if [[ -f "${GENERATOR}" ]]; then
+		echo "generator successfully compiled..."
+	else
+		echo "unable to compile generator, probably because cmake or make failed..."
+	fi
+fi
+
 
 # Output directory for samples
 BLD_TOP=${BASELOC}/build_benchapp_samples
@@ -260,7 +279,7 @@ if [ ! -f ${GENERATOR} ]; then
     echo ""
     echo "This will create: build/benchapp.generator"
     echo ""
-    echo "Then update LENS_BLUR_BUILD_DIR in this script to point to that build directory."
+    echo "Then update BENCH_BUILD_DIR in this script to point to that build directory."
     exit 1
 fi
 
