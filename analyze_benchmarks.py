@@ -265,11 +265,11 @@ if __name__ == "__main__":
     # Normalized (max=1) runtimes with variance
     norm_data = normalize_data_to_max(data)
     plot_runtimes(norm_data, normalized=True)
-    plot_compile_times(norm_data, normalized=True)
-    plot_bench_times(norm_data, normalized=True)
+    # plot_compile_times(norm_data, normalized=True)
+    # plot_bench_times(norm_data, normalized=True)
 
     plot_runtimes(data, normalized=False)
-    plot_compile_times(data, normalized=False)
-    plot_bench_times(data, normalized=False)
+    # plot_compile_times(data, normalized=False)
+    # plot_bench_times(data, normalized=False)
 
     generate_tables(data)
