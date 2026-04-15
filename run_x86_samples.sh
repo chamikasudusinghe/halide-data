@@ -32,14 +32,18 @@ RUNTIME=${BIN}/runtime.a
 if [ "${HL_USE_LIBTORCH_COST_MODEL:-0}" = "1" ]; then
     #START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline_libtorch.pt
     START_WEIGHTS_FILE=${BASELOC}/weights_archive/baseline_libtorch.pt
+	export HL_WEIGHTS_DIR=${BASELOC}/weights_archive/baseline_libtorch.pt
 else
     #START_WEIGHTS_FILE=${AUTOSCHED_TOOLS}/baseline.weights
     START_WEIGHTS_FILE=${BASELOC}/weights_archive/baseline.weights
+	export HL_WEIGHTS_DIR=${BASELOC}/weights_archive/baseline.weights
 fi
 
 BATCH_SIZE=1
 NUM_BATCHES=1 # limited NUM_BATCHES for testing
 MAX_STAGES=20
+# number of available threads in the machine
+NUM_THREADS=32
 
 # Read the generator-arg sets into an array. Each set is delimited
 # by space; multiple values within each set are are delimited with ;
@@ -57,6 +61,88 @@ fi
 
 COMPILATION_TIMEOUT=300s 
 BENCHMARKING_TIMEOUT=180s 
+
+# =================================================================
+# setup for making sure the benchmarking happens on the appropriate
+# number of cores.
+# =================================================================
+# moved up the detection of local cores. This is the default, and can be changed in arguments
+if [ $(uname -s) = "Darwin" ]; then
+    LOCAL_CORES=`sysctl -n hw.ncpu`
+else
+    LOCAL_CORES=`nproc`
+fi
+echo Local number of cores detected as ${LOCAL_CORES}
+
+start_core=""
+end_core=""
+num_threads=""
+
+usage() {
+    echo "Usage: $0 [--start-core N] [--end-core M]"
+    exit 1
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --start-core) start_core="$2"; shift 2 ;;
+        --end-core)   end_core="$2";   shift 2 ;;
+		--num-threads) num_threads="$2"; shift 2 ;;
+        --)           shift; break ;;
+        -h|--help)    usage ;;
+        *)            break ;;
+    esac
+done
+
+# Validate: both or neither
+if [[ -n "$start_core" && -z "$end_core" ]] || [[ -z "$start_core" && -n "$end_core" ]]; then
+    echo "Error: --start-core and --end-core must be provided together" >&2
+    exit 1
+fi
+
+if [[ -n "$start_core" && -n "$end_core" && -z "$num_threads" ]]; then
+	echo "Inferring number of threads from --start_core and --end_core"
+	num_threads=$((end_core - start_core + 1))
+fi
+
+if [[ -n "$start_core" && -n "$num_threads" ]]; then
+    range_size=$((end_core - start_core + 1))
+    if (( num_threads != range_size )); then
+        echo "Warning: --num-threads ($num_threads) doesn't match core range size ($range_size)" >&2
+    fi
+fi
+
+if [[ -n "$start_core" && -n "$end_core" && -n "$num_threads" ]]; then
+	echo "Number of threads restricted to: ${num_threads}, pinning on cores ${start_core}-${end_core}"
+fi
+
+# Build taskset prefix as an array (safe for argument passing)
+taskset_cmd=()
+if [[ -n "$start_core" ]]; then
+    if (( start_core > end_core )); then
+        echo "Error: start-core ($start_core) must be <= end-core ($end_core)" >&2
+        exit 1
+    fi
+    taskset_cmd=(taskset -c "${start_core}-${end_core}")
+fi
+
+if [[ -z "$num_threads" ]]; then
+	echo "num threads not specified; using detected threads"
+	num_threads=${LOCAL_CORES}
+fi
+
+# Controls what kind of parallelism a halide pipeline is compiled for
+AUTOSCHED_PARALLELISM=${num_threads}
+
+# Controls how many threads a halide-compiled binary spawns AT RUNTIME
+# to serve as a pool for all .parallelize(...) calls
+export HL_NUM_THREADS=${num_threads}
+
+# If we're compiling the benchmark for N cores, it should ideally be 
+# benchmarked using the same number of cores...
+
+# ########### setup done ########################################
+# ###############################################################
 
 # =================
 # Utility functions
@@ -86,6 +172,8 @@ make_featurization() {
         beam=1
     fi
 
+	echo "using autoscheduler.parallelism = ${AUTOSCHED_PARALLELISM}"	
+
     HL_RANDOM_DROPOUT=${dropout} \
 	HL_SEED=${SEED} \
 	HL_BEAM_SIZE=${beam} \
@@ -102,7 +190,7 @@ make_featurization() {
 	seed=${BATCH_ID} max_stages=${MAX_STAGES} autoscheduler=Adams2019 \
     -p ${AUTOSCHED_BIN}/libautoschedule_adams2019.so \
 	autoscheduler=Adams2019 \
-	autoscheduler.parallelism=32 \
+	autoscheduler.parallelism=${AUTOSCHED_PARALLELISM} \
 	autoscheduler.beam_size=${HL_BEAM_SIZE} \
 	autoscheduler.random_dropout=${HL_RANDOM_DROPOUT} \
 	autoscheduler.random_dropout_seed=${HL_SEED} \
@@ -143,10 +231,15 @@ make_featurization() {
 run_bench() {
     BIN=${1}
     DEVICE="host";
+
+	if [[ -n ${taskset_cmd[@]} ]]; then
+		echo "pinning benchmark on cores ${start_core}-${end_core}"
+	fi
+
     mkdir -p ${BIN}/${DEVICE}/; \
     rm -rf ${BIN}/${DEVICE}/* ; \
     ${TIMEOUT_CMD} -k ${BENCHMARKING_TIMEOUT} ${BENCHMARKING_TIMEOUT} \
-    ${BIN}/bench --estimate_all --benchmarks=all 2>&1
+    "${taskset_cmd[@]}" ${BIN}/bench --estimate_all --benchmarks=all 2>&1
     rm -rf ${BIN}/bench
 }
 
@@ -254,7 +347,6 @@ if [ $(uname -s) = "Darwin" ]; then
 else
     LOCAL_CORES=`nproc`
 fi
-echo Local number of cores detected as ${LOCAL_CORES}
 
 echo Using $OFFSET starting Batch number $((FIRST+OFFSET+1))
 
