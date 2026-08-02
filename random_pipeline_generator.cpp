@@ -767,6 +767,16 @@ public:
         // Avoid huge unrolled loops
         if (f.c >= 4) return convolve2D_r(f, kernel_min, kernel_max);
 
+        // The input channels are fully unrolled, so nothing below refers to
+        // args[2]. Weight every tap by weights(..., args[2]) - the same trick
+        // the reduction-based variants use - so that the result actually
+        // varies with the output channel. Without this the Func is
+        // channel-invariant, and any consumer that only uses it as a channel
+        // index (see slice()) gets constant-folded away during inlining,
+        // leaving a scheduled Func with no consumers and hence no bounds.
+        Type input_type = f.func.value().type();
+        Func weights = get_conv_weights(input_type);
+
         vector<Expr> inputs;
         for (int c = 0; c < f.c; c++)  {
             for (int i = kernel_min; i <= kernel_max; i++) {
@@ -775,7 +785,14 @@ public:
                     coords[0] += i;
                     coords[1] += j;
                     coords[2] = c;
-                    inputs.push_back(f.func(coords));
+                    Expr w = weights(c, i, j, args[2]);
+                    Expr tap = f.func(coords);
+                    // bool taps can't be multiplied; promote them to the
+                    // weight type (uint8) first.
+                    if (tap.type().is_bool()) {
+                        tap = cast(w.type(), tap);
+                    }
+                    inputs.push_back(cast(tap.type(), w * tap));
                 }
             }
         }
@@ -1157,22 +1174,38 @@ public:
 		int reduce_dim = rand_int(0, 2);
 		// Choose whether to use simple aggregation (depth=0) or complex (depth=1)
 		int expr_depth = rand_int(0, 1);
-		
-		std::cout << "  Reducing over dimension " << reduce_dim 
+
+		auto dim_extent = [&](int d) { return d == 0 ? f.w : d == 1 ? f.h : f.c; };
+
+		// A dimension of extent 1 clamps the reduction coordinate to a single
+		// point, so simplify() folds the RVar away and sum()/argmin()/argmax()
+		// reject the expression ("must reference a reduction domain"). Reduce
+		// over the largest dimension instead. Note that rand_int() consumes one
+		// value however wide its range is, so this doesn't shift the RNG stream.
+		if (dim_extent(reduce_dim) < 2) {
+			int largest = 0;
+			for (int d = 1; d < 3; d++) {
+				if (dim_extent(d) > dim_extent(largest)) largest = d;
+			}
+			if (dim_extent(largest) < 2) {
+				std::cout << "  Nothing to reduce over; skipping aggregation\n";
+				return f;
+			}
+			std::cout << "  Dimension " << reduce_dim << " has extent 1; reducing over "
+					  << largest << " instead\n";
+			reduce_dim = largest;
+		}
+
+		std::cout << "  Reducing over dimension " << reduce_dim
 				  << " with expression depth " << expr_depth << "\n";
 
 
 		// ### create a randomly generated aggregate function over a randomly chosen reduction domain.
 		// #### decide over what dimension and window size to aggregate.
-		int extent = reduce_dim==0 ? f.w :
-			reduce_dim==1 ? f.h :
-			f.c;
+		int extent = dim_extent(reduce_dim);
 		int window_size = rand_int(1, std::min(10, extent));
 		RDom r(0, window_size);
-		agg_coords[reduce_dim] = clamp(agg_coords[reduce_dim] + r, 0, 
-										reduce_dim==0 ? f.w-1 :
-										reduce_dim==1 ? f.h-1 :
-										f.c-1);
+		agg_coords[reduce_dim] = clamp(agg_coords[reduce_dim] + r, 0, extent - 1);
 		std::vector<Expr> inputs;
 		inputs.push_back(f.func(agg_coords));
 		Expr agg_expr = random_expr(inputs, expr_depth, func_size);
