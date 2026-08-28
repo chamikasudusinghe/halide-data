@@ -2,7 +2,7 @@
 
 set -e
 
-export HALIDE_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/Halide
+export HALIDE_ROOT=/home/bhirani2/cosmos/deeptuner/Halide
 BASELOC=`pwd`
 PIPELINE="random_pipeline"
 BLD_TOP=${BASELOC}/build_x86_generator_deeptuner

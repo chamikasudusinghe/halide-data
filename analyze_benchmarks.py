@@ -5,7 +5,8 @@ from pathlib import Path
 import csv
 
 RESULT_DIR = Path("results_benchapp")
-MODES = ["manual", "custom", "adams2019", "adams2019Halide"]
+# MODES = ["halideAdams2019", "customAdams2019Random", "customAdams2019TopkFarthest", "customAdams2019TopkFarthestRandom"]
+MODES = ["halideAdams2019", "customAdams2019Random", "customAdams2019TopkFarthestRandom", "customAdams2019topkFarthestRandomE24"]
 
 RUNTIME_RE = re.compile(r"Runtime for .*?: ([\d.]+)")
 COMPILE_RE = re.compile(r"Compilation time: (\d+)")

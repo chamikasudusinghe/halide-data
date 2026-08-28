@@ -1,6 +1,6 @@
-HALIDE_ROOT ?= /home/bhavya/cosmos/life/UIUC/academics/research/halide/Halide
-HALIDE_INSTALL_ROOT ?= /home/bhavya/cosmos/life/UIUC/academics/research/halide/halide-install-all/halide-install-libtorch-mod
-CXX ?= /home/bhavya/cosmos/life/UIUC/academics/research/halide/llvm-install-all/llvm-install-v14/bin/clang++
+HALIDE_ROOT ?= /home/bhirani2/cosmos/deeptuner/Halide
+HALIDE_INSTALL_ROOT ?= /home/bhirani2/cosmos/deeptuner/halide-install-all/halide-install-libtorch-mod
+CXX ?= /home/bhirani2/cosmos/deeptuner/llvm-install-all/llvm-install-v14/bin/clang++
 #OPTIMIZE ?= "-std=c++11 -stdlib=libc++" 
 CXXFLAGS += $(OPTIMIZE) -std=c++17 -I $(HALIDE_INSTALL_ROOT)/include/ -I $(HALIDE_INSTALL_ROOT)/share/tools/ -I $(SANITIZER_FLAGS) -Wall -Werror -Wno-unused-function -Wcast-qual -Wignored-qualifiers -Wno-comment -Wsign-compare -Wno-unknown-warning-option -Wno-psabi
 LDFLAGS ?= -ldl -lpthread -lz

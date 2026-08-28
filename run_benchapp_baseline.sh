@@ -9,8 +9,8 @@ BENCH_MODE=$2
 # Set up environment vars necessary to build generator
 # ====================================================
 # The following are for Halide installation and changes per user
-export HALIDE_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/Halide
-export HALIDE_INSTALL_ROOT=/home/bhavya/cosmos/life/UIUC/academics/research/halide/halide-install-all/halide-install-libtorch-mod
+export HALIDE_ROOT=/home/bhirani2/cosmos/deeptuner/Halide
+export HALIDE_INSTALL_ROOT=/home/bhirani2/cosmos/deeptuner/halide-install-all/halide-install-libtorch-mod
 # The following are for halide
 export HALIDE_BIN=${HALIDE_INSTALL_ROOT}/bin
 export AUTOSCHED_TOOLS=${HALIDE_ROOT}/src/autoschedulers/adams2019
