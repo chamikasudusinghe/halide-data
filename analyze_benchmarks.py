@@ -25,27 +25,58 @@ def parse_log(filepath):
 
     return runtimes, total_compile, total_bench
 
+TRIAL_RE = re.compile(r"^trial(\d+)$", re.IGNORECASE)
+
+def split_log_name(stem):
+    """Split a log file stem into (benchmark, mode, trial).
+
+    Accepts both "<bench>_<mode>.log" and "<bench>_<mode>_trial<N>.log";
+    trial is None for the former.
+    """
+    parts = stem.split("_")
+    trial = None
+    m = TRIAL_RE.match(parts[-1])
+    if m is not None and len(parts) > 2:
+        trial = int(m.group(1))
+        parts = parts[:-1]
+    bench = "_".join(parts[:-1])
+    mode = parts[-1]
+    return bench, mode, trial
+
 def collect_data():
-    """Collect average and std runtimes per benchmark and mode."""
-    data = {}
+    """Collect runtime stats per benchmark and mode.
+
+    A (benchmark, mode) pair may have several trial logs; each trial's runtimes
+    are averaged and the trial with the *minimum* average runtime is kept. The
+    per-trial stats are kept alongside it under "trials".
+    """
+    trials = {}
     for log_file in RESULT_DIR.glob("*.log"):
-        parts = log_file.stem.split("_")
-        bench = "_".join(parts[:-1])
-        mode = parts[-1]
+        bench, mode, trial = split_log_name(log_file.stem)
         if mode not in MODES:
             continue
         runtimes, compile_time, bench_time = parse_log(log_file)
         if not runtimes:
             continue
-        avg_runtime = np.mean(runtimes)
-        std_runtime = np.std(runtimes)
-        data.setdefault(bench, {})[mode] = {
-            "mean": avg_runtime,
-            "std": std_runtime,
+        trials.setdefault(bench, {}).setdefault(mode, []).append({
+            "mean": np.mean(runtimes),
+            "std": np.std(runtimes),
             "count": len(runtimes),
             "compile_time": compile_time,
             "bench_time": bench_time,
-        }
+            "trial": trial,
+        })
+
+    data = {}
+    for bench, modes in trials.items():
+        for mode, mode_trials in modes.items():
+            mode_trials.sort(key=lambda s: (s["trial"] is None, s["trial"]))
+            best = min(mode_trials, key=lambda s: s["mean"])
+            data.setdefault(bench, {})[mode] = {
+                **best,
+                "n_trials": len(mode_trials),
+                "trials": mode_trials,
+            }
     return data
 
 def normalize_data_to_max(data):
@@ -72,6 +103,48 @@ def normalize_data_to_max(data):
             for m, v in modes.items()
         }
     return norm_data
+
+def generate_trial_table(data):
+    """Report every (benchmark, strategy, trial) runtime, before the min is taken."""
+    header = [
+        "Benchmark", "Strategy", "Trial", "Avg Runtime (ms)", "Std (ms)",
+        "Samples", "Compile Time (s)", "Bench Time (s)", "Min",
+    ]
+    rows = []
+    for bench in sorted(data.keys()):
+        for mode in MODES:
+            stats = data[bench].get(mode)
+            if stats is None:
+                continue
+            best_mean = min(t["mean"] for t in stats["trials"])
+            for t in stats["trials"]:
+                rows.append([
+                    bench,
+                    mode,
+                    "-" if t["trial"] is None else t["trial"],
+                    t["mean"],
+                    t["std"],
+                    t["count"],
+                    t["compile_time"],
+                    t["bench_time"],
+                    "*" if t["mean"] == best_mean else "",
+                ])
+
+    path = Path("analysis_results_benchapp") / "runtime_trials_table.csv"
+    with open(path, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        writer.writerows(rows)
+
+    print("\n=== Per-Trial Runtime Table (ms, * = min used in plots) ===")
+    table = [header] + [
+        [f"{c:.3f}" if isinstance(c, (float, np.floating)) else str(c) for c in r]
+        for r in rows
+    ]
+    widths = [max(len(r[i]) for r in table) for i in range(len(header))]
+    fmt = "  ".join(f"{{:<{w}}}" for w in widths)
+    for r in table:
+        print(fmt.format(*r))
 
 def generate_tables(data):
     """Generate tables of un-normalized values for runtimes, compile time, and bench time."""
@@ -255,9 +328,12 @@ if __name__ == "__main__":
     for bench, modes in data.items():
         print(f"\n{bench}:")
         for mode, stats in modes.items():
+            trial_info = f", best of {stats['n_trials']} trials"
+            if stats["trial"] is not None:
+                trial_info += f" (trial {stats['trial']})"
             print(
                 f"  {mode:10s}: {stats['mean']:.3f} ± {stats['std']:.3f} ms "
-                f"({stats['count']} samples)"
+                f"({stats['count']} samples{trial_info})"
             )
 
     # Plot absolute runtimes with variance
@@ -273,4 +349,5 @@ if __name__ == "__main__":
     # plot_compile_times(data, normalized=False)
     # plot_bench_times(data, normalized=False)
 
+    generate_trial_table(data)
     generate_tables(data)
