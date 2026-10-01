@@ -67,13 +67,16 @@ USE_HEXAGON = -DHEXAGON
 endif
 
 GENERATOR ?= $(BIN)/random_pipeline.generator
+# Which generator source to build. random_pipeline_generator_oldops.cpp is the
+# current generator restricted to the old operator set (see its header).
+GENERATOR_SRC ?= random_pipeline_generator.cpp
 PIPELINE ?= random_pipeline
 RUNTIME ?= $(BIN)/runtime.a
 
 $(BIN)/runtime.a: $(GENERATOR)
 	$^ -r runtime target=$(HL_TARGET) -o $(BIN)
 
-$(BIN)/random_pipeline.generator: random_pipeline_generator.cpp $(GENERATOR_DEPS)
+$(BIN)/random_pipeline.generator: $(GENERATOR_SRC) $(GENERATOR_DEPS)
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) $(USE_EXPORT_DYNAMIC) $(USE_HEXAGON) -fno-rtti $(filter-out %.h,$^) -o $@ $(LDFLAGS) $(HALIDE_SYSTEM_LIBS) $(GENERATOR_LDFLAGS)
 
